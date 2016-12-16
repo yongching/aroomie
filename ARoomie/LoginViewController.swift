@@ -11,12 +11,18 @@ import FBSDKLoginKit
 
 class LoginViewController: UIViewController {
 
+    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var needHelpButton: UIButton!
+    
     var fbLoginSuccess = false
+    
+    // MARK: View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        loginButton.layer.cornerRadius = 20
+        needHelpButton.layer.cornerRadius = 20
     }
 
     override func didReceiveMemoryWarning() {
