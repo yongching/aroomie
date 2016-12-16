@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		514E343DA7E2014F03BF49B1 /* Pods_ARoomie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 836C3D9CAED0B2FD6DE9531B /* Pods_ARoomie.framework */; };
+		AC6210361E034B790011267D /* FBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6210351E034B790011267D /* FBManager.swift */; };
+		AC6210381E034DE50011267D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6210371E034DE50011267D /* LoginViewController.swift */; };
 		ACE8DE3E1E0089FB0025530F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE8DE3D1E0089FB0025530F /* AppDelegate.swift */; };
 		ACE8DE401E0089FB0025530F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE8DE3F1E0089FB0025530F /* ViewController.swift */; };
 		ACE8DE431E0089FB0025530F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACE8DE411E0089FB0025530F /* Main.storyboard */; };
@@ -19,6 +21,9 @@
 		836C3D9CAED0B2FD6DE9531B /* Pods_ARoomie.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ARoomie.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8ED54050A3161D71010C5DA7 /* Pods-ARoomie.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARoomie.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ARoomie/Pods-ARoomie.debug.xcconfig"; sourceTree = "<group>"; };
 		9EA1B70793769F89F9486BB2 /* Pods-ARoomie.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARoomie.release.xcconfig"; path = "Pods/Target Support Files/Pods-ARoomie/Pods-ARoomie.release.xcconfig"; sourceTree = "<group>"; };
+		AC6210341E01DB510011267D /* ARoomie.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ARoomie.entitlements; sourceTree = "<group>"; };
+		AC6210351E034B790011267D /* FBManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBManager.swift; sourceTree = "<group>"; };
+		AC6210371E034DE50011267D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		ACE8DE3A1E0089FB0025530F /* ARoomie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARoomie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACE8DE3D1E0089FB0025530F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ACE8DE3F1E0089FB0025530F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -49,6 +54,25 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		ACC2F9B91E03693F003585BF /* Facebook Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				AC6210351E034B790011267D /* FBManager.swift */,
+				AC6210371E034DE50011267D /* LoginViewController.swift */,
+				AC6210341E01DB510011267D /* ARoomie.entitlements */,
+			);
+			name = "Facebook Authentication";
+			sourceTree = "<group>";
+		};
+		ACC2F9BA1E037245003585BF /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				ACE8DE461E0089FB0025530F /* LaunchScreen.storyboard */,
+				ACE8DE411E0089FB0025530F /* Main.storyboard */,
+			);
+			name = Storyboard;
+			sourceTree = "<group>";
+		};
 		ACE8DE311E0089FB0025530F = {
 			isa = PBXGroup;
 			children = (
@@ -70,11 +94,11 @@
 		ACE8DE3C1E0089FB0025530F /* ARoomie */ = {
 			isa = PBXGroup;
 			children = (
+				ACC2F9B91E03693F003585BF /* Facebook Authentication */,
+				ACC2F9BA1E037245003585BF /* Storyboard */,
 				ACE8DE3D1E0089FB0025530F /* AppDelegate.swift */,
 				ACE8DE3F1E0089FB0025530F /* ViewController.swift */,
-				ACE8DE411E0089FB0025530F /* Main.storyboard */,
 				ACE8DE441E0089FB0025530F /* Assets.xcassets */,
-				ACE8DE461E0089FB0025530F /* LaunchScreen.storyboard */,
 				ACE8DE491E0089FB0025530F /* Info.plist */,
 			);
 			path = ARoomie;
@@ -125,6 +149,11 @@
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = RPCZUUG7G6;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -212,7 +241,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC6210381E034DE50011267D /* LoginViewController.swift in Sources */,
 				ACE8DE401E0089FB0025530F /* ViewController.swift in Sources */,
+				AC6210361E034B790011267D /* FBManager.swift in Sources */,
 				ACE8DE3E1E0089FB0025530F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -337,6 +368,7 @@
 			baseConfigurationReference = 8ED54050A3161D71010C5DA7 /* Pods-ARoomie.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ARoomie/ARoomie.entitlements;
 				DEVELOPMENT_TEAM = RPCZUUG7G6;
 				INFOPLIST_FILE = ARoomie/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -351,6 +383,7 @@
 			baseConfigurationReference = 9EA1B70793769F89F9486BB2 /* Pods-ARoomie.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ARoomie/ARoomie.entitlements;
 				DEVELOPMENT_TEAM = RPCZUUG7G6;
 				INFOPLIST_FILE = ARoomie/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

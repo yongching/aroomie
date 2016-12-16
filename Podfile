@@ -6,5 +6,10 @@ target 'ARoomie' do
   use_frameworks!
 
   # Pods for ARoomie
-
+  pod 'FBSDKCoreKit'
+  pod 'FBSDKLoginKit'
+  pod 'FBSDKShareKit'
+  pod 'Alamofire', :git => 'https://github.com/Alamofire/Alamofire.git'
+  pod 'SwiftyJSON', :git => 'https://github.com/BaiduHiDeviOS/SwiftyJSON.git', :branch => 'swift3'
+  
 end
