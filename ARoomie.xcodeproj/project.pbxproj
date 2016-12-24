@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		514E343DA7E2014F03BF49B1 /* Pods_ARoomie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 836C3D9CAED0B2FD6DE9531B /* Pods_ARoomie.framework */; };
+		AC25E6411E0F0F2100973623 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC25E6401E0F0F2100973623 /* User.swift */; };
 		AC6210361E034B790011267D /* FBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6210351E034B790011267D /* FBManager.swift */; };
 		AC6210381E034DE50011267D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6210371E034DE50011267D /* LoginViewController.swift */; };
 		AC6426011E0DCF6300CDBF8F /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6426001E0DCF6300CDBF8F /* SettingViewController.swift */; };
@@ -24,6 +25,7 @@
 		836C3D9CAED0B2FD6DE9531B /* Pods_ARoomie.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ARoomie.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8ED54050A3161D71010C5DA7 /* Pods-ARoomie.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARoomie.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ARoomie/Pods-ARoomie.debug.xcconfig"; sourceTree = "<group>"; };
 		9EA1B70793769F89F9486BB2 /* Pods-ARoomie.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARoomie.release.xcconfig"; path = "Pods/Target Support Files/Pods-ARoomie/Pods-ARoomie.release.xcconfig"; sourceTree = "<group>"; };
+		AC25E6401E0F0F2100973623 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		AC6210341E01DB510011267D /* ARoomie.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ARoomie.entitlements; sourceTree = "<group>"; };
 		AC6210351E034B790011267D /* FBManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBManager.swift; sourceTree = "<group>"; };
 		AC6210371E034DE50011267D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 		AC216C9E1E0BDE7A00B6C15B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				AC25E6401E0F0F2100973623 /* User.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -307,6 +310,7 @@
 				AC6210381E034DE50011267D /* LoginViewController.swift in Sources */,
 				AC6426071E0DCFFD00CDBF8F /* FXBlurView.m in Sources */,
 				ACE8DE401E0089FB0025530F /* ViewController.swift in Sources */,
+				AC25E6411E0F0F2100973623 /* User.swift in Sources */,
 				AC6426061E0DCFFD00CDBF8F /* AvatarImageView.swift in Sources */,
 				AC6210361E034B790011267D /* FBManager.swift in Sources */,
 				ACE8DE3E1E0089FB0025530F /* AppDelegate.swift in Sources */,
