@@ -13,5 +13,6 @@ import SwiftyJSON
 class FBManager {
     
     static let shared = FBSDKLoginManager()
+    
 }
 

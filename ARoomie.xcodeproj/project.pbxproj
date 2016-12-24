@@ -10,6 +10,9 @@
 		514E343DA7E2014F03BF49B1 /* Pods_ARoomie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 836C3D9CAED0B2FD6DE9531B /* Pods_ARoomie.framework */; };
 		AC6210361E034B790011267D /* FBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6210351E034B790011267D /* FBManager.swift */; };
 		AC6210381E034DE50011267D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6210371E034DE50011267D /* LoginViewController.swift */; };
+		AC6426011E0DCF6300CDBF8F /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6426001E0DCF6300CDBF8F /* SettingViewController.swift */; };
+		AC6426061E0DCFFD00CDBF8F /* AvatarImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6426031E0DCFFD00CDBF8F /* AvatarImageView.swift */; };
+		AC6426071E0DCFFD00CDBF8F /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC6426051E0DCFFD00CDBF8F /* FXBlurView.m */; };
 		ACE8DE3E1E0089FB0025530F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE8DE3D1E0089FB0025530F /* AppDelegate.swift */; };
 		ACE8DE401E0089FB0025530F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE8DE3F1E0089FB0025530F /* ViewController.swift */; };
 		ACE8DE431E0089FB0025530F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACE8DE411E0089FB0025530F /* Main.storyboard */; };
@@ -24,6 +27,11 @@
 		AC6210341E01DB510011267D /* ARoomie.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ARoomie.entitlements; sourceTree = "<group>"; };
 		AC6210351E034B790011267D /* FBManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBManager.swift; sourceTree = "<group>"; };
 		AC6210371E034DE50011267D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		AC6426001E0DCF6300CDBF8F /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		AC6426021E0DCFFD00CDBF8F /* ARoomie-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ARoomie-Bridging-Header.h"; sourceTree = "<group>"; };
+		AC6426031E0DCFFD00CDBF8F /* AvatarImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarImageView.swift; sourceTree = "<group>"; };
+		AC6426041E0DCFFD00CDBF8F /* FXBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXBlurView.h; sourceTree = "<group>"; };
+		AC6426051E0DCFFD00CDBF8F /* FXBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXBlurView.m; sourceTree = "<group>"; };
 		ACE8DE3A1E0089FB0025530F /* ARoomie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARoomie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACE8DE3D1E0089FB0025530F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ACE8DE3F1E0089FB0025530F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -54,14 +62,62 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		ACC2F9B91E03693F003585BF /* Facebook Authentication */ = {
+		AC216C9E1E0BDE7A00B6C15B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		AC216C9F1E0BDEB300B6C15B /* Manager */ = {
 			isa = PBXGroup;
 			children = (
 				AC6210351E034B790011267D /* FBManager.swift */,
-				AC6210371E034DE50011267D /* LoginViewController.swift */,
-				AC6210341E01DB510011267D /* ARoomie.entitlements */,
 			);
-			name = "Facebook Authentication";
+			name = Manager;
+			sourceTree = "<group>";
+		};
+		AC216CA01E0BDEED00B6C15B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				ACC2F9B91E03693F003585BF /* Account */,
+				AC6426081E0E831600CDBF8F /* Setting */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		AC216CA11E0BDF8A00B6C15B /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		AC216CA21E0BDFB100B6C15B /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				AC6426031E0DCFFD00CDBF8F /* AvatarImageView.swift */,
+				AC6426041E0DCFFD00CDBF8F /* FXBlurView.h */,
+				AC6426051E0DCFFD00CDBF8F /* FXBlurView.m */,
+				AC6426021E0DCFFD00CDBF8F /* ARoomie-Bridging-Header.h */,
+			);
+			name = Library;
+			sourceTree = "<group>";
+		};
+		AC6426081E0E831600CDBF8F /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				AC6426001E0DCF6300CDBF8F /* SettingViewController.swift */,
+			);
+			name = Setting;
+			sourceTree = "<group>";
+		};
+		ACC2F9B91E03693F003585BF /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				AC6210371E034DE50011267D /* LoginViewController.swift */,
+			);
+			name = Account;
 			sourceTree = "<group>";
 		};
 		ACC2F9BA1E037245003585BF /* Storyboard */ = {
@@ -94,12 +150,17 @@
 		ACE8DE3C1E0089FB0025530F /* ARoomie */ = {
 			isa = PBXGroup;
 			children = (
-				ACC2F9B91E03693F003585BF /* Facebook Authentication */,
+				AC216CA21E0BDFB100B6C15B /* Library */,
+				AC216C9F1E0BDEB300B6C15B /* Manager */,
+				AC216C9E1E0BDE7A00B6C15B /* Model */,
+				AC216CA11E0BDF8A00B6C15B /* View */,
+				AC216CA01E0BDEED00B6C15B /* Controller */,
 				ACC2F9BA1E037245003585BF /* Storyboard */,
 				ACE8DE3D1E0089FB0025530F /* AppDelegate.swift */,
 				ACE8DE3F1E0089FB0025530F /* ViewController.swift */,
 				ACE8DE441E0089FB0025530F /* Assets.xcassets */,
 				ACE8DE491E0089FB0025530F /* Info.plist */,
+				AC6210341E01DB510011267D /* ARoomie.entitlements */,
 			);
 			path = ARoomie;
 			sourceTree = "<group>";
@@ -148,6 +209,7 @@
 					ACE8DE391E0089FB0025530F = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = RPCZUUG7G6;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Keychain = {
@@ -241,8 +303,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC6426011E0DCF6300CDBF8F /* SettingViewController.swift in Sources */,
 				AC6210381E034DE50011267D /* LoginViewController.swift in Sources */,
+				AC6426071E0DCFFD00CDBF8F /* FXBlurView.m in Sources */,
 				ACE8DE401E0089FB0025530F /* ViewController.swift in Sources */,
+				AC6426061E0DCFFD00CDBF8F /* AvatarImageView.swift in Sources */,
 				AC6210361E034B790011267D /* FBManager.swift in Sources */,
 				ACE8DE3E1E0089FB0025530F /* AppDelegate.swift in Sources */,
 			);
@@ -368,12 +433,15 @@
 			baseConfigurationReference = 8ED54050A3161D71010C5DA7 /* Pods-ARoomie.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = ARoomie/ARoomie.entitlements;
 				DEVELOPMENT_TEAM = RPCZUUG7G6;
 				INFOPLIST_FILE = ARoomie/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yongching.ARoomie;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ARoomie/ARoomie-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -383,12 +451,14 @@
 			baseConfigurationReference = 9EA1B70793769F89F9486BB2 /* Pods-ARoomie.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = ARoomie/ARoomie.entitlements;
 				DEVELOPMENT_TEAM = RPCZUUG7G6;
 				INFOPLIST_FILE = ARoomie/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yongching.ARoomie;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ARoomie/ARoomie-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

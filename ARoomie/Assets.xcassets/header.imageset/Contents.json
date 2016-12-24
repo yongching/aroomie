@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "pexels-photo-173473.jpeg",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "profile_bg.jpg",
       "scale" : "2x"
     },
     {
