@@ -12,13 +12,15 @@ import SwiftyJSON
 class User {
     var name: String?
     var email: String?
+    var age_range: String?
     var pictureURL: String?
     
     static let currentUser = User()
     
     func setInfo(json: JSON) {
         self.name = json["name"].string
-        self.name = json["email"].string
+        self.email = json["email"].string
+        self.age_range = json["age_range"].string
         
         //let image = json["picture"].dictionary
         //let imageData = image?["data"]?.dictionary
@@ -29,6 +31,7 @@ class User {
     func resetInfo() {
         self.name = nil
         self.email = nil
+        self.age_range = nil
         self.pictureURL = nil
     }
 }

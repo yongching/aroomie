@@ -16,7 +16,7 @@ class FBManager {
     
     public class func getFBUserData(completionHandler: @escaping () -> Void) {
         if (FBSDKAccessToken.current() != nil) {
-            FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "name, email, picture.type(normal)"])
+            FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "name, age_range, email, picture.type(normal)"])
                 .start(completionHandler: { ( connection, result, error) in
                 
                 if (error == nil) {
