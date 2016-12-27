@@ -92,6 +92,7 @@
 		AC216CA11E0BDF8A00B6C15B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				AC25E6441E0F109900973623 /* Setting */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -105,6 +106,13 @@
 				AC6426021E0DCFFD00CDBF8F /* ARoomie-Bridging-Header.h */,
 			);
 			name = Library;
+			sourceTree = "<group>";
+		};
+		AC25E6441E0F109900973623 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Setting;
 			sourceTree = "<group>";
 		};
 		AC6426081E0E831600CDBF8F /* Setting */ = {
