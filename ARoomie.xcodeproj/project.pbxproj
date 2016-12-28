@@ -11,10 +11,12 @@
 		AC25E6411E0F0F2100973623 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC25E6401E0F0F2100973623 /* User.swift */; };
 		AC6210361E034B790011267D /* FBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6210351E034B790011267D /* FBManager.swift */; };
 		AC6210381E034DE50011267D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6210371E034DE50011267D /* LoginViewController.swift */; };
-		AC6426011E0DCF6300CDBF8F /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6426001E0DCF6300CDBF8F /* SettingViewController.swift */; };
-		AC6426061E0DCFFD00CDBF8F /* AvatarImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6426031E0DCFFD00CDBF8F /* AvatarImageView.swift */; };
-		AC6426071E0DCFFD00CDBF8F /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC6426051E0DCFFD00CDBF8F /* FXBlurView.m */; };
-		ACA210901E13D5B300C6BF2F /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA2108F1E13D5B300C6BF2F /* CustomCell.swift */; };
+		AC86F3201E143E6C00BEB324 /* MyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC86F31F1E143E6C00BEB324 /* MyCell.swift */; };
+		AC86F3221E143E7800BEB324 /* MyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC86F3211E143E7800BEB324 /* MyCell.xib */; };
+		AC86F3241E14435E00BEB324 /* dropDownButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC86F3231E14435E00BEB324 /* dropDownButton.swift */; };
+		ACA210941E14096800C6BF2F /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA210931E14096800C6BF2F /* SettingTableViewController.swift */; };
+		ACDDF1891E14293B00A4002B /* PreferenceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDDF1881E14293B00A4002B /* PreferenceTableViewController.swift */; };
+		ACDDF18D1E14326B00A4002B /* LifestyleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDDF18C1E14326B00A4002B /* LifestyleTableViewController.swift */; };
 		ACE8DE3E1E0089FB0025530F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE8DE3D1E0089FB0025530F /* AppDelegate.swift */; };
 		ACE8DE401E0089FB0025530F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE8DE3F1E0089FB0025530F /* ViewController.swift */; };
 		ACE8DE431E0089FB0025530F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACE8DE411E0089FB0025530F /* Main.storyboard */; };
@@ -30,12 +32,12 @@
 		AC6210341E01DB510011267D /* ARoomie.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ARoomie.entitlements; sourceTree = "<group>"; };
 		AC6210351E034B790011267D /* FBManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBManager.swift; sourceTree = "<group>"; };
 		AC6210371E034DE50011267D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		AC6426001E0DCF6300CDBF8F /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
-		AC6426021E0DCFFD00CDBF8F /* ARoomie-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ARoomie-Bridging-Header.h"; sourceTree = "<group>"; };
-		AC6426031E0DCFFD00CDBF8F /* AvatarImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarImageView.swift; sourceTree = "<group>"; };
-		AC6426041E0DCFFD00CDBF8F /* FXBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXBlurView.h; sourceTree = "<group>"; };
-		AC6426051E0DCFFD00CDBF8F /* FXBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXBlurView.m; sourceTree = "<group>"; };
-		ACA2108F1E13D5B300C6BF2F /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
+		AC86F31F1E143E6C00BEB324 /* MyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCell.swift; sourceTree = "<group>"; };
+		AC86F3211E143E7800BEB324 /* MyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyCell.xib; sourceTree = "<group>"; };
+		AC86F3231E14435E00BEB324 /* dropDownButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = dropDownButton.swift; sourceTree = "<group>"; };
+		ACA210931E14096800C6BF2F /* SettingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
+		ACDDF1881E14293B00A4002B /* PreferenceTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferenceTableViewController.swift; sourceTree = "<group>"; };
+		ACDDF18C1E14326B00A4002B /* LifestyleTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LifestyleTableViewController.swift; sourceTree = "<group>"; };
 		ACE8DE3A1E0089FB0025530F /* ARoomie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARoomie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACE8DE3D1E0089FB0025530F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ACE8DE3F1E0089FB0025530F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -102,10 +104,7 @@
 		AC216CA21E0BDFB100B6C15B /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				AC6426031E0DCFFD00CDBF8F /* AvatarImageView.swift */,
-				AC6426041E0DCFFD00CDBF8F /* FXBlurView.h */,
-				AC6426051E0DCFFD00CDBF8F /* FXBlurView.m */,
-				AC6426021E0DCFFD00CDBF8F /* ARoomie-Bridging-Header.h */,
+				AC86F3231E14435E00BEB324 /* dropDownButton.swift */,
 			);
 			name = Library;
 			sourceTree = "<group>";
@@ -113,7 +112,7 @@
 		AC25E6441E0F109900973623 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
-				ACA2108F1E13D5B300C6BF2F /* CustomCell.swift */,
+				AC86F31F1E143E6C00BEB324 /* MyCell.swift */,
 			);
 			name = Setting;
 			sourceTree = "<group>";
@@ -121,7 +120,9 @@
 		AC6426081E0E831600CDBF8F /* Setting */ = {
 			isa = PBXGroup;
 			children = (
-				AC6426001E0DCF6300CDBF8F /* SettingViewController.swift */,
+				ACA210931E14096800C6BF2F /* SettingTableViewController.swift */,
+				ACDDF1881E14293B00A4002B /* PreferenceTableViewController.swift */,
+				ACDDF18C1E14326B00A4002B /* LifestyleTableViewController.swift */,
 			);
 			name = Setting;
 			sourceTree = "<group>";
@@ -137,6 +138,7 @@
 		ACC2F9BA1E037245003585BF /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
+				AC86F3211E143E7800BEB324 /* MyCell.xib */,
 				ACE8DE461E0089FB0025530F /* LaunchScreen.storyboard */,
 				ACE8DE411E0089FB0025530F /* Main.storyboard */,
 			);
@@ -257,6 +259,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ACE8DE481E0089FB0025530F /* LaunchScreen.storyboard in Resources */,
+				AC86F3221E143E7800BEB324 /* MyCell.xib in Resources */,
 				ACE8DE451E0089FB0025530F /* Assets.xcassets in Resources */,
 				ACE8DE431E0089FB0025530F /* Main.storyboard in Resources */,
 			);
@@ -317,13 +320,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AC6426011E0DCF6300CDBF8F /* SettingViewController.swift in Sources */,
+				AC86F3241E14435E00BEB324 /* dropDownButton.swift in Sources */,
+				ACDDF18D1E14326B00A4002B /* LifestyleTableViewController.swift in Sources */,
+				AC86F3201E143E6C00BEB324 /* MyCell.swift in Sources */,
 				AC6210381E034DE50011267D /* LoginViewController.swift in Sources */,
-				AC6426071E0DCFFD00CDBF8F /* FXBlurView.m in Sources */,
+				ACDDF1891E14293B00A4002B /* PreferenceTableViewController.swift in Sources */,
 				ACE8DE401E0089FB0025530F /* ViewController.swift in Sources */,
-				ACA210901E13D5B300C6BF2F /* CustomCell.swift in Sources */,
 				AC25E6411E0F0F2100973623 /* User.swift in Sources */,
-				AC6426061E0DCFFD00CDBF8F /* AvatarImageView.swift in Sources */,
+				ACA210941E14096800C6BF2F /* SettingTableViewController.swift in Sources */,
 				AC6210361E034B790011267D /* FBManager.swift in Sources */,
 				ACE8DE3E1E0089FB0025530F /* AppDelegate.swift in Sources */,
 			);
@@ -391,7 +395,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -435,7 +439,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -456,7 +460,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yongching.ARoomie;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "ARoomie/ARoomie-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
@@ -474,7 +477,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yongching.ARoomie;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "ARoomie/ARoomie-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
