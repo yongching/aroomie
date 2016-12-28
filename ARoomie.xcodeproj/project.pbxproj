@@ -14,6 +14,7 @@
 		AC6426011E0DCF6300CDBF8F /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6426001E0DCF6300CDBF8F /* SettingViewController.swift */; };
 		AC6426061E0DCFFD00CDBF8F /* AvatarImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6426031E0DCFFD00CDBF8F /* AvatarImageView.swift */; };
 		AC6426071E0DCFFD00CDBF8F /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC6426051E0DCFFD00CDBF8F /* FXBlurView.m */; };
+		ACA210901E13D5B300C6BF2F /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA2108F1E13D5B300C6BF2F /* CustomCell.swift */; };
 		ACE8DE3E1E0089FB0025530F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE8DE3D1E0089FB0025530F /* AppDelegate.swift */; };
 		ACE8DE401E0089FB0025530F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE8DE3F1E0089FB0025530F /* ViewController.swift */; };
 		ACE8DE431E0089FB0025530F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACE8DE411E0089FB0025530F /* Main.storyboard */; };
@@ -34,6 +35,7 @@
 		AC6426031E0DCFFD00CDBF8F /* AvatarImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarImageView.swift; sourceTree = "<group>"; };
 		AC6426041E0DCFFD00CDBF8F /* FXBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXBlurView.h; sourceTree = "<group>"; };
 		AC6426051E0DCFFD00CDBF8F /* FXBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXBlurView.m; sourceTree = "<group>"; };
+		ACA2108F1E13D5B300C6BF2F /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		ACE8DE3A1E0089FB0025530F /* ARoomie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARoomie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACE8DE3D1E0089FB0025530F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ACE8DE3F1E0089FB0025530F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 		AC25E6441E0F109900973623 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
+				ACA2108F1E13D5B300C6BF2F /* CustomCell.swift */,
 			);
 			name = Setting;
 			sourceTree = "<group>";
@@ -318,6 +321,7 @@
 				AC6210381E034DE50011267D /* LoginViewController.swift in Sources */,
 				AC6426071E0DCFFD00CDBF8F /* FXBlurView.m in Sources */,
 				ACE8DE401E0089FB0025530F /* ViewController.swift in Sources */,
+				ACA210901E13D5B300C6BF2F /* CustomCell.swift in Sources */,
 				AC25E6411E0F0F2100973623 /* User.swift in Sources */,
 				AC6426061E0DCFFD00CDBF8F /* AvatarImageView.swift in Sources */,
 				AC6210361E034B790011267D /* FBManager.swift in Sources */,
