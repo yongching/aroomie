@@ -13,8 +13,8 @@ class PreferenceTableViewController: UITableViewController {
     
     // MARK: - Properties
     
-    @IBOutlet weak var genderButton: UIButton!
-    @IBOutlet weak var raceButton: UIButton!
+    @IBOutlet weak var buttonGender: DropDownButton!
+    @IBOutlet weak var buttonRace: DropDownButton!
     
     // MARK: - DropDown
     
@@ -38,14 +38,12 @@ class PreferenceTableViewController: UITableViewController {
         raceDropDown.show()
     }
     
-    // MARK: - The Views
+    // MARK: - View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupDropDowns()
-        dropDowns.forEach { $0.dismissMode = .onTap }
-        dropDowns.forEach { $0.direction = .bottom }
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -64,13 +62,14 @@ class PreferenceTableViewController: UITableViewController {
     func setupDropDowns() {
         setupGenderDropDown()
         setupRaceDropDown()
+        
+        dropDowns.forEach { $0.dismissMode = .onTap }
+        dropDowns.forEach { $0.direction = .bottom }
     }
     
     func setupGenderDropDown() {
-        genderDropDown.anchorView = genderButton
+        genderDropDown.anchorView = buttonGender
         
-        // By default, the dropdown will have its origin on the top left corner of its anchor view
-        // So it will come over the anchor view and hide it completely
         // If you want to have the dropdown underneath your anchor view, you can do this:
         genderDropDown.bottomOffset = CGPoint(x: 0, y: genderDropDown.bounds.height)
         
@@ -78,29 +77,18 @@ class PreferenceTableViewController: UITableViewController {
         genderDropDown.dataSource = [
             "10 €",
             "20 €",
-            "30 €",
-            "40 €",
-            "50 €",
-            "60 €",
-            "70 €",
-            "80 €",
-            "90 €",
-            "100 €",
-            "110 €",
-            "120 €"
+            "30 €"
         ]
         
         // Action triggered on selection
         genderDropDown.selectionAction = { [unowned self] (index, item) in
-            self.genderButton.setTitle(item, for: .normal)
+            self.buttonGender.setTitle(item, for: .normal)
         }
     }
 
     func setupRaceDropDown() {
-        raceDropDown.anchorView = genderButton
+        raceDropDown.anchorView = buttonRace
         
-        // By default, the dropdown will have its origin on the top left corner of its anchor view
-        // So it will come over the anchor view and hide it completely
         // If you want to have the dropdown underneath your anchor view, you can do this:
         raceDropDown.bottomOffset = CGPoint(x: 0, y: raceDropDown.bounds.height)
         
@@ -108,21 +96,12 @@ class PreferenceTableViewController: UITableViewController {
         raceDropDown.dataSource = [
             "10 €",
             "20 €",
-            "30 €",
-            "40 €",
-            "50 €",
-            "60 €",
-            "70 €",
-            "80 €",
-            "90 €",
-            "100 €",
-            "110 €",
-            "120 €"
+            "30 €"
         ]
         
         // Action triggered on selection
         raceDropDown.selectionAction = { [unowned self] (index, item) in
-            self.raceButton.setTitle(item, for: .normal)
+            self.buttonRace.setTitle(item, for: .normal)
         }
     }
 
@@ -138,59 +117,7 @@ class PreferenceTableViewController: UITableViewController {
         return 4
     }
 
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
+    override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        return false
     }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

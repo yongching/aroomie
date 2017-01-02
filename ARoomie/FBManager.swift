@@ -15,6 +15,7 @@ class FBManager {
     static let shared = FBSDKLoginManager()
     
     public class func getFBUserData(completionHandler: @escaping () -> Void) {
+        /**
         if (FBSDKAccessToken.current() != nil) {
             FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "name, age_range, gender, email, picture.type(large)"])
                 .start(completionHandler: { ( connection, result, error) in
@@ -28,6 +29,7 @@ class FBManager {
                 }
             })
         }
+        **/
     }
     
 }
