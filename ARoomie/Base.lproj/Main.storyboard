@@ -718,10 +718,19 @@
                             <outlet property="delegate" destination="4wK-wh-oeT" id="9rL-JL-Azu"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Auto Matching" id="Sy7-ZG-dpp"/>
+                    <navigationItem key="navigationItem" title="Auto Matching" id="Sy7-ZG-dpp">
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="GNa-6O-Ak6">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="buttonSave:" destination="4wK-wh-oeT" id="6S2-HI-RhM"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="buttonGender" destination="LCQ-9u-6Po" id="unA-aK-uus"/>
                         <outlet property="buttonRace" destination="HaO-je-83h" id="ixr-V6-rgq"/>
+                        <outlet property="textFieldBudget" destination="gbi-tn-pWN" id="9y6-gD-wUS"/>
+                        <outlet property="textFieldMoveIn" destination="zzS-Bj-F2B" id="o1q-ft-sEc"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dmh-9w-bee" userLabel="First Responder" sceneMemberID="firstResponder"/>

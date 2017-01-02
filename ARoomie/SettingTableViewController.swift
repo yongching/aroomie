@@ -39,22 +39,11 @@ class SettingTableViewController: UITableViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //clearsSelectionOnViewWillAppear = true
-        setupTextField()
         setupAvatar()
         setupDropDown()
+        setupTextField()
         hideKeyboardWhenTappedAround()
-        
-        imageAvatar.image = try! UIImage(data: Data(contentsOf: URL(string: User.currentUser.pictureURL!)!))
-        labelName.text = User.currentUser.name
-        labelAgeGroup.text = User.currentUser.age_range
-        labelGender.text = User.currentUser.gender
-        if User.currentUser.race != nil {
-            dropDown.selectRow(at: User.currentUser.race)
-            buttonRace.setTitle(self.raceOptions[User.currentUser.race!], for: .normal)
-        }
-        labelEmail.text = User.currentUser.email
-        textFieldPhone.text = User.currentUser.phone
+        getUserData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -108,22 +97,6 @@ class SettingTableViewController: UITableViewController, UITextFieldDelegate {
 
     // MARK: - Setup
     
-    func setupTextField() {
-        textFieldPhone.delegate = self
-        textFieldPhone.keyboardType = UIKeyboardType.decimalPad
-        
-        let keyboardToolbar = UIToolbar()
-        
-        keyboardToolbar.setItems([
-            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
-            UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(SettingTableViewController.dismissKeyboard)
-        )], animated: true)
-        
-        keyboardToolbar.sizeToFit()
-        
-        textFieldPhone.inputAccessoryView = keyboardToolbar
-    }
-    
     func setupAvatar() {
         imageAvatar.layer.cornerRadius = 60 / 2
         imageAvatar.layer.borderWidth = 1.0
@@ -148,6 +121,35 @@ class SettingTableViewController: UITableViewController, UITextFieldDelegate {
         raceDropDown.selectionAction = { [unowned self] (index, item) in
             self.buttonRace.setTitle(item, for: .normal)
         }
+    }
+    
+    func setupTextField() {
+        textFieldPhone.delegate = self
+        textFieldPhone.keyboardType = UIKeyboardType.decimalPad
+        
+        let keyboardToolbar = UIToolbar()
+        
+        keyboardToolbar.setItems([
+            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
+            UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(UIViewController.dismissKeyboard)
+            )], animated: true)
+        
+        keyboardToolbar.sizeToFit()
+        
+        textFieldPhone.inputAccessoryView = keyboardToolbar
+    }
+
+    func getUserData() {
+        imageAvatar.image = try! UIImage(data: Data(contentsOf: URL(string: User.currentUser.pictureURL!)!))
+        labelName.text = User.currentUser.name
+        labelAgeGroup.text = User.currentUser.age_range
+        labelGender.text = User.currentUser.gender
+        if User.currentUser.race != nil {
+            dropDown.selectRow(at: User.currentUser.race)
+            buttonRace.setTitle(self.raceOptions[User.currentUser.race!], for: .normal)
+        }
+        labelEmail.text = User.currentUser.email
+        textFieldPhone.text = User.currentUser.phone
     }
     
     // MARK: - Actions

@@ -189,6 +189,7 @@ class APIManager {
             "access_token": Default.shared.getAccessToken()
         ]
         let merged = params2.merged(with: params)
+        print(merged)
         requestServer(.post, path, merged, URLEncoding(), completionHandler)
     }
     

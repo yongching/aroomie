@@ -26,6 +26,11 @@ class User {
     var email: String?
     var phone: String?
     
+    var gender_pref: Int?
+    var race_pref: Int?
+    var budget_pref: String?
+    var move_in_pref: String?
+
     static let currentUser = User()
     
     /**
@@ -43,16 +48,27 @@ class User {
     **/
     
     func setInfo(json: JSON) {
-        self.pictureURL = json["profile"]["avatar"].string
-        self.name = json["basic"]["first_name"].string! + " " + json["basic"]["last_name"].string!
-        self.age_range = json["age_range"].string
-        self.gender = json["profile"]["gender"].string
-        let index = json["profile"]["race"].stringValue
-        if !(index == "") {
-            self.race = Int(index)
+        self.pictureURL = json["profile"]["avatar"].stringValue
+        self.name = json["basic"]["first_name"].stringValue + " " + json["basic"]["last_name"].stringValue
+        self.age_range = json["age_range"].stringValue
+        self.gender = json["profile"]["gender"].stringValue
+        let race = json["profile"]["race"].stringValue
+        if !(race == "") {
+            self.race = Int(race)
         }
-        self.email = json["basic"]["email"].string
-        self.phone = json["profile"]["phone"].string
+        self.email = json["basic"]["email"].stringValue
+        self.phone = json["profile"]["phone"].stringValue
+        
+        let gender_pref = json["profile"]["gender_pref"].stringValue
+        if !(gender_pref == "") {
+            self.gender_pref = Int(gender_pref)
+        }
+        let race_pref = json["profile"]["race_pref"].stringValue
+        if !(race_pref == "") {
+            self.race_pref = Int(race_pref)
+        }
+        self.budget_pref = json["profile"]["budget_pref"].stringValue
+        self.move_in_pref = json["profile"]["move_in_pref"].stringValue
     }
     
     func resetInfo() {
@@ -63,5 +79,10 @@ class User {
         self.race = nil
         self.email = nil
         self.phone = nil
+        
+        self.gender_pref = nil
+        self.race_pref = nil
+        self.budget_pref = nil
+        self.move_in_pref = nil
     }
 }
