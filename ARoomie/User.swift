@@ -44,7 +44,7 @@ class User {
     
     func setInfo(json: JSON) {
         self.pictureURL = json["profile"]["avatar"].string
-        self.name = json["basic"]["first_name"].string! + json["basic"]["last_name"].string!
+        self.name = json["basic"]["first_name"].string! + " " + json["basic"]["last_name"].string!
         self.age_range = json["age_range"].string
         self.gender = json["profile"]["gender"].string
         let index = json["profile"]["race"].stringValue

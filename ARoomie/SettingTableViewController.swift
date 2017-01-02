@@ -9,7 +9,7 @@
 import UIKit
 import DropDown
 
-class SettingTableViewController: UITableViewController {
+class SettingTableViewController: UITableViewController, UITextFieldDelegate {
 
     // MARK: - Properties
     
@@ -20,86 +20,30 @@ class SettingTableViewController: UITableViewController {
     @IBOutlet weak var buttonRace: DropDownButton!
     @IBOutlet weak var labelEmail: UILabel!
     @IBOutlet weak var textFieldPhone: UITextField!
-    
     let raceOptions: [String] = [
-        "chinese",
         "malay",
+        "chinese",
         "indian",
-        "other"
+        "others"
     ]
     
     // MARK: - DropDown
     
     let raceDropDown = DropDown()
-    
     lazy var dropDown: DropDown = {
         return self.raceDropDown
     }()
-    
-    // MARK: - Actions
-    @IBAction func chooseRace(_ sender: Any) {
-        raceDropDown.show()
-    }
-
-    @IBAction func buttonLogout(_ sender: Any) {
-        let alert = UIAlertController(title: "Are you sure?", message: nil, preferredStyle: .alert)
-        
-        alert.addAction(UIAlertAction(title: "Log out", style: .default, handler: {
-            action in
-            
-            APIManager.shared.logout(completionHandler: { (error) in
-                if error == nil {
-                    
-                    FBManager.shared.logOut()
-                    User.currentUser.resetInfo()
-                    Default.shared.resetUserDefault()
-                    
-                    let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                    let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
-                    self.present(loginViewController, animated: true, completion: nil)
-                    
-                } else {
-                    
-                    let message = "There is some problem logging out"
-                    let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
-                    self.present(alert, animated: true, completion: nil)
-                }
-            })
-        }))
-        
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        
-        self.present(alert, animated: true, completion: nil)
-    }
     
     // MARK: - View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //clearsSelectionOnViewWillAppear = true
+        setupTextField()
         setupAvatar()
         setupDropDown()
-        
-        /**
-        APIManager.shared.getUserInfo(completionHandler: { json in
-            
-            if json != nil {
-                self.imageAvatar.image = try! UIImage(data: Data(contentsOf: URL(string: json["profile"]["avatar"].string!)!))
-                self.labelName.text = json["basic"]["first_name"].stringValue + " " + json["basic"]["last_name"].stringValue
-                self.labelGender.text = json["profile"]["gender"].stringValue
-                self.labelAgeGroup.text = json["age_range"].stringValue
-                let index = json["profile"]["race"].stringValue
-                if !(index == "") {
-                    self.dropDown.selectRow(at: Int(index))
-                    self.buttonRace.setTitle(self.raceOptions[Int(index)!], for: .normal)
-                }
-                self.labelEmail.text = json["basic"]["email"].stringValue
-                self.textFieldPhone.text = json["profile"]["phone"].stringValue
-                self.tableView.reloadData()
-            }
-        })
-        **/
+        hideKeyboardWhenTappedAround()
         
         imageAvatar.image = try! UIImage(data: Data(contentsOf: URL(string: User.currentUser.pictureURL!)!))
         labelName.text = User.currentUser.name
@@ -111,20 +55,74 @@ class SettingTableViewController: UITableViewController {
         }
         labelEmail.text = User.currentUser.email
         textFieldPhone.text = User.currentUser.phone
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
+    // MARK: - Table view data source
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 5
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch section {
+        case 0:
+            return 1
+        case 1:
+            return 3
+        case 2:
+            return 2
+        case 3:
+            return 2
+        case 4:
+            return 1
+        default:
+            return 0
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        switch indexPath.section {
+        case 3:
+            return true
+        default:
+            return false
+        }
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    // MARK: - Text Field Delegate
+    
+    /*
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textFieldPhone.resignFirstResponder()
+        return true
+    }
+    */
+
     // MARK: - Setup
+    
+    func setupTextField() {
+        textFieldPhone.delegate = self
+        textFieldPhone.keyboardType = UIKeyboardType.decimalPad
+        
+        let keyboardToolbar = UIToolbar()
+        
+        keyboardToolbar.setItems([
+            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
+            UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(SettingTableViewController.dismissKeyboard)
+        )], animated: true)
+        
+        keyboardToolbar.sizeToFit()
+        
+        textFieldPhone.inputAccessoryView = keyboardToolbar
+    }
     
     func setupAvatar() {
         imageAvatar.layer.cornerRadius = 60 / 2
@@ -151,39 +149,91 @@ class SettingTableViewController: UITableViewController {
             self.buttonRace.setTitle(item, for: .normal)
         }
     }
-
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 5
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        switch section {
-        case 0:
-            return 1
-        case 1:
-            return 3
-        case 2:
-            return 2
-        case 3:
-            return 2
-        case 4:
-            return 1
-        default:
-            return 0
-        }
+    
+    // MARK: - Actions
+    
+    @IBAction func buttonSave(_ sender: Any) {
+        
+        let params: [String: Any] = [
+            "race": raceDropDown.indexForSelectedRow!,
+            "phone": textFieldPhone.text!,
+            "lifestyle_info": "",
+            "gender_pref": "",
+            "race_pref": "",
+            "budget_pref": "",
+            "move_in_pref": ""
+        ]
+        
+        let screenSize: CGRect = UIScreen.main.bounds
+        let indicator: UIActivityIndicatorView = UIActivityIndicatorView()
+        indicator.frame = CGRect(x: 0.0, y: 0.0, width: screenSize.width, height: screenSize.height)
+        indicator.center = view.center
+        indicator.hidesWhenStopped = true
+        indicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        view.addSubview(indicator)
+        indicator.startAnimating()
+        
+        APIManager.shared.updateUserProfile(params: params, completionHandler: { json in
+            
+            indicator.stopAnimating()
+            
+            if json == nil {
+                
+                let message = "There is some problem saving profile"
+                let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
+        })
     }
     
-    override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
-        switch indexPath.section {
-        case 3:
-            return true
-        default:
-            return false
-        }
+    @IBAction func chooseRace(_ sender: Any) {
+        raceDropDown.show()
     }
     
+    @IBAction func buttonLogout(_ sender: Any) {
+        let alert = UIAlertController(title: "Are you sure?", message: nil, preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "Log out", style: .default, handler: {
+            action in
+            
+            APIManager.shared.logout(completionHandler: { error in
+                
+                if error == nil {
+                    
+                    FBManager.shared.logOut()
+                    User.currentUser.resetInfo()
+                    Default.shared.resetUserDefault()
+                    
+                    let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                    let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
+                    self.present(loginViewController, animated: true, completion: nil)
+                    
+                } else {
+                    
+                    let message = "There is some problem logging out"
+                    let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                }
+            })
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+}
+
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
+    }
 }

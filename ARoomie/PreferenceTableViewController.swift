@@ -20,7 +20,6 @@ class PreferenceTableViewController: UITableViewController {
     
     let genderDropDown = DropDown()
     let raceDropDown = DropDown()
-
     lazy var dropDowns: [DropDown] = {
         return [
             self.genderDropDown,
@@ -28,35 +27,32 @@ class PreferenceTableViewController: UITableViewController {
         ]
     }()
     
-    // MARK: - Actions
-    
-    @IBAction func chooseGender(_ sender: Any) {
-        genderDropDown.show()
-    }
-    
-    @IBAction func chooseRace(_ sender: Any) {
-        raceDropDown.show()
-    }
-    
     // MARK: - View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupDropDowns()
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
+    // MARK: - Table view data source
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 4
+    }
+    
+    override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        return false
+    }
+
     // MARK: - Setup
     
     func setupDropDowns() {
@@ -70,10 +66,8 @@ class PreferenceTableViewController: UITableViewController {
     func setupGenderDropDown() {
         genderDropDown.anchorView = buttonGender
         
-        // If you want to have the dropdown underneath your anchor view, you can do this:
         genderDropDown.bottomOffset = CGPoint(x: 0, y: genderDropDown.bounds.height)
         
-        // You can also use localizationKeysDataSource instead. Check the docs.
         genderDropDown.dataSource = [
             "10 €",
             "20 €",
@@ -85,14 +79,12 @@ class PreferenceTableViewController: UITableViewController {
             self.buttonGender.setTitle(item, for: .normal)
         }
     }
-
+    
     func setupRaceDropDown() {
         raceDropDown.anchorView = buttonRace
         
-        // If you want to have the dropdown underneath your anchor view, you can do this:
         raceDropDown.bottomOffset = CGPoint(x: 0, y: raceDropDown.bounds.height)
         
-        // You can also use localizationKeysDataSource instead. Check the docs.
         raceDropDown.dataSource = [
             "10 €",
             "20 €",
@@ -105,19 +97,14 @@ class PreferenceTableViewController: UITableViewController {
         }
     }
 
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
+    // MARK: - Actions
+    
+    @IBAction func chooseGender(_ sender: Any) {
+        genderDropDown.show()
     }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 4
+    
+    @IBAction func chooseRace(_ sender: Any) {
+        raceDropDown.show()
     }
-
-    override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
-        return false
-    }
+    
 }

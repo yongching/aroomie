@@ -16,6 +16,72 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var needHelpButton: UIButton!
    
+    // MARK: View Lifecycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        if (FBSDKAccessToken.current() != nil) {
+            print("viewDidLoad FBSDKToken exist")
+        } else {
+            print("viewDidLoad FBSDKToken empty")
+        }
+        
+        setupButton()
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        if (FBSDKAccessToken.current() != nil) {
+            print("viewDidAppear FBSDKToken exist")
+        } else {
+            print("viewDidAppear FBSDKToken empty")
+        }
+        
+        if (FBSDKAccessToken.current() != nil) {
+            
+            let screenSize: CGRect = UIScreen.main.bounds
+            let indicator: UIActivityIndicatorView = UIActivityIndicatorView()
+            indicator.frame = CGRect(x: 0.0, y: 0.0, width: screenSize.width, height: screenSize.height)
+            indicator.center = view.center
+            indicator.hidesWhenStopped = true
+            indicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+            view.addSubview(indicator)
+            indicator.startAnimating()
+            
+            APIManager.shared.getUserProfile(completionHandler: { json in
+                
+                indicator.stopAnimating()
+                
+                if json != nil {
+                    
+                    User.currentUser.setInfo(json: json)
+                    let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                    let tabBarViewController = storyboard.instantiateViewController(withIdentifier: "TabBarViewController")
+                    self.present(tabBarViewController, animated: true, completion: nil)
+
+                } else {
+                 
+                    let message = "There is some problem logging into your facebook account"
+                    let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                }
+            })
+        }
+    }
+    
+    // MARK: Setup
+    
+    func setupButton() {
+        loginButton.layer.cornerRadius = 20
+        needHelpButton.layer.cornerRadius = 20
+    }
+    
     // MARK: - Actions
     
     @IBAction func facebookLogin(_ sender: AnyObject) {
@@ -50,56 +116,6 @@ class LoginViewController: UIViewController {
                     }
             })
         }
-    }
-    
-    // MARK: View Lifecycle
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        if (FBSDKAccessToken.current() != nil) {
-            print("FBSDKToken exist")
-        } else {
-            print("no fb sdk token")
-        }
-        
-        setupButton()
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        
-        print("viewDidAppear")
-        if (FBSDKAccessToken.current() != nil) {
-            print("DA FBSDKToken exist")
-        } else {
-            print("DA no fb sdk token")
-        }
-
-        if (FBSDKAccessToken.current() != nil) {
-            
-            APIManager.shared.getUserInfo(completionHandler: { json in
-                
-                if json != nil {
-                    User.currentUser.setInfo(json: json)
-                }
-                
-                let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let tabBarViewController = storyboard.instantiateViewController(withIdentifier: "TabBarViewController")
-                self.present(tabBarViewController, animated: true, completion: nil)
-            })
-        }
-    }
-
-    // MARK: Setup
-    
-    func setupButton() {
-        loginButton.layer.cornerRadius = 20
-        needHelpButton.layer.cornerRadius = 20
     }
     
 }
