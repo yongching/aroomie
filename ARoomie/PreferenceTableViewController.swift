@@ -195,13 +195,13 @@ class PreferenceTableViewController: UITableViewController, UITextFieldDelegate 
                 
                 User.currentUser.setPreferences(gender: self.genderDropDown.indexForSelectedRow!, race: self.raceDropDown.indexForSelectedRow!, budget: self.textFieldBudget.text!, moveIn: self.textFieldMoveIn.text!)
                 
-                let alert = UIAlertController(title: "Successfully save", message: nil, preferredStyle: .alert)
+                let alert = UIAlertController(title: "Successfully Saved!", message: nil, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
                 self.present(alert, animated: true, completion: nil)
                 
             } else {
                 
-                let message = "There is some problem saving preferences"
+                let message = "There is some problem saving preferences!"
                 let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
                 self.present(alert, animated: true, completion: nil)

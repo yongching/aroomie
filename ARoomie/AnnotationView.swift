@@ -44,9 +44,12 @@ open class AnnotationView: ARAnnotationView, UIGestureRecognizerDelegate
         imageView.layer.cornerRadius = imageView.frame.width / 2
         imageView.clipsToBounds = true
         imageView.isUserInteractionEnabled = true
-        var randomPic = ["1", "2", "3", "4", "5"]
-        let diceRoll = Int(arc4random_uniform(5))
-        imageView.image = UIImage(named: randomPic[diceRoll])
+        
+        //var randomPic = ["1", "2", "3", "4", "5"]
+        //let diceRoll = Int(arc4random_uniform(5))
+        //imageView.image = UIImage(named: randomPic[diceRoll])
+        
+        imageView.image = try! UIImage(data: Data(contentsOf: URL(string: (self.annotation?.pictureUrl)!)!))
         self.addSubview(imageView)
         self.profileImage = imageView
         

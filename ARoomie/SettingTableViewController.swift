@@ -203,13 +203,13 @@ class SettingTableViewController: UITableViewController, UITextFieldDelegate {
             
             if json != nil {
                 
-                let alert = UIAlertController(title: "Successfully save", message: nil, preferredStyle: .alert)
+                let alert = UIAlertController(title: "Successfully Saved!", message: nil, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
                 self.present(alert, animated: true, completion: nil)
                 
             } else {
                 
-                let message = "There is some problem saving profile"
+                let message = "There is some problem saving profile!"
                 let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
                 self.present(alert, animated: true, completion: nil)

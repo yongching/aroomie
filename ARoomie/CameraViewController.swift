@@ -35,7 +35,7 @@ class CameraViewController: ARViewController, ARDataSource, UIImagePickerControl
     func showARViewController()
     {
         
-        
+        /**
         // Create random annotations around center point
         // @TODO
         // FIXME: set your initial position here, this is used to generate random POIs
@@ -43,7 +43,8 @@ class CameraViewController: ARViewController, ARDataSource, UIImagePickerControl
         let lon = 101.63672679999999
         let delta = 0.05
         let count = 50
-        let dummyAnnotations = self.getDummyAnnotations(centerLatitude: lat, centerLongitude: lon, delta: delta, count: count)
+        //let dummyAnnotations = self.getDummyAnnotations(centerLatitude: lat, centerLongitude: lon, delta: delta, count: count)
+        **/
         
         self.uiOptions.debugEnabled = true
         self.uiOptions.closeButtonEnabled = false
@@ -80,7 +81,7 @@ class CameraViewController: ARViewController, ARDataSource, UIImagePickerControl
         // Annotation views should be lightweight views, try to avoid xibs and autolayout all together.
         let annotationView = AnnotationView()
         annotationView.frame = CGRect(x: 0,y: 0,width: 150,height: 50)
-        return annotationView;
+        return annotationView
     }
     
     fileprivate func getAnnotationsFromAPI(completionHandler: @escaping ([ARAnnotation]) -> Void )  {
@@ -100,13 +101,25 @@ class CameraViewController: ARViewController, ARDataSource, UIImagePickerControl
             indicator.stopAnimating()
             
             if json != nil {
+                
                 for result in json.arrayValue {
                     let annotation = ARAnnotation()
                     annotation.location = CLLocation(latitude: result["lat"].doubleValue, longitude: result["lng"].doubleValue)
                     annotation.title = result["place_name"].stringValue
+                    
+                    APIManager.shared.getUserProfile(completionHandler: { json in
+                        
+                        if json != nil {
+                            annotation.pictureUrl = json["profile"]["avatar"].stringValue
+                        } else {
+                            print("Error getting advertisement creator photo")
+                        }
+                    })
+                    
                     annotations.append(annotation)
                     completionHandler(annotations)
                 }
+                
             } else {
                 print("Error getting advertisements")
             }

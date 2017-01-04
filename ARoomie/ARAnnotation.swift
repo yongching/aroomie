@@ -12,6 +12,8 @@ import CoreLocation
 /// Defines POI with title and location.
 open class ARAnnotation: NSObject
 {
+    /// here
+    open var pictureUrl: String?
     /// Title of annotation
     open var title: String?
     /// Location of annotation
