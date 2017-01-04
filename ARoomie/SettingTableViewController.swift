@@ -140,16 +140,38 @@ class SettingTableViewController: UITableViewController, UITextFieldDelegate {
     }
 
     func getUserData() {
-        imageAvatar.image = try! UIImage(data: Data(contentsOf: URL(string: User.currentUser.pictureURL!)!))
-        labelName.text = User.currentUser.name
-        labelAgeGroup.text = User.currentUser.age_range
-        labelGender.text = User.currentUser.gender
-        if User.currentUser.race != nil {
-            dropDown.selectRow(at: User.currentUser.race)
-            buttonRace.setTitle(self.raceOptions[User.currentUser.race!], for: .normal)
-        }
-        labelEmail.text = User.currentUser.email
-        textFieldPhone.text = User.currentUser.phone
+        
+        let screenSize: CGRect = UIScreen.main.bounds
+        let indicator: UIActivityIndicatorView = UIActivityIndicatorView()
+        indicator.frame = CGRect(x: 0.0, y: 0.0, width: screenSize.width, height: screenSize.height)
+        indicator.center = view.center
+        indicator.hidesWhenStopped = true
+        indicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        view.addSubview(indicator)
+        indicator.startAnimating()
+        
+        APIManager.shared.getUserProfile(completionHandler: { json in
+            
+            indicator.stopAnimating()
+            
+            if json != nil {
+                
+                User.currentUser.setInfo(json: json)
+                self.imageAvatar.image = try! UIImage(data: Data(contentsOf: URL(string: User.currentUser.pictureURL!)!))
+                self.labelName.text = User.currentUser.name
+                self.labelAgeGroup.text = User.currentUser.age_range
+                self.labelGender.text = User.currentUser.gender
+                if User.currentUser.race != nil {
+                    self.dropDown.selectRow(at: User.currentUser.race)
+                    self.buttonRace.setTitle(self.raceOptions[User.currentUser.race!], for: .normal)
+                }
+                self.labelEmail.text = User.currentUser.email
+                self.textFieldPhone.text = User.currentUser.phone
+
+            } else {
+                
+            }
+        })
     }
     
     // MARK: - Actions
@@ -179,7 +201,13 @@ class SettingTableViewController: UITableViewController, UITextFieldDelegate {
             
             indicator.stopAnimating()
             
-            if json == nil {
+            if json != nil {
+                
+                let alert = UIAlertController(title: "Successfully save", message: nil, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                
+            } else {
                 
                 let message = "There is some problem saving profile"
                 let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)

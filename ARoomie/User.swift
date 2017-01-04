@@ -71,6 +71,13 @@ class User {
         self.move_in_pref = json["profile"]["move_in_pref"].stringValue
     }
     
+    func setPreferences(gender: Int?, race: Int?, budget: String?, moveIn: String?) {
+        self.gender_pref = gender
+        self.race_pref = race
+        self.budget_pref = budget
+        self.move_in_pref = moveIn
+    }
+    
     func resetInfo() {
         self.pictureURL = nil
         self.name = nil

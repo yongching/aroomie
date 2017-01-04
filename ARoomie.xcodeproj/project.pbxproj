@@ -12,7 +12,19 @@
 		AC2B8B021E18F811003AC6D4 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2B8B011E18F811003AC6D4 /* APIManager.swift */; };
 		AC2B8B041E18FB87003AC6D4 /* DropDownButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2B8B031E18FB87003AC6D4 /* DropDownButton.swift */; };
 		AC2B8B061E18FE30003AC6D4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2B8B051E18FE30003AC6D4 /* Constants.swift */; };
-		AC2B8B0A1E19272B003AC6D4 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2B8B091E19272B003AC6D4 /* Helpers.swift */; };
+		AC2B8B0A1E19272B003AC6D4 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2B8B091E19272B003AC6D4 /* Helper.swift */; };
+		AC33168E1E1BAD0000EE3211 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC33168D1E1BAD0000EE3211 /* CameraViewController.swift */; };
+		AC5C47661E1BB3B100AD3297 /* ARAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5C47611E1BB3B100AD3297 /* ARAnnotation.swift */; };
+		AC5C47671E1BB3B100AD3297 /* ARAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5C47621E1BB3B100AD3297 /* ARAnnotationView.swift */; };
+		AC5C47681E1BB3B100AD3297 /* ARConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5C47631E1BB3B100AD3297 /* ARConfiguration.swift */; };
+		AC5C47691E1BB3B100AD3297 /* ARTrackingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5C47641E1BB3B100AD3297 /* ARTrackingManager.swift */; };
+		AC5C476A1E1BB3B100AD3297 /* ARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5C47651E1BB3B100AD3297 /* ARViewController.swift */; };
+		AC5C476F1E1BB3CD00AD3297 /* DebugMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC5C476B1E1BB3CD00AD3297 /* DebugMapViewController.xib */; };
+		AC5C47701E1BB3CD00AD3297 /* hdar_close.png in Resources */ = {isa = PBXBuildFile; fileRef = AC5C476C1E1BB3CD00AD3297 /* hdar_close.png */; };
+		AC5C47711E1BB3CD00AD3297 /* hdar_close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC5C476D1E1BB3CD00AD3297 /* hdar_close@2x.png */; };
+		AC5C47721E1BB3CD00AD3297 /* hdar_close@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC5C476E1E1BB3CD00AD3297 /* hdar_close@3x.png */; };
+		AC5C47751E1BB3E300AD3297 /* DebugMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5C47741E1BB3E300AD3297 /* DebugMapViewController.swift */; };
+		AC5C47771E1BB44100AD3297 /* AnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5C47761E1BB44100AD3297 /* AnnotationView.swift */; };
 		AC6210361E034B790011267D /* FBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6210351E034B790011267D /* FBManager.swift */; };
 		AC6210381E034DE50011267D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6210371E034DE50011267D /* LoginViewController.swift */; };
 		AC86F3201E143E6C00BEB324 /* MyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC86F31F1E143E6C00BEB324 /* MyCell.swift */; };
@@ -35,7 +47,19 @@
 		AC2B8B011E18F811003AC6D4 /* APIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		AC2B8B031E18FB87003AC6D4 /* DropDownButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropDownButton.swift; sourceTree = "<group>"; };
 		AC2B8B051E18FE30003AC6D4 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		AC2B8B091E19272B003AC6D4 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		AC2B8B091E19272B003AC6D4 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		AC33168D1E1BAD0000EE3211 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		AC5C47611E1BB3B100AD3297 /* ARAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARAnnotation.swift; sourceTree = "<group>"; };
+		AC5C47621E1BB3B100AD3297 /* ARAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARAnnotationView.swift; sourceTree = "<group>"; };
+		AC5C47631E1BB3B100AD3297 /* ARConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARConfiguration.swift; sourceTree = "<group>"; };
+		AC5C47641E1BB3B100AD3297 /* ARTrackingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARTrackingManager.swift; sourceTree = "<group>"; };
+		AC5C47651E1BB3B100AD3297 /* ARViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARViewController.swift; sourceTree = "<group>"; };
+		AC5C476B1E1BB3CD00AD3297 /* DebugMapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DebugMapViewController.xib; sourceTree = "<group>"; };
+		AC5C476C1E1BB3CD00AD3297 /* hdar_close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hdar_close.png; sourceTree = "<group>"; };
+		AC5C476D1E1BB3CD00AD3297 /* hdar_close@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hdar_close@2x.png"; sourceTree = "<group>"; };
+		AC5C476E1E1BB3CD00AD3297 /* hdar_close@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hdar_close@3x.png"; sourceTree = "<group>"; };
+		AC5C47741E1BB3E300AD3297 /* DebugMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebugMapViewController.swift; sourceTree = "<group>"; };
+		AC5C47761E1BB44100AD3297 /* AnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotationView.swift; sourceTree = "<group>"; };
 		AC6210341E01DB510011267D /* ARoomie.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ARoomie.entitlements; sourceTree = "<group>"; };
 		AC6210351E034B790011267D /* FBManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBManager.swift; sourceTree = "<group>"; };
 		AC6210371E034DE50011267D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -88,7 +112,7 @@
 				AC6210351E034B790011267D /* FBManager.swift */,
 				AC2B8B011E18F811003AC6D4 /* APIManager.swift */,
 				AC2B8B051E18FE30003AC6D4 /* Constants.swift */,
-				AC2B8B091E19272B003AC6D4 /* Helpers.swift */,
+				AC2B8B091E19272B003AC6D4 /* Helper.swift */,
 			);
 			name = Manager;
 			sourceTree = "<group>";
@@ -96,6 +120,7 @@
 		AC216CA01E0BDEED00B6C15B /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				AC33168F1E1BAD3D00EE3211 /* Camera */,
 				ACC2F9B91E03693F003585BF /* Account */,
 				AC6426081E0E831600CDBF8F /* Setting */,
 			);
@@ -113,7 +138,8 @@
 		AC216CA21E0BDFB100B6C15B /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				AC2B8B031E18FB87003AC6D4 /* DropDownButton.swift */,
+				AC5C475E1E1BB35100AD3297 /* HDAugmentedReality */,
+				AC5C475D1E1BB34900AD3297 /* Button */,
 			);
 			name = Library;
 			sourceTree = "<group>";
@@ -124,6 +150,64 @@
 				AC86F31F1E143E6C00BEB324 /* MyCell.swift */,
 			);
 			name = Setting;
+			sourceTree = "<group>";
+		};
+		AC33168F1E1BAD3D00EE3211 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				AC33168D1E1BAD0000EE3211 /* CameraViewController.swift */,
+				AC5C47761E1BB44100AD3297 /* AnnotationView.swift */,
+			);
+			name = Camera;
+			sourceTree = "<group>";
+		};
+		AC5C475D1E1BB34900AD3297 /* Button */ = {
+			isa = PBXGroup;
+			children = (
+				AC2B8B031E18FB87003AC6D4 /* DropDownButton.swift */,
+			);
+			name = Button;
+			sourceTree = "<group>";
+		};
+		AC5C475E1E1BB35100AD3297 /* HDAugmentedReality */ = {
+			isa = PBXGroup;
+			children = (
+				AC5C475F1E1BB39000AD3297 /* Classes */,
+				AC5C47601E1BB39600AD3297 /* Resources */,
+			);
+			name = HDAugmentedReality;
+			sourceTree = "<group>";
+		};
+		AC5C475F1E1BB39000AD3297 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				AC5C47731E1BB3D200AD3297 /* Debug */,
+				AC5C47611E1BB3B100AD3297 /* ARAnnotation.swift */,
+				AC5C47621E1BB3B100AD3297 /* ARAnnotationView.swift */,
+				AC5C47631E1BB3B100AD3297 /* ARConfiguration.swift */,
+				AC5C47641E1BB3B100AD3297 /* ARTrackingManager.swift */,
+				AC5C47651E1BB3B100AD3297 /* ARViewController.swift */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		AC5C47601E1BB39600AD3297 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				AC5C476B1E1BB3CD00AD3297 /* DebugMapViewController.xib */,
+				AC5C476C1E1BB3CD00AD3297 /* hdar_close.png */,
+				AC5C476D1E1BB3CD00AD3297 /* hdar_close@2x.png */,
+				AC5C476E1E1BB3CD00AD3297 /* hdar_close@3x.png */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		AC5C47731E1BB3D200AD3297 /* Debug */ = {
+			isa = PBXGroup;
+			children = (
+				AC5C47741E1BB3E300AD3297 /* DebugMapViewController.swift */,
+			);
+			name = Debug;
 			sourceTree = "<group>";
 		};
 		AC6426081E0E831600CDBF8F /* Setting */ = {
@@ -267,7 +351,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC5C476F1E1BB3CD00AD3297 /* DebugMapViewController.xib in Resources */,
+				AC5C47701E1BB3CD00AD3297 /* hdar_close.png in Resources */,
 				ACE8DE481E0089FB0025530F /* LaunchScreen.storyboard in Resources */,
+				AC5C47721E1BB3CD00AD3297 /* hdar_close@3x.png in Resources */,
+				AC5C47711E1BB3CD00AD3297 /* hdar_close@2x.png in Resources */,
 				AC86F3221E143E7800BEB324 /* MyCell.xib in Resources */,
 				ACE8DE451E0089FB0025530F /* Assets.xcassets in Resources */,
 				ACE8DE431E0089FB0025530F /* Main.storyboard in Resources */,
@@ -331,16 +419,24 @@
 			files = (
 				ACDDF18D1E14326B00A4002B /* LifestyleTableViewController.swift in Sources */,
 				AC86F3201E143E6C00BEB324 /* MyCell.swift in Sources */,
+				AC5C47681E1BB3B100AD3297 /* ARConfiguration.swift in Sources */,
+				AC5C47751E1BB3E300AD3297 /* DebugMapViewController.swift in Sources */,
+				AC5C47691E1BB3B100AD3297 /* ARTrackingManager.swift in Sources */,
 				AC6210381E034DE50011267D /* LoginViewController.swift in Sources */,
 				AC2B8B041E18FB87003AC6D4 /* DropDownButton.swift in Sources */,
 				AC2B8B021E18F811003AC6D4 /* APIManager.swift in Sources */,
 				ACDDF1891E14293B00A4002B /* PreferenceTableViewController.swift in Sources */,
 				ACE8DE401E0089FB0025530F /* ViewController.swift in Sources */,
+				AC5C47771E1BB44100AD3297 /* AnnotationView.swift in Sources */,
 				AC25E6411E0F0F2100973623 /* User.swift in Sources */,
 				ACA210941E14096800C6BF2F /* SettingTableViewController.swift in Sources */,
 				AC6210361E034B790011267D /* FBManager.swift in Sources */,
-				AC2B8B0A1E19272B003AC6D4 /* Helpers.swift in Sources */,
+				AC5C47671E1BB3B100AD3297 /* ARAnnotationView.swift in Sources */,
+				AC2B8B0A1E19272B003AC6D4 /* Helper.swift in Sources */,
+				AC5C476A1E1BB3B100AD3297 /* ARViewController.swift in Sources */,
+				AC33168E1E1BAD0000EE3211 /* CameraViewController.swift in Sources */,
 				ACE8DE3E1E0089FB0025530F /* AppDelegate.swift in Sources */,
+				AC5C47661E1BB3B100AD3297 /* ARAnnotation.swift in Sources */,
 				AC2B8B061E18FE30003AC6D4 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

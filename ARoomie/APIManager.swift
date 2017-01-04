@@ -96,11 +96,13 @@ class APIManager {
     // API - Refresh token
     func refreshTokenIfNeed(completionHandler: @escaping () -> Void) {
         
-        let path = "api/social/refresh-token/"
+        let path = "api/social/token/"
         let url = baseURL?.appendingPathComponent(path)
         let params: [String: Any] = [
-            "access_token" : Default.shared.getAccessToken(),
-            "refresh_token" : Default.shared.getRefreshToken()
+            "grant_type": "refresh_token",
+            "client_id": CLIENT_ID,
+            "client_secret": CLIENT_SECRET,
+            "refresh_token": Default.shared.getRefreshToken()
         ]
         
         //if let expired = defaults.object(forKey: "expired") as? Date {
@@ -127,10 +129,13 @@ class APIManager {
                         defaults.set(self.refreshToken, forKey: "refresh_token")
                         defaults.set(self.expired, forKey: "expired")
                         
+                        print("token refresh success")
                         completionHandler()
                         break
                         
                     case .failure:
+                        print("token refresh failed")
+                        completionHandler()
                         break
                     }
                 }
@@ -154,9 +159,8 @@ class APIManager {
                 
                 switch response.result {
                 case .success(let value):
-                    let jsonData = JSON(value)
                     print("Alamofire success")
-                    print(jsonData)
+                    let jsonData = JSON(value)
                     completionHandler(jsonData)
                     break
                 
@@ -189,8 +193,15 @@ class APIManager {
             "access_token": Default.shared.getAccessToken()
         ]
         let merged = params2.merged(with: params)
-        print(merged)
         requestServer(.post, path, merged, URLEncoding(), completionHandler)
     }
     
+    // API - Get advertisement list
+    func getAdvertisements(completionHandler: @escaping (JSON) -> Void ) {
+        
+        let path = "api/advertisements/"
+        let params: [String: Any] = [:]
+        
+        requestServer(.get, path, params, URLEncoding(), completionHandler)
+    }
 }

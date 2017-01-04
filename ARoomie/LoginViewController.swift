@@ -44,34 +44,16 @@ class LoginViewController: UIViewController {
         
         if (FBSDKAccessToken.current() != nil) {
             
-            let screenSize: CGRect = UIScreen.main.bounds
-            let indicator: UIActivityIndicatorView = UIActivityIndicatorView()
-            indicator.frame = CGRect(x: 0.0, y: 0.0, width: screenSize.width, height: screenSize.height)
-            indicator.center = view.center
-            indicator.hidesWhenStopped = true
-            indicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
-            view.addSubview(indicator)
-            indicator.startAnimating()
-            
-            APIManager.shared.getUserProfile(completionHandler: { json in
-                
-                indicator.stopAnimating()
-                
-                if json != nil {
-                    
-                    User.currentUser.setInfo(json: json)
-                    let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                    let tabBarViewController = storyboard.instantiateViewController(withIdentifier: "TabBarViewController")
-                    self.present(tabBarViewController, animated: true, completion: nil)
+            let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let tabBarViewController = storyboard.instantiateViewController(withIdentifier: "TabBarViewController")
+            self.present(tabBarViewController, animated: true, completion: nil)
 
-                } else {
-                 
-                    let message = "There is some problem logging into your facebook account"
-                    let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
-                    self.present(alert, animated: true, completion: nil)
-                }
-            })
+        } else {
+            
+            let message = "Please login"
+            let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         }
     }
     
