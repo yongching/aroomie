@@ -13,19 +13,17 @@ import CoreLocation
 
 class CameraViewController: ARViewController, ARDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
-    //var login: Bool = false
-    //var showButton: Bool = false
-    //var filterButton = UIButton()
-    //var createButton = UIButton()
-    //var messageButton = UIButton()
-    //var circleButton = UIButton()
-    //var settingButton = UIButton()
+    // MARK: - Properties
+    
+    var newButton = UIButton()
+    var filterButton = UIButton()
     
     // MARK: - View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         showARViewController()
+        setupButtons()
     }
     
     override func didReceiveMemoryWarning() {
@@ -156,11 +154,29 @@ class CameraViewController: ARViewController, ARDataSource, UIImagePickerControl
         return CLLocation(latitude: lat, longitude: lon)
     }
     
+    // MARK: - Setups
+    func setupButtons() {
+        
+        let screen = UIScreen.main.bounds
+        
+        newButton.setImage(UIImage(named: "Filter"), for: UIControlState())
+        newButton.frame = CGRect(x: screen.width-24, y: 48, width: 21, height: 21)
+        newButton.addTarget(self, action: #selector(CameraViewController.newButtonTapped), for: UIControlEvents.touchUpInside)
+        
+        filterButton.setImage(UIImage(named: "Filter"), for: UIControlState())
+        filterButton.frame = CGRect(x: screen.width-24, y: 48, width: 21, height: 21)
+        filterButton.addTarget(self, action: #selector(CameraViewController.filterButtonTapped), for: UIControlEvents.touchUpInside)
+    }
+    
     // MARK : - Actions
     
-    func createButtonTapped() {
+    func newButtonTapped() {
         let newAds = storyboard!.instantiateViewController(withIdentifier: "NewAdvertisement") as! UINavigationController
         present(newAds, animated: true, completion: nil)
+        
+    }
+    
+    func filterButtonTapped() {
         
     }
     

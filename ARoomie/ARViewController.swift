@@ -832,9 +832,9 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
         if(self.uiOptions.debugEnabled)
         {
             let view = UIView()
-            view.frame = CGRect(x: self.view.bounds.size.width - 80, y: 10, width: 30, height: 30)
+            view.frame = CGRect(x: 60, y: 10, width: 30, height: 30)
             view.backgroundColor = UIColor.red
-            self.view.addSubview(view)
+            //self.view.addSubview(view)
             
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(1.5 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC))
             {
@@ -1126,6 +1126,7 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
         self.debugLabel?.removeFromSuperview()
         self.debugMapButton?.removeFromSuperview()
         
+        /*
         let debugLabel = UILabel()
         debugLabel.backgroundColor = UIColor.white
         debugLabel.textColor = UIColor.black
@@ -1136,6 +1137,7 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
         debugLabel.textAlignment = NSTextAlignment.left
         view.addSubview(debugLabel)
         self.debugLabel = debugLabel
+        */
         
         let debugMapButton: UIButton = UIButton(type: UIButtonType.custom)
         debugMapButton.frame = CGRect(x: 5,y: 5,width: 40,height: 40);
