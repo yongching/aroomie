@@ -47,9 +47,9 @@
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>NSCameraUsageDescription</key>
-	<string>AVCaptureDeviceInput</string>
+	<string>Use your camera to look for advertisement using augmented reality</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>CLLocationManager requestWhenInUseAuthorization:</string>
+	<string>Use your current location when you want to add a new advertisement</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
