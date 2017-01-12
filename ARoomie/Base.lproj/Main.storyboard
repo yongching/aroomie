@@ -815,7 +815,7 @@
                             <tableViewSection headerTitle="DETAILS" id="6fp-mD-ass">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Ybe-19-deT">
-                                        <rect key="frame" x="0.0" y="465" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="466" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ybe-19-deT" id="a9t-Gf-Gwb">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
@@ -848,7 +848,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="aru-Pc-vv4">
-                                        <rect key="frame" x="0.0" y="509" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="510" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aru-Pc-vv4" id="W8f-80-eMZ">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
@@ -881,7 +881,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="0uN-el-EHg">
-                                        <rect key="frame" x="0.0" y="553" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="554" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0uN-el-EHg" id="7UN-xB-Y94">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
@@ -924,7 +924,7 @@
                             <tableViewSection headerTitle="RULES" id="rkC-2Y-0zq">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="80" id="vHN-oX-bRv">
-                                        <rect key="frame" x="0.0" y="653" width="375" height="80"/>
+                                        <rect key="frame" x="0.0" y="655" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vHN-oX-bRv" id="3OU-lR-CAE">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="79"/>
@@ -936,7 +936,7 @@
                             <tableViewSection headerTitle="AMENITIES" id="mab-jO-zlB">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="270" id="9Aj-7q-Yaf">
-                                        <rect key="frame" x="0.0" y="789" width="375" height="270"/>
+                                        <rect key="frame" x="0.0" y="792" width="375" height="270"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9Aj-7q-Yaf" id="ayy-9c-qcH">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="269"/>
@@ -948,7 +948,7 @@
                             <tableViewSection headerTitle="LOCATION" id="xzE-4a-RNA">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="150" id="331-Ye-z3E">
-                                        <rect key="frame" x="0.0" y="1115" width="375" height="150"/>
+                                        <rect key="frame" x="0.0" y="1119" width="375" height="150"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="331-Ye-z3E" id="y96-eq-pZ7">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="149"/>
@@ -1013,9 +1013,6 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <outlet property="closeButton" destination="pdU-h3-nKY" id="0TB-GR-1W2"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3e8-OM-Jmo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1336,7 +1333,7 @@
             <objects>
                 <navigationController storyboardIdentifier="NewAdvertisement" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="RNQ-oL-0by" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="OLb-93-wHn">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="OLb-93-wHn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1347,7 +1344,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Exv-aW-WgI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4232.5" y="28.5"/>
+            <point key="canvasLocation" x="4058" y="28"/>
         </scene>
         <!--Settings-->
         <scene sceneID="Atx-Xl-8e3">
@@ -1355,7 +1352,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yQ7-Dg-mmu" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Settings" image="ic_settings" id="pDK-OW-eXC"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="xWs-cp-Cem">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="xWs-cp-Cem">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1374,7 +1371,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="iVS-5g-6AB" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Inbox" image="ic_textsms" id="IfK-AG-po5"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="1Va-fM-tRw">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="1Va-fM-tRw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
