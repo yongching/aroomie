@@ -11,7 +11,6 @@ import UIKit
 open class AnnotationView: ARAnnotationView, UIGestureRecognizerDelegate
 {
     open var titleLabel: UILabel?
-    //public var infoButton: UIButton?
     open var profileImage: UIImageView?
     
     override open func didMoveToSuperview()
@@ -40,27 +39,13 @@ open class AnnotationView: ARAnnotationView, UIGestureRecognizerDelegate
         let imageView = UIImageView()
         
         //self.imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(SettingTableViewController.imageViewTapped)))
-        //imageView.frame = CGRect(x: 30, y: 0, width: 20, height: 20)
-        imageView.layer.cornerRadius = imageView.frame.width / 2
+        imageView.layer.cornerRadius = 20
         imageView.clipsToBounds = true
         imageView.isUserInteractionEnabled = true
-        
-        //var randomPic = ["1", "2", "3", "4", "5"]
-        //let diceRoll = Int(arc4random_uniform(5))
-        //imageView.image = UIImage(named: randomPic[diceRoll])
         
         imageView.image = try! UIImage(data: Data(contentsOf: URL(string: (self.annotation?.pictureUrl)!)!))
         self.addSubview(imageView)
         self.profileImage = imageView
-        
-        /*
-         // Info button
-         self.infoButton?.removeFromSuperview()
-         let button = UIButton(type: UIButtonType.DetailDisclosure)
-         button.userInteractionEnabled = false   // Whole view will be tappable, using it for appearance
-         self.addSubview(button)
-         self.infoButton = button
-         */
         
         // Gesture
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(AnnotationView.tapGesture))
@@ -78,12 +63,12 @@ open class AnnotationView: ARAnnotationView, UIGestureRecognizerDelegate
     
     func layoutUi()
     {
-        let buttonWidth: CGFloat = 40
-        let buttonHeight: CGFloat = 40
+        let width: CGFloat = 40
+        let height: CGFloat = 40
         
-        self.titleLabel?.frame = CGRect(x: 10, y: 0, width: self.frame.size.width - buttonWidth - 5, height: self.frame.size.height);
-        self.profileImage?.frame = CGRect(x: self.frame.size.width - buttonWidth - 10, y: self.frame.size.height/2 - buttonHeight/2, width: buttonWidth, height: buttonHeight);
-        //self.infoButton?.frame = CGRectMake(self.frame.size.width - buttonWidth, self.frame.size.height/2 - buttonHeight/2, buttonWidth, buttonHeight);
+        self.titleLabel?.frame = CGRect(x: 10, y: 0, width: self.frame.size.width - width - 5, height: self.frame.size.height)
+        
+        self.profileImage?.frame = CGRect(x: self.frame.size.width - width - 10, y: self.frame.size.height/2 - height/2, width: width, height: height)
     }
     
     // This method is called whenever distance/azimuth is set
@@ -93,7 +78,7 @@ open class AnnotationView: ARAnnotationView, UIGestureRecognizerDelegate
         {
             let distance = annotation.distanceFromUser > 1000 ? String(format: "%.1fkm", annotation.distanceFromUser / 1000) : String(format:"%.0fm", annotation.distanceFromUser)
             
-            //            let text = String(format: "%@\nAZ: %.0f°\nDST: %@", title, annotation.azimuth, distance)
+            // let text = String(format: "%@\nAZ: %.0f°\nDST: %@", title, annotation.azimuth, distance)
             let text = String(format: "%@\nDST: %@", title, distance)
             self.titleLabel?.text = text
         }
@@ -123,7 +108,6 @@ open class AnnotationView: ARAnnotationView, UIGestureRecognizerDelegate
             return currentController
         }
         return nil
-        
     }
     
 }

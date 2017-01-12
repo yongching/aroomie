@@ -12,5 +12,5 @@ target 'ARoomie' do
   pod 'Alamofire', :git => 'https://github.com/Alamofire/Alamofire.git'
   pod 'SwiftyJSON', :git => 'https://github.com/BaiduHiDeviOS/SwiftyJSON.git', :branch => 'swift3'
   pod 'DropDown', :git=> 'https://github.com/AssistoLab/DropDown', :branch => 'master'
-  
+  pod 'GoogleMaps'
 end

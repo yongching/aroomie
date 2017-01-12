@@ -9,17 +9,19 @@
 import UIKit
 import FBSDKCoreKit
 import DropDown
+import GoogleMaps
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
         DropDown.startListeningToKeyboard()
+        
+        GMSServices.provideAPIKey("AIzaSyDVM2x25xBAoXcxQtJIXn-rfBrxYqzBUpw")
         
         return FBSDKApplicationDelegate.sharedInstance().application(
             application,

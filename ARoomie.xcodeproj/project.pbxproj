@@ -37,6 +37,8 @@
 		ACE8DE431E0089FB0025530F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACE8DE411E0089FB0025530F /* Main.storyboard */; };
 		ACE8DE451E0089FB0025530F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ACE8DE441E0089FB0025530F /* Assets.xcassets */; };
 		ACE8DE481E0089FB0025530F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACE8DE461E0089FB0025530F /* LaunchScreen.storyboard */; };
+		ACEF8DE21E27BD03004CD5B8 /* NewAdTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEF8DE11E27BD03004CD5B8 /* NewAdTableViewController.swift */; };
+		ACEF8DE41E27BD0D004CD5B8 /* NewAdDetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEF8DE31E27BD0D004CD5B8 /* NewAdDetailsTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,6 +77,8 @@
 		ACE8DE441E0089FB0025530F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ACE8DE471E0089FB0025530F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ACE8DE491E0089FB0025530F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ACEF8DE11E27BD03004CD5B8 /* NewAdTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewAdTableViewController.swift; sourceTree = "<group>"; };
+		ACEF8DE31E27BD0D004CD5B8 /* NewAdDetailsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewAdDetailsTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +124,7 @@
 		AC216CA01E0BDEED00B6C15B /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				ACEF8DE01E27BCF6004CD5B8 /* Advertisement */,
 				AC33168F1E1BAD3D00EE3211 /* Camera */,
 				ACC2F9B91E03693F003585BF /* Account */,
 				AC6426081E0E831600CDBF8F /* Setting */,
@@ -274,6 +279,15 @@
 			path = ARoomie;
 			sourceTree = "<group>";
 		};
+		ACEF8DE01E27BCF6004CD5B8 /* Advertisement */ = {
+			isa = PBXGroup;
+			children = (
+				ACEF8DE11E27BD03004CD5B8 /* NewAdTableViewController.swift */,
+				ACEF8DE31E27BD0D004CD5B8 /* NewAdDetailsTableViewController.swift */,
+			);
+			name = Advertisement;
+			sourceTree = "<group>";
+		};
 		D72EFA559BCFA842295CABD4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -421,6 +435,7 @@
 				AC86F3201E143E6C00BEB324 /* MyCell.swift in Sources */,
 				AC5C47681E1BB3B100AD3297 /* ARConfiguration.swift in Sources */,
 				AC5C47751E1BB3E300AD3297 /* DebugMapViewController.swift in Sources */,
+				ACEF8DE41E27BD0D004CD5B8 /* NewAdDetailsTableViewController.swift in Sources */,
 				AC5C47691E1BB3B100AD3297 /* ARTrackingManager.swift in Sources */,
 				AC6210381E034DE50011267D /* LoginViewController.swift in Sources */,
 				AC2B8B041E18FB87003AC6D4 /* DropDownButton.swift in Sources */,
@@ -428,6 +443,7 @@
 				ACDDF1891E14293B00A4002B /* PreferenceTableViewController.swift in Sources */,
 				ACE8DE401E0089FB0025530F /* ViewController.swift in Sources */,
 				AC5C47771E1BB44100AD3297 /* AnnotationView.swift in Sources */,
+				ACEF8DE21E27BD03004CD5B8 /* NewAdTableViewController.swift in Sources */,
 				AC25E6411E0F0F2100973623 /* User.swift in Sources */,
 				ACA210941E14096800C6BF2F /* SettingTableViewController.swift in Sources */,
 				AC6210361E034B790011267D /* FBManager.swift in Sources */,
