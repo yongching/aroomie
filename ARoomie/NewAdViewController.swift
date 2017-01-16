@@ -9,7 +9,6 @@
 import UIKit
 import GoogleMaps
 import GooglePlaces
-import GooglePlacePicker
 
 class NewAdViewController: UIViewController, GMSMapViewDelegate, GMSAutocompleteViewControllerDelegate {
 
@@ -32,6 +31,8 @@ class NewAdViewController: UIViewController, GMSMapViewDelegate, GMSAutocomplete
     
     // A default location to use when location permission is not granted.
     let defaultLocation = CLLocation(latitude: 2.921410, longitude: 101.632876)
+    
+    // MARK: - View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -90,7 +91,7 @@ class NewAdViewController: UIViewController, GMSMapViewDelegate, GMSAutocomplete
     
     func mapView(_ mapView: GMSMapView, idleAt cameraPosition: GMSCameraPosition) {
         
-        print("CAMERA: \(cameraPosition.target)")
+        //print("CAMERA: \(cameraPosition.target)")
         currentLat = Double(cameraPosition.target.latitude).roundTo(places: 6)
         currentLng = Double(cameraPosition.target.longitude).roundTo(places: 6)
         
@@ -119,7 +120,7 @@ class NewAdViewController: UIViewController, GMSMapViewDelegate, GMSAutocomplete
     // Handle the user's selection.
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
         
-        print("Place: \(place.coordinate)")
+        //print("Place: \(place.coordinate)")
         
         let updatedCamera = GMSCameraUpdate.setTarget(place.coordinate)
         mapView.animate(with: updatedCamera)

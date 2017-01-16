@@ -45,6 +45,7 @@ class PreferenceTableViewController: UITableViewController, UITextFieldDelegate 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationController?.navigationBar.tintColor = UIColor.black
         setupDropDowns()
         setupTextField()
         setupDatePicker()
@@ -75,8 +76,11 @@ class PreferenceTableViewController: UITableViewController, UITextFieldDelegate 
         setupGenderDropDown()
         setupRaceDropDown()
         
-        dropDowns.forEach { $0.dismissMode = .onTap }
-        dropDowns.forEach { $0.direction = .bottom }
+        dropDowns.forEach {
+            $0.dismissMode = .onTap
+            $0.direction = .bottom
+        }
+        //dropDowns.forEach { $0.direction = .bottom }
     }
     
     func setupGenderDropDown() {
@@ -117,7 +121,7 @@ class PreferenceTableViewController: UITableViewController, UITextFieldDelegate 
         
         keyboardToolbar.sizeToFit()
         
-        textFieldBudget.delegate = self
+        //textFieldBudget.delegate = self
         textFieldBudget.keyboardType = UIKeyboardType.decimalPad
         textFieldBudget.inputAccessoryView = keyboardToolbar
     }
