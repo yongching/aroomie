@@ -13,6 +13,8 @@ class NewAdDetailsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationController?.navigationBar.tintColor = UIColor.black
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
@@ -49,9 +51,5 @@ class NewAdDetailsTableViewController: UITableViewController {
     }
     
     // MARK: - Actions
-    
-    @IBAction func closeButton(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-    }
     
 }

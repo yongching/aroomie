@@ -11,6 +11,7 @@ target 'ARoomie' do
   pod 'DropDown', :git=> 'https://github.com/AssistoLab/DropDown', :branch => 'master'
   pod 'GoogleMaps', '2.1.1'
   pod 'GooglePlaces', '2.1.1'
+  pod 'GooglePlacePicker', '2.1.1'
   pod 'FBSDKCoreKit'
   pod 'FBSDKLoginKit'
   pod 'FBSDKShareKit'

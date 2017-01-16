@@ -225,13 +225,6 @@
 			name = Setting;
 			sourceTree = "<group>";
 		};
-		ACC036481E280E22004DB095 /* GoogleMapAPI */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = GoogleMapAPI;
-			sourceTree = "<group>";
-		};
 		ACC2F9B91E03693F003585BF /* Account */ = {
 			isa = PBXGroup;
 			children = (
@@ -289,7 +282,6 @@
 		ACEF8DE01E27BCF6004CD5B8 /* Advertisement */ = {
 			isa = PBXGroup;
 			children = (
-				ACC036481E280E22004DB095 /* GoogleMapAPI */,
 				ACEF8DE31E27BD0D004CD5B8 /* NewAdDetailsTableViewController.swift */,
 				ACC036461E27FE80004DB095 /* NewAdViewController.swift */,
 			);
