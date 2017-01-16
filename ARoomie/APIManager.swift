@@ -160,8 +160,12 @@ class APIManager {
                 switch response.result {
                 case .success(let value):
                     print("Alamofire success")
-                    let jsonData = JSON(value)
-                    completionHandler(jsonData)
+                    if response.response?.statusCode == 200 {
+                        let jsonData = JSON(value)
+                        completionHandler(jsonData)
+                    } else {
+                        completionHandler(nil)
+                    }
                     break
                 
                 case .failure(let error):

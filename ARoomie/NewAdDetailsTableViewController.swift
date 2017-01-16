@@ -8,6 +8,9 @@
 
 import UIKit
 import DropDown
+import Alamofire
+import AlamofireImage
+import SwiftyJSON
 
 class NewAdDetailsTableViewController: UITableViewController, UITextFieldDelegate, UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -71,6 +74,15 @@ class NewAdDetailsTableViewController: UITableViewController, UITextFieldDelegat
     
     // MARK: - Table view data source
     
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        switch section {
+        case 0:
+            return 0
+        default:
+            return 22
+        }
+    }
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 4
     }
@@ -81,7 +93,7 @@ class NewAdDetailsTableViewController: UITableViewController, UITextFieldDelegat
         case 0:
             return 1
         case 1:
-            return 5
+            return 6
         case 2:
             return 1
         case 3:
@@ -140,7 +152,7 @@ class NewAdDetailsTableViewController: UITableViewController, UITextFieldDelegat
         let datePicker:UIDatePicker = UIDatePicker()
         datePicker.datePickerMode = UIDatePickerMode.date
         
-        textFields[1].inputView = datePicker
+        textFields[2].inputView = datePicker
         datePicker.addTarget(self, action: #selector(NewAdDetailsTableViewController.datePickerChanged), for: UIControlEvents.valueChanged)
         
         dateFormatter.dateStyle = DateFormatter.Style.medium
@@ -187,6 +199,74 @@ class NewAdDetailsTableViewController: UITableViewController, UITextFieldDelegat
     
     // MARK: - Actions
     
+    @IBAction func postButton(_ sender: Any) {
+        
+        let baseURL = NSURL(string: BASE_URL)
+        let path = "api/advertisement/add/"
+        let url = baseURL!.appendingPathComponent(path)
+        
+        let parameters: [String: Any] = [
+            "access_token": Default.shared.getAccessToken(),
+            "place_name": textFields[0].text!,
+            "rental": textFields[1].text!,
+            "move_in": textFields[2].text!,
+            "deposit": textFields[3].text!,
+            "amenity": textViewAmenities.text!,
+            "rule": textViewRules.text!,
+            "lat": "123.123",
+            "lng": "123.123",
+            "gender_pref": genderPrefDropDown.indexForSelectedRow ?? -1,
+            "race_pref": racePrefDropDown.indexForSelectedRow ?? -1
+        ]
+        
+        let screenSize: CGRect = UIScreen.main.bounds
+        let indicator: UIActivityIndicatorView = UIActivityIndicatorView()
+        indicator.frame = CGRect(x: 0.0, y: 0.0, width: screenSize.width, height: screenSize.height)
+        indicator.center = view.center
+        indicator.hidesWhenStopped = true
+        indicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        view.addSubview(indicator)
+        indicator.startAnimating()
+        
+        Alamofire.upload(multipartFormData: { MultipartFormData in
+            
+            if let image = self.imageView.image {
+                MultipartFormData.append(UIImageJPEGRepresentation(image, 0.85)!, withName: "photo", fileName: "picture.jpg", mimeType: "image/jpg")
+            }
+            
+            for (key, value) in parameters {
+                MultipartFormData.append("\(value)".data(using: String.Encoding.utf8, allowLossyConversion: true)!, withName:key)
+            }
+        
+        }, to: url!, encodingCompletion: { encodingResult in
+            
+            indicator.stopAnimating()
+            
+            switch encodingResult {
+            case .success(let upload, _, _):
+                upload.responseJSON { response in
+                    
+                    debugPrint(response)
+                    //print(JSON(response.result.value!))
+                    
+                    if response.response?.statusCode == 200 {
+                        let alert = UIAlertController(title: "Successfully Posted!", message: nil, preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+                        self.present(alert, animated: true, completion: nil)
+                    } else {
+                        let alert = UIAlertController(title: "Error Posting!", message: "Please make sure you fill up all the columns.", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+                        self.present(alert, animated: true, completion: nil)
+                    }
+                }
+                break
+                
+            case .failure( _):
+                break
+            }
+        })
+    }
+    
     func imageViewTapped() {
         let alert = UIAlertController(title: "Change Profile Picture", message: nil, preferredStyle: .actionSheet)
         
@@ -209,7 +289,7 @@ class NewAdDetailsTableViewController: UITableViewController, UITextFieldDelegat
     }
     
     func datePickerChanged(datePicker:UIDatePicker) {
-        self.textFields[1].text = dateFormatter.string(from: datePicker.date)
+        self.textFields[2].text = dateFormatter.string(from: datePicker.date)
     }
     
     @IBAction func changeGenderPref(_ sender: Any) {

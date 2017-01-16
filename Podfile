@@ -7,6 +7,7 @@ target 'ARoomie' do
 
   # Pods for ARoomie
   pod 'Alamofire', :git => 'https://github.com/Alamofire/Alamofire.git'
+  pod 'AlamofireImage', '~> 3.1'
   pod 'SwiftyJSON', :git => 'https://github.com/BaiduHiDeviOS/SwiftyJSON.git', :branch => 'swift3'
   pod 'DropDown', :git=> 'https://github.com/AssistoLab/DropDown', :branch => 'master'
   pod 'GoogleMaps', '2.1.1'
