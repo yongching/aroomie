@@ -74,7 +74,7 @@ class NewAdDetailsTableViewController: UITableViewController, UITextFieldDelegat
     
     // MARK: - Table view data source
     
-    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         switch section {
         case 0:
             return CGFloat.leastNormalMagnitude
