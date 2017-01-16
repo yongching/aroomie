@@ -10,6 +10,7 @@ import UIKit
 import FBSDKCoreKit
 import DropDown
 import GoogleMaps
+import GooglePlaces
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -22,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         DropDown.startListeningToKeyboard()
         
         GMSServices.provideAPIKey("AIzaSyDVM2x25xBAoXcxQtJIXn-rfBrxYqzBUpw")
-        
+        GMSPlacesClient.provideAPIKey("AIzaSyDVM2x25xBAoXcxQtJIXn-rfBrxYqzBUpw")
         
         return FBSDKApplicationDelegate.sharedInstance().application(
             application,

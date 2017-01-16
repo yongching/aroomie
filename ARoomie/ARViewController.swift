@@ -769,9 +769,9 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
             if (!checkMaxVerticalLevel || annotation.verticalLevel <= maxVerticalLevel!) &&
                 (!checkMaxDistance || self.maxDistance == 0 || annotation.distanceFromUser <= maxDistance!)
             {
-                print("maxDistance\(self.maxDistance)")
-                print("maxDistanceFromParameter:\(maxDistance!)")
-                print("smaller: \(annotation.distanceFromUser <= maxDistance!)")
+                //print("maxDistance\(self.maxDistance)")
+                //print("maxDistanceFromParameter:\(maxDistance!)")
+                //print("smaller: \(annotation.distanceFromUser <= maxDistance!)")
                 filteredAnnotations.append(annotation)
                 annotation.active = true
                 count += 1;

@@ -141,7 +141,7 @@ class APIManager {
                 }
                 
             } else {
-                print("token haven't expired")
+                //print("token haven't expired")
                 completionHandler()
             }
         }

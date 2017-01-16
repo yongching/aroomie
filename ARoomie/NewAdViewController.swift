@@ -8,8 +8,9 @@
 
 import UIKit
 import GoogleMaps
+import GooglePlaces
 
-class NewAdViewController: UIViewController {
+class NewAdViewController: UIViewController, GMSMapViewDelegate {
 
     // MARK: - Properties
     
@@ -19,23 +20,16 @@ class NewAdViewController: UIViewController {
     var placesClient: GMSPlacesClient!
     var zoomLevel: Float = 15.0
     
-    // A default location to use when location permission is not granted.
-    let defaultLocation = CLLocation(latitude: -33.8523341, longitude: 151.2106085)
+    // Store GMSGeocoder as an instance variable.
+    let geocoder = GMSGeocoder()
+    var currentLat: Double = 0.000000
+    var currentLng: Double = 0.000000
     
-//    override func loadView() {
-//        // Create a GMSCameraPosition that tells the map to display the
-//        // coordinate -33.86,151.20 at zoom level 6.
-//        let camera = GMSCameraPosition.camera(withLatitude: -33.86, longitude: 151.20, zoom: 6.0)
-//        let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
-//        view = mapView
-//        
-//        // Creates a marker in the center of the map.
-//        let marker = GMSMarker()
-//        marker.position = CLLocationCoordinate2D(latitude: -33.86, longitude: 151.20)
-//        marker.title = "Sydney"
-//        marker.snippet = "Australia"
-//        marker.map = mapView
-//    }
+    // Uber pickup pin
+    var pinButton = UIButton()
+    
+    // A default location to use when location permission is not granted.
+    let defaultLocation = CLLocation(latitude: 2.921410, longitude: 101.632876)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,6 +48,7 @@ class NewAdViewController: UIViewController {
                                               longitude: defaultLocation.coordinate.longitude,
                                               zoom: zoomLevel)
         mapView = GMSMapView.map(withFrame: view.bounds, camera: camera)
+        mapView.delegate = self
         mapView.isMyLocationEnabled = true
         mapView.settings.myLocationButton = true
         mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -61,6 +56,11 @@ class NewAdViewController: UIViewController {
         // Add the map to the view, hide it until we've got a location update.
         view.addSubview(mapView)
         mapView.isHidden = true
+        
+        // Add pin logo
+        pinButton.setImage(UIImage(named: "ic_pickup_pin"), for: UIControlState())
+        pinButton.frame = CGRect(x: view.frame.width / 2 - 15, y: view.frame.height / 2 - 30, width: 30, height: 30)
+        view.addSubview(pinButton)
     }
 
     override func didReceiveMemoryWarning() {
@@ -84,29 +84,37 @@ class NewAdViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    // Add markers for the places nearby the device
-    func updateMarkers() {
+    // MARK: - GMSMapVieDelegate
+    
+    func mapView(_ mapView: GMSMapView, willMove gesture: Bool) {
         mapView.clear()
+    }
+    
+    func mapView(_ mapView: GMSMapView, idleAt cameraPosition: GMSCameraPosition) {
         
-        // Get nearby places and add markers to the map
-        placesClient.currentPlace(callback: { (placeLikelihoods, error) -> Void in
-            if let error = error {
-                print("Current Place error: \(error.localizedDescription)")
+        currentLat = Double(cameraPosition.target.latitude).roundTo(places: 6)
+        currentLng = Double(cameraPosition.target.longitude).roundTo(places: 6)
+        
+        print("lat \(currentLat)")
+        print("lng \(currentLng)")
+        
+        geocoder.reverseGeocodeCoordinate(cameraPosition.target) { (response, error) in
+            guard error == nil else {
                 return
             }
             
-            if let likelihoodList = placeLikelihoods {
-                for likelihood in likelihoodList.likelihoods {
-                    let place = likelihood.place
-                    
-                    let marker = GMSMarker(position: place.coordinate)
-                    marker.title = place.name
-                    marker.snippet = place.formattedAddress
-                    marker.map = self.mapView
-                }
+            if let result = response?.firstResult() {
+                let marker = GMSMarker()
+                marker.position = cameraPosition.target
+                marker.title = result.lines?[0]
+                marker.snippet = result.lines?[1]
+                marker.opacity = 0
+                marker.map = mapView
+                mapView.selectedMarker = marker
             }
-        })
+        }
     }
+    
 }
 
 // Delegate to handle events for the location manager
@@ -115,7 +123,7 @@ extension NewAdViewController: CLLocationManagerDelegate {
     // Handle incoming location events.
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location: CLLocation = locations.last!
-        print("Location: \(location)")
+        //print("Location: \(location)")
         
         let camera = GMSCameraPosition.camera(withLatitude: location.coordinate.latitude,
                                               longitude: location.coordinate.longitude,
@@ -127,8 +135,6 @@ extension NewAdViewController: CLLocationManagerDelegate {
         } else {
             mapView.animate(to: camera)
         }
-        
-        updateMarkers()
     }
     
     // Handle authorization for the location manager.
@@ -153,5 +159,4 @@ extension NewAdViewController: CLLocationManagerDelegate {
         locationManager.stopUpdatingLocation()
         print("Error: \(error)")
     }
-    
 }

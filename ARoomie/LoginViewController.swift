@@ -22,9 +22,9 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         
         if (FBSDKAccessToken.current() != nil) {
-            print("viewDidLoad FBSDKToken exist")
+            //print("viewDidLoad FBSDKToken exist")
         } else {
-            print("viewDidLoad FBSDKToken empty")
+            //print("viewDidLoad FBSDKToken empty")
         }
         
         setupButton()
@@ -37,9 +37,9 @@ class LoginViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         
         if (FBSDKAccessToken.current() != nil) {
-            print("viewDidAppear FBSDKToken exist")
+            //print("viewDidAppear FBSDKToken exist")
         } else {
-            print("viewDidAppear FBSDKToken empty")
+            //print("viewDidAppear FBSDKToken empty")
         }
         
         if (FBSDKAccessToken.current() != nil) {
