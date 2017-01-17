@@ -121,9 +121,9 @@ class PreferenceTableViewController: UITableViewController, UITextFieldDelegate 
         
         keyboardToolbar.sizeToFit()
         
-        //textFieldBudget.delegate = self
-        //textFieldBudget.keyboardType = UIKeyboardType.decimalPad
+        textFieldBudget.delegate = self
         textFieldBudget.inputAccessoryView = keyboardToolbar
+        //textFieldBudget.keyboardType = UIKeyboardType.decimalPad
     }
     
     func setupDatePicker() {

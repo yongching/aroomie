@@ -17,16 +17,19 @@ class NewAdDetailsTableViewController: UITableViewController, UITextFieldDelegat
     // MARK: - Properties
     
     @IBOutlet weak var imageView: UIImageView!
-
     @IBOutlet var textFields: [UITextField]!
-    let dateFormatter = DateFormatter()
-    
     @IBOutlet weak var buttonGenderPref: DropDownButton!
     @IBOutlet weak var buttonRacePref: DropDownButton!
-    
     @IBOutlet weak var textViewRules: UITextView!
     @IBOutlet weak var textViewAmenities: UITextView!
     
+    // UIImagePickerController
+    let imagePicker = UIImagePickerController()
+    
+    // DateFormatter
+    let dateFormatter = DateFormatter()
+
+    // DropDown
     let genderOptions: [String] = [
         "male",
         "female"
@@ -37,13 +40,6 @@ class NewAdDetailsTableViewController: UITableViewController, UITextFieldDelegat
         "indian",
         "others"
     ]
-    
-    // MARK: - UIImagePickerController
-    
-    let imagePicker = UIImagePickerController()
-    
-    // MARK: - DropDown
-    
     let genderPrefDropDown = DropDown()
     let racePrefDropDown = DropDown()
     lazy var dropDowns: [DropDown] = {
@@ -53,10 +49,32 @@ class NewAdDetailsTableViewController: UITableViewController, UITextFieldDelegat
         ]
     }()
     
+    // Segue
+    var lat: String = "0"
+    var lng: String = "0"
+//    var lat: String? {
+//        didSet{
+//            if let lat = lat {
+//                self.lat = lat
+//            }
+//        }
+//    }
+//    
+//    var lng: String? {
+//        didSet{
+//            if let lng = lng {
+//                self.lng = lng
+//            }
+//        }
+//    }
+    
     // MARK: - View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //print(lat)
+        //print(lng)
         
         navigationController?.navigationBar.tintColor = UIColor.black
 
@@ -218,8 +236,8 @@ class NewAdDetailsTableViewController: UITableViewController, UITextFieldDelegat
             "deposit": textFields[3].text!,
             "amenity": textViewAmenities.text!,
             "rule": textViewRules.text!,
-            "lat": "123.123",
-            "lng": "123.123",
+            "lat": lat,
+            "lng": lng,
             "gender_pref": genderPrefDropDown.indexForSelectedRow ?? -1,
             "race_pref": racePrefDropDown.indexForSelectedRow ?? -1
         ]
@@ -250,16 +268,19 @@ class NewAdDetailsTableViewController: UITableViewController, UITextFieldDelegat
                 
                 upload.responseJSON { response in
                     
-                    //debugPrint(response)
+                    debugPrint(response)
                     //print(JSON(response.result.value!))
                     
                     indicator.stopAnimating()
                     if response.response?.statusCode == 200 {
                         let alert = UIAlertController(title: "Successfully Posted!", message: nil, preferredStyle: .alert)
-                        alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+                        alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: {
+                            completionHandler in
+                            self.dismiss(animated: true, completion: nil)
+                        }))
                         self.present(alert, animated: true, completion: nil)
                     } else {
-                        let alert = UIAlertController(title: "Error Posting!", message: "Please make sure you fill up all the columns.", preferredStyle: .alert)
+                        let alert = UIAlertController(title: "Error Posting!", message: "Please select an image and fill up all the required columns.", preferredStyle: .alert)
                         alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
                         self.present(alert, animated: true, completion: nil)
                     }

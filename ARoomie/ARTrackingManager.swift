@@ -191,7 +191,7 @@ open class ARTrackingManager: NSObject, CLLocationManagerDelegate
             let age = location.timestamp.timeIntervalSinceNow;
             if age < -30 || location.horizontalAccuracy > 500 || location.horizontalAccuracy < 0
             {
-                print("Disregarding location: age: \(age), ha: \(location.horizontalAccuracy)")
+                //print("Disregarding location: age: \(age), ha: \(location.horizontalAccuracy)")
                 return
             }
             

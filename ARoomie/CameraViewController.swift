@@ -96,10 +96,9 @@ class CameraViewController: ARViewController, ARDataSource, UIImagePickerControl
         indicator.startAnimating()
         
         APIManager.shared.getAdvertisements(completionHandler: { json in
-            indicator.stopAnimating()
             
+            print("1")
             if json != nil {
-                
                 for result in json.arrayValue {
                     let annotation = ARAnnotation()
                     annotation.location = CLLocation(latitude: result["lat"].doubleValue, longitude: result["lng"].doubleValue)
@@ -113,10 +112,11 @@ class CameraViewController: ARViewController, ARDataSource, UIImagePickerControl
                             print("Error getting advertisement creator photo")
                         }
                     })
-                    
                     annotations.append(annotation)
                     completionHandler(annotations)
                 }
+                
+                indicator.stopAnimating()
                 
             } else {
                 print("Error getting advertisements")

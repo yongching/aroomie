@@ -22,8 +22,8 @@ class NewAdViewController: UIViewController, GMSMapViewDelegate, GMSAutocomplete
     
     // Store GMSGeocoder as an instance variable.
     let geocoder = GMSGeocoder()
-    var currentLat: Double = 0.000000
-    var currentLng: Double = 0.000000
+    var currentLat: Double = 0
+    var currentLng: Double = 0
     
     // Buttons
     var pinButton = UIButton()
@@ -95,8 +95,8 @@ class NewAdViewController: UIViewController, GMSMapViewDelegate, GMSAutocomplete
         currentLat = Double(cameraPosition.target.latitude).roundTo(places: 6)
         currentLng = Double(cameraPosition.target.longitude).roundTo(places: 6)
         
-        print("lat \(currentLat)")
-        print("lng \(currentLng)")
+        //print("lat \(currentLat)")
+        //print("lng \(currentLng)")
         
         geocoder.reverseGeocodeCoordinate(cameraPosition.target) { (response, error) in
             guard error == nil else {
@@ -156,16 +156,16 @@ class NewAdViewController: UIViewController, GMSMapViewDelegate, GMSAutocomplete
         present(acController, animated: true, completion: nil)
     }
     
-    /*
      // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
     
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     
+        if segue.identifier == "segueNewDetails" {
+            let controller = segue.destination as! NewAdDetailsTableViewController
+            controller.lat = String(format: "%.6f", currentLat)
+            controller.lng = String(format: "%.6f", currentLng)
+        }
+     }
 }
 
 // Delegate to handle events for the location manager

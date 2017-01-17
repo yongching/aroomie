@@ -895,7 +895,7 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
         let captureSessionResult = ARViewController.createCaptureSession()
         guard captureSessionResult.error == nil, let session = captureSessionResult.session else
         {
-            print("HDAugmentedReality: Cannot create capture session, use createCaptureSession method to check if device is capable for augmented reality.")
+            //print("HDAugmentedReality: Cannot create capture session, use createCaptureSession method to check if device is capable for augmented reality.")
             return
         }
         
