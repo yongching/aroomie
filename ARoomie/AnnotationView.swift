@@ -37,18 +37,18 @@ open class AnnotationView: ARAnnotationView, UIGestureRecognizerDelegate
         // Profile Image
         self.profileImage?.removeFromSuperview()
         let imageView = UIImageView()
-        
-        //self.imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(SettingTableViewController.imageViewTapped)))
         imageView.layer.cornerRadius = 20
         imageView.clipsToBounds = true
         imageView.isUserInteractionEnabled = true
         
-        imageView.image = try! UIImage(data: Data(contentsOf: URL(string: (self.annotation?.pictureUrl)!)!))
+        if let pictureUrl = self.annotation?.pictureUrl {
+            imageView.image = try! UIImage(data: Data(contentsOf: URL(string: pictureUrl)!))
+        }
         self.addSubview(imageView)
         self.profileImage = imageView
         
         // Gesture
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(AnnotationView.tapGesture))
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.tapGesture(_:)))
         self.addGestureRecognizer(tapGesture)
         
         // Other
@@ -90,12 +90,15 @@ open class AnnotationView: ARAnnotationView, UIGestureRecognizerDelegate
         self.layoutUi()
     }
     
-    open func tapGesture()
+    func tapGesture(_ sender: UITapGestureRecognizer)
     {
-        //let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        //let vc = storyboard.instantiateViewController(withIdentifier: "ViewAdvertisement") as! UINavigationController
-        //let currentViewController = self.getCurrentViewController()
-        //currentViewController?.present(vc, animated: true, completion: nil)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let navigationController = storyboard.instantiateViewController(withIdentifier: "ViewAdvertisement") as! UINavigationController
+        let adDetailsViewController = navigationController.viewControllers[0] as! AdDetailsTableViewController
+        adDetailsViewController.userId = self.annotation?.createdBy
+
+        let currentViewController = self.getCurrentViewController()
+        currentViewController?.present(navigationController, animated: true, completion: nil)
     }
     
     func getCurrentViewController() -> UIViewController? {

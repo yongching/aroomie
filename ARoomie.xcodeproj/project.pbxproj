@@ -38,6 +38,7 @@
 		ACE8DE431E0089FB0025530F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACE8DE411E0089FB0025530F /* Main.storyboard */; };
 		ACE8DE451E0089FB0025530F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ACE8DE441E0089FB0025530F /* Assets.xcassets */; };
 		ACE8DE481E0089FB0025530F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACE8DE461E0089FB0025530F /* LaunchScreen.storyboard */; };
+		ACEA9EB91E2E2A550003F9A9 /* AdDetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEA9EB81E2E2A550003F9A9 /* AdDetailsTableViewController.swift */; };
 		ACEF8DE41E27BD0D004CD5B8 /* NewAdDetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEF8DE31E27BD0D004CD5B8 /* NewAdDetailsTableViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -78,6 +79,7 @@
 		ACE8DE441E0089FB0025530F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ACE8DE471E0089FB0025530F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ACE8DE491E0089FB0025530F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ACEA9EB81E2E2A550003F9A9 /* AdDetailsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdDetailsTableViewController.swift; sourceTree = "<group>"; };
 		ACEF8DE31E27BD0D004CD5B8 /* NewAdDetailsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewAdDetailsTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -284,6 +286,7 @@
 			children = (
 				ACEF8DE31E27BD0D004CD5B8 /* NewAdDetailsTableViewController.swift */,
 				ACC036461E27FE80004DB095 /* NewAdViewController.swift */,
+				ACEA9EB81E2E2A550003F9A9 /* AdDetailsTableViewController.swift */,
 			);
 			name = Advertisement;
 			sourceTree = "<group>";
@@ -434,6 +437,7 @@
 				ACDDF18D1E14326B00A4002B /* LifestyleTableViewController.swift in Sources */,
 				AC86F3201E143E6C00BEB324 /* MyCell.swift in Sources */,
 				AC5C47681E1BB3B100AD3297 /* ARConfiguration.swift in Sources */,
+				ACEA9EB91E2E2A550003F9A9 /* AdDetailsTableViewController.swift in Sources */,
 				AC5C47751E1BB3E300AD3297 /* DebugMapViewController.swift in Sources */,
 				ACEF8DE41E27BD0D004CD5B8 /* NewAdDetailsTableViewController.swift in Sources */,
 				AC5C47691E1BB3B100AD3297 /* ARTrackingManager.swift in Sources */,

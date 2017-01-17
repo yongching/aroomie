@@ -14,6 +14,8 @@ open class ARAnnotation: NSObject
 {
     /// here
     open var pictureUrl: String?
+    open var createdBy: Int?
+    
     /// Title of annotation
     open var title: String?
     /// Location of annotation

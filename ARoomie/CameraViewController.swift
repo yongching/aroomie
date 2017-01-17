@@ -103,6 +103,7 @@ class CameraViewController: ARViewController, ARDataSource, UIImagePickerControl
                     let annotation = ARAnnotation()
                     annotation.location = CLLocation(latitude: result["lat"].doubleValue, longitude: result["lng"].doubleValue)
                     annotation.title = result["place_name"].stringValue
+                    annotation.createdBy = result["created_by"].intValue
                     
                     APIManager.shared.getUserProfile(completionHandler: { json in
                         
@@ -177,7 +178,6 @@ class CameraViewController: ARViewController, ARDataSource, UIImagePickerControl
     func newButtonTapped() {
         let newAds = storyboard!.instantiateViewController(withIdentifier: "NewAdvertisement") as! UINavigationController
         present(newAds, animated: true, completion: nil)
-        
     }
     
     func filterButtonTapped() {

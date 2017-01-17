@@ -52,21 +52,6 @@ class NewAdDetailsTableViewController: UITableViewController, UITextFieldDelegat
     // Segue
     var lat: String = "0"
     var lng: String = "0"
-//    var lat: String? {
-//        didSet{
-//            if let lat = lat {
-//                self.lat = lat
-//            }
-//        }
-//    }
-//    
-//    var lng: String? {
-//        didSet{
-//            if let lng = lng {
-//                self.lng = lng
-//            }
-//        }
-//    }
     
     // MARK: - View Lifecycle
     
