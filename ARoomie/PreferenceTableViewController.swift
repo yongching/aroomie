@@ -122,7 +122,7 @@ class PreferenceTableViewController: UITableViewController, UITextFieldDelegate 
         keyboardToolbar.sizeToFit()
         
         //textFieldBudget.delegate = self
-        textFieldBudget.keyboardType = UIKeyboardType.decimalPad
+        //textFieldBudget.keyboardType = UIKeyboardType.decimalPad
         textFieldBudget.inputAccessoryView = keyboardToolbar
     }
     

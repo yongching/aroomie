@@ -79,7 +79,7 @@ class NewAdDetailsTableViewController: UITableViewController, UITextFieldDelegat
         case 0:
             return CGFloat.leastNormalMagnitude
         default:
-            return 22
+            return 42
         }
     }
     
@@ -118,6 +118,11 @@ class NewAdDetailsTableViewController: UITableViewController, UITextFieldDelegat
     // MARK: - Setup
     
     func setupImagePicker() {
+        imageView.layer.cornerRadius = 220 / 2
+        imageView.layer.borderWidth = 1.0
+        imageView.layer.borderColor = UIColor.white.cgColor
+        imageView.clipsToBounds = true
+        
         self.imagePicker.delegate = self
         self.imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewAdDetailsTableViewController.imageViewTapped)))
         self.imageView.isUserInteractionEnabled = true
@@ -231,7 +236,7 @@ class NewAdDetailsTableViewController: UITableViewController, UITextFieldDelegat
         Alamofire.upload(multipartFormData: { MultipartFormData in
             
             if let image = self.imageView.image {
-                MultipartFormData.append(UIImageJPEGRepresentation(image, 0.85)!, withName: "photo", fileName: "picture.jpg", mimeType: "image/jpg")
+                MultipartFormData.append(UIImageJPEGRepresentation(image, 0.5)!, withName: "photo", fileName: "picture.jpg", mimeType: "image/jpg")
             }
             
             for (key, value) in parameters {
@@ -240,15 +245,15 @@ class NewAdDetailsTableViewController: UITableViewController, UITextFieldDelegat
         
         }, to: url!, encodingCompletion: { encodingResult in
             
-            indicator.stopAnimating()
-            
             switch encodingResult {
             case .success(let upload, _, _):
+                
                 upload.responseJSON { response in
                     
-                    debugPrint(response)
+                    //debugPrint(response)
                     //print(JSON(response.result.value!))
                     
+                    indicator.stopAnimating()
                     if response.response?.statusCode == 200 {
                         let alert = UIAlertController(title: "Successfully Posted!", message: nil, preferredStyle: .alert)
                         alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
@@ -262,6 +267,7 @@ class NewAdDetailsTableViewController: UITableViewController, UITextFieldDelegat
                 break
                 
             case .failure( _):
+                indicator.stopAnimating()
                 break
             }
         })
