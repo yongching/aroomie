@@ -141,21 +141,9 @@ class SettingTableViewController: UITableViewController, UITextFieldDelegate {
 
     func getUserData() {
         
-        let screenSize: CGRect = UIScreen.main.bounds
-        let indicator: UIActivityIndicatorView = UIActivityIndicatorView()
-        indicator.frame = CGRect(x: 0.0, y: 0.0, width: screenSize.width, height: screenSize.height)
-        indicator.center = view.center
-        indicator.hidesWhenStopped = true
-        indicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
-        view.addSubview(indicator)
-        indicator.startAnimating()
-        
         APIManager.shared.getUserProfile(completionHandler: { json in
             
-            indicator.stopAnimating()
-            
             if json != nil {
-                
                 User.currentUser.setInfo(json: json)
                 self.imageAvatar.image = try! UIImage(data: Data(contentsOf: URL(string: User.currentUser.pictureURL!)!))
                 self.labelName.text = User.currentUser.name
@@ -169,7 +157,10 @@ class SettingTableViewController: UITableViewController, UITextFieldDelegate {
                 self.textFieldPhone.text = User.currentUser.phone
 
             } else {
-                
+                let message = "There is some problem getting user profile!"
+                let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+                self.present(alert, animated: true, completion: nil)
             }
         })
     }
@@ -202,13 +193,11 @@ class SettingTableViewController: UITableViewController, UITextFieldDelegate {
             indicator.stopAnimating()
             
             if json != nil {
-                
                 let alert = UIAlertController(title: "Successfully Saved!", message: nil, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
                 self.present(alert, animated: true, completion: nil)
                 
             } else {
-                
                 let message = "There is some problem saving profile!"
                 let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
@@ -222,15 +211,14 @@ class SettingTableViewController: UITableViewController, UITextFieldDelegate {
     }
     
     @IBAction func buttonLogout(_ sender: Any) {
-        let alert = UIAlertController(title: "Are you sure?", message: nil, preferredStyle: .alert)
         
+        let alert = UIAlertController(title: "Are you sure?", message: nil, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Log out", style: .default, handler: {
             action in
             
             APIManager.shared.logout(completionHandler: { error in
                 
                 if error == nil {
-                    
                     FBManager.shared.logOut()
                     User.currentUser.resetInfo()
                     Default.shared.resetUserDefault()
@@ -240,8 +228,7 @@ class SettingTableViewController: UITableViewController, UITextFieldDelegate {
                     self.present(loginViewController, animated: true, completion: nil)
                     
                 } else {
-                    
-                    let message = "There is some problem logging out"
+                    let message = "There is some problem logging out!"
                     let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
                     self.present(alert, animated: true, completion: nil)
@@ -250,7 +237,6 @@ class SettingTableViewController: UITableViewController, UITextFieldDelegate {
         }))
         
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        
         self.present(alert, animated: true, completion: nil)
     }
     

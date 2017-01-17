@@ -12,23 +12,24 @@ class AdDetailsTableViewController: UITableViewController {
 
     // MARK: - Properties
     
-    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var roomPicture: UIImageView!
     @IBOutlet weak var profileAvatar: UIImageView!
     @IBOutlet weak var textFieldRental: UILabel!
     @IBOutlet weak var labelMoveInDate: UILabel!
     @IBOutlet weak var labelDeposit: UILabel!
     
     // Segue
-    var userId: Int?
+    var advertisementId: Int?
     
     // MARK: - View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let id = userId {
+        if let id = advertisementId {
             print(id)
         }
+        getDetails()
     }
 
     override func didReceiveMemoryWarning() {
@@ -70,6 +71,30 @@ class AdDetailsTableViewController: UITableViewController {
     }
 
     // MARK: - Actions
+    
+    func getDetails() {
+        
+        if let id = advertisementId {
+            
+            APIManager.shared.getAdvertisement(byId: id, completionHandler: { json in
+                
+                if json != nil {
+                    self.roomPicture.image = try! UIImage(data: Data(contentsOf: URL(string: json["photo"].stringValue)!))
+                    
+                    APIManager.shared.getUserProfile(byId: json["created_by"].intValue, completionHandler: { json in
+
+                        if json != nil {
+                            self.profileAvatar.image = try! UIImage(data: Data(contentsOf: URL(string: json["profile"]["avatar"].stringValue)!))
+                        }
+                    })
+                    
+                    self.textFieldRental.text = json["rental"].stringValue
+                    self.labelMoveInDate.text = json["move_in"].stringValue
+                    self.labelDeposit.text = json["deposit"].stringValue
+                }
+            })
+        }
+    }
     
     @IBAction func closeButton(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)

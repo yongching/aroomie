@@ -13,6 +13,7 @@ import CoreLocation
 open class ARAnnotation: NSObject
 {
     /// here
+    open var advertisementId: Int?
     open var pictureUrl: String?
     open var createdBy: Int?
     

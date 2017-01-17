@@ -86,38 +86,29 @@ class CameraViewController: ARViewController, ARDataSource, UIImagePickerControl
         
         var annotations: [ARAnnotation] = []
         
-        let screenSize: CGRect = UIScreen.main.bounds
-        let indicator: UIActivityIndicatorView = UIActivityIndicatorView()
-        indicator.frame = CGRect(x: 0.0, y: 0.0, width: screenSize.width, height: screenSize.height)
-        indicator.center = view.center
-        indicator.hidesWhenStopped = true
-        indicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
-        view.addSubview(indicator)
-        indicator.startAnimating()
-        
         APIManager.shared.getAdvertisements(completionHandler: { json in
             
-            print("1")
             if json != nil {
                 for result in json.arrayValue {
                     let annotation = ARAnnotation()
+                    annotation.advertisementId = result["id"].intValue
                     annotation.location = CLLocation(latitude: result["lat"].doubleValue, longitude: result["lng"].doubleValue)
                     annotation.title = result["place_name"].stringValue
                     annotation.createdBy = result["created_by"].intValue
                     
-                    APIManager.shared.getUserProfile(completionHandler: { json in
-                        
-                        if json != nil {
-                            annotation.pictureUrl = json["profile"]["avatar"].stringValue
-                        } else {
-                            print("Error getting advertisement creator photo")
-                        }
-                    })
-                    annotations.append(annotation)
-                    completionHandler(annotations)
+                    if let id = annotation.createdBy {
+                        APIManager.shared.getUserProfile(byId: id, completionHandler: { json in
+                            if json != nil {
+                                annotation.pictureUrl = json["profile"]["avatar"].stringValue
+                                
+                            } else {
+                                print("Error getting advertisement creator photo")
+                            }
+                        })
+                        annotations.append(annotation)
+                        completionHandler(annotations)
+                    }
                 }
-                
-                indicator.stopAnimating()
                 
             } else {
                 print("Error getting advertisements")

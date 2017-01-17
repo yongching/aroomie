@@ -182,18 +182,7 @@ class PreferenceTableViewController: UITableViewController, UITextFieldDelegate 
             "move_in_pref": textFieldMoveIn.text!
         ]
         
-        let screenSize: CGRect = UIScreen.main.bounds
-        let indicator: UIActivityIndicatorView = UIActivityIndicatorView()
-        indicator.frame = CGRect(x: 0.0, y: 0.0, width: screenSize.width, height: screenSize.height)
-        indicator.center = view.center
-        indicator.hidesWhenStopped = true
-        indicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
-        view.addSubview(indicator)
-        indicator.startAnimating()
-        
         APIManager.shared.updateUserProfile(params: params, completionHandler: { json in
-            
-            indicator.stopAnimating()
             
             if json != nil {
                 

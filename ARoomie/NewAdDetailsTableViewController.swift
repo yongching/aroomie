@@ -227,15 +227,6 @@ class NewAdDetailsTableViewController: UITableViewController, UITextFieldDelegat
             "race_pref": racePrefDropDown.indexForSelectedRow ?? -1
         ]
         
-        let screenSize: CGRect = UIScreen.main.bounds
-        let indicator: UIActivityIndicatorView = UIActivityIndicatorView()
-        indicator.frame = CGRect(x: 0.0, y: 0.0, width: screenSize.width, height: screenSize.height)
-        indicator.center = view.center
-        indicator.hidesWhenStopped = true
-        indicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
-        view.addSubview(indicator)
-        indicator.startAnimating()
-        
         Alamofire.upload(multipartFormData: { MultipartFormData in
             
             if let image = self.imageView.image {
@@ -253,10 +244,9 @@ class NewAdDetailsTableViewController: UITableViewController, UITextFieldDelegat
                 
                 upload.responseJSON { response in
                     
-                    debugPrint(response)
+                    //debugPrint(response)
                     //print(JSON(response.result.value!))
                     
-                    indicator.stopAnimating()
                     if response.response?.statusCode == 200 {
                         let alert = UIAlertController(title: "Successfully Posted!", message: nil, preferredStyle: .alert)
                         alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: {
@@ -273,7 +263,6 @@ class NewAdDetailsTableViewController: UITableViewController, UITextFieldDelegat
                 break
                 
             case .failure( _):
-                indicator.stopAnimating()
                 break
             }
         })

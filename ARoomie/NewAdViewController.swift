@@ -107,7 +107,7 @@ class NewAdViewController: UIViewController, GMSMapViewDelegate, GMSAutocomplete
                 let marker = GMSMarker()
                 marker.position = cameraPosition.target
                 marker.title = result.lines?[0]
-                marker.snippet = result.lines?[1]
+                marker.snippet = result.lines?[1] ?? ""
                 marker.opacity = 0
                 marker.map = mapView
                 mapView.selectedMarker = marker

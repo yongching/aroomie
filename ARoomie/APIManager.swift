@@ -10,6 +10,7 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 import FBSDKLoginKit
+import SVProgressHUD
 
 class APIManager {
     
@@ -153,13 +154,16 @@ class APIManager {
         let url = baseURL?.appendingPathComponent(path)
         
         refreshTokenIfNeed( completionHandler: {
-
+            
+            SVProgressHUD.show()
+            
             Alamofire.request(url!, method: method, parameters: params, encoding: encoding, headers: nil)
                 .responseJSON { response in
                 
+                SVProgressHUD.dismiss()
+                    
                 switch response.result {
                 case .success(let value):
-                    print("Alamofire success")
                     if response.response?.statusCode == 200 {
                         let jsonData = JSON(value)
                         completionHandler(jsonData)
@@ -190,9 +194,9 @@ class APIManager {
     }
     
     // API - Get other user profile
-    func getUserProfile(userId: Int, completionHandler: @escaping (JSON) -> Void ) {
+    func getUserProfile(byId: Int, completionHandler: @escaping (JSON) -> Void ) {
         
-        let path = "api/user/profile/other/\(userId)"
+        let path = "api/user/profile/other/\(byId)/"
         let params: [String: Any] = [
             "access_token": Default.shared.getAccessToken()
         ]
@@ -217,5 +221,11 @@ class APIManager {
         let params: [String: Any] = [:]
         
         requestServer(.get, path, params, URLEncoding(), completionHandler)
+    }
+    
+    func getAdvertisement(byId: Int, completionHandler: @escaping (JSON) -> Void ) {
+        
+        let path = "api/advertisement/\(byId)/"
+        requestServer(.get, path, nil, URLEncoding(), completionHandler)
     }
 }

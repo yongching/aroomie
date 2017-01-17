@@ -67,7 +67,6 @@ open class AnnotationView: ARAnnotationView, UIGestureRecognizerDelegate
         let height: CGFloat = 40
         
         self.titleLabel?.frame = CGRect(x: 10, y: 0, width: self.frame.size.width - width - 5, height: self.frame.size.height)
-        
         self.profileImage?.frame = CGRect(x: self.frame.size.width - width - 10, y: self.frame.size.height/2 - height/2, width: width, height: height)
     }
     
@@ -94,9 +93,8 @@ open class AnnotationView: ARAnnotationView, UIGestureRecognizerDelegate
     {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let navigationController = storyboard.instantiateViewController(withIdentifier: "ViewAdvertisement") as! UINavigationController
-        let adDetailsViewController = navigationController.viewControllers[0] as! AdDetailsTableViewController
-        adDetailsViewController.userId = self.annotation?.createdBy
-
+        let adDetailsTableViewController = navigationController.viewControllers[0] as! AdDetailsTableViewController
+        adDetailsTableViewController.advertisementId = self.annotation?.advertisementId
         let currentViewController = self.getCurrentViewController()
         currentViewController?.present(navigationController, animated: true, completion: nil)
     }
