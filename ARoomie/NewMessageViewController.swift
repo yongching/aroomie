@@ -13,9 +13,10 @@ class NewMessageViewController: UIViewController, UITextViewDelegate {
     // MARK: - Properties
     
     @IBOutlet weak var textView: UITextView!
+    
+    let countsLimit: Int = 500
     var labelPlaceholder : UILabel!
     var labelCount: UILabel!
-    let countsLimit: Int = 500
     
     // Segue
     var receiverId: Int?
@@ -49,21 +50,16 @@ class NewMessageViewController: UIViewController, UITextViewDelegate {
     }
     
     func setupCustomView() {
-        let customView = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 30))
-        labelCount = UILabel(frame: CGRect(x: UIScreen.main.bounds.width - 40, y: 0, width: 40, height: 20))
+        let customView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 30))
+        labelCount = UILabel(frame: CGRect(x: UIScreen.main.bounds.width - 50, y: 5, width: 50, height: 20))
         labelCount.text = String(countsLimit)
         labelCount.textColor = UIColor.lightGray
         labelCount.font = UIFont.italicSystemFont(ofSize: 20)
-        labelCount.sizeToFit()
         customView.addSubview(labelCount)
         textView.inputAccessoryView = customView
     }
     
-    // MARK: - Actions
-    
-    @IBAction func closeButton(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-    }
+    // MARK: - UITextViewDelegate
     
     func textViewDidChange(_ textView: UITextView) {
         labelPlaceholder.isHidden = !textView.text.isEmpty
@@ -77,4 +73,34 @@ class NewMessageViewController: UIViewController, UITextViewDelegate {
         return numberOfChars < countsLimit
     }
 
+    
+    // MARK: - Actions
+    
+    @IBAction func closeButton(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func send(_ sender: Any) {
+        
+        if let id = receiverId {
+            APIManager.shared.sendMessage(toId: id, contents: textView.text, completionHandler: { json in
+                
+                if json != nil {
+                    let alert = UIAlertController(title: "Successfully Sent!", message: nil, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+                    self.present(alert, animated: true, completion: { result in
+                        self.dismiss(animated: true, completion: nil)
+                    })
+                    
+                } else {
+                    let message = "There is some problem sending your message!"
+                    let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+
+                }
+            })
+        }
+    }
+    
 }

@@ -154,11 +154,11 @@ class CameraViewController: ARViewController, ARDataSource, UIImagePickerControl
         let screen = UIScreen.main.bounds
         
         newButton.setImage(UIImage(named: "ic_add_white"), for: UIControlState())
-        newButton.frame = CGRect(x: screen.width - (40), y: 6, width: 40, height: 40)
+        newButton.frame = CGRect(x: screen.width - 40, y: 6, width: 40, height: 40)
         newButton.addTarget(self, action: #selector(CameraViewController.newButtonTapped), for: UIControlEvents.touchUpInside)
         
         filterButton.setImage(UIImage(named: "ic_filter_white"), for: UIControlState())
-        filterButton.frame = CGRect(x: screen.width - (80), y: 10, width: 30, height: 30)
+        filterButton.frame = CGRect(x: screen.width - 80, y: 10, width: 30, height: 30)
         filterButton.addTarget(self, action: #selector(CameraViewController.filterButtonTapped), for: UIControlEvents.touchUpInside)
         
         self.view.addSubview(newButton)

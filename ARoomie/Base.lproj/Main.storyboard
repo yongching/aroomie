@@ -1831,8 +1831,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="WpE-1H-6II">
-                                <rect key="frame" x="8" y="9" width="359" height="658"/>
+                                <rect key="frame" x="8" y="9" width="359" height="300"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="Q67-VO-jvj"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -1840,7 +1843,6 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="WpE-1H-6II" firstAttribute="leading" secondItem="eJm-Vx-mG8" secondAttribute="leading" constant="8" id="FiN-CH-Z5Y"/>
-                            <constraint firstItem="77b-as-qYo" firstAttribute="top" secondItem="WpE-1H-6II" secondAttribute="bottom" id="IJX-iz-bt3"/>
                             <constraint firstItem="WpE-1H-6II" firstAttribute="top" secondItem="ZQ0-cB-WeN" secondAttribute="bottom" constant="-55" id="SwO-p0-Lsw"/>
                             <constraint firstAttribute="trailing" secondItem="WpE-1H-6II" secondAttribute="trailing" constant="8" id="TBb-fW-jpN"/>
                         </constraints>
@@ -1854,6 +1856,9 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Send" id="CZ2-NQ-8cN">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="send:" destination="mMo-aZ-OQt" id="OpF-1y-TDD"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -1862,7 +1867,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Y6-Ty-iNI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5857" y="-676"/>
+            <point key="canvasLocation" x="5856.8000000000002" y="-676.01199400299856"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="7Fn-9n-Apt">

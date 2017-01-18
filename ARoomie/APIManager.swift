@@ -216,14 +216,25 @@ class APIManager {
     func getAdvertisements(completionHandler: @escaping (JSON) -> Void ) {
         
         let path = "api/advertisements/"
-        let params: [String: Any] = [:]
         
-        requestServer(.get, path, params, URLEncoding(), completionHandler)
+        requestServer(.get, path, nil, URLEncoding(), completionHandler)
     }
     
     func getAdvertisement(byId: Int, completionHandler: @escaping (JSON) -> Void ) {
         
         let path = "api/advertisement/\(byId)/"
         requestServer(.get, path, nil, URLEncoding(), completionHandler)
+    }
+    
+    // API - Send message
+    func sendMessage(toId: Int, contents: String, completionHandler: @escaping (JSON) -> Void ) {
+        
+        let path = "api/message/send/\(toId)"
+        let params: [String: Any] = [
+            "access_token": Default.shared.getAccessToken(),
+            "content": contents
+        ]
+        
+        requestServer(.post, path, params, URLEncoding(), completionHandler)
     }
 }
