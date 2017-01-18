@@ -36,6 +36,7 @@ class UserProfileTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.tintColor = UIColor.black
+        setupImageView()
         getDetails()
     }
 
@@ -47,10 +48,8 @@ class UserProfileTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         switch section {
-        case 0:
-            return CGFloat.leastNormalMagnitude
         default:
-            return 30
+            return 25
         }
     }
     
@@ -67,7 +66,7 @@ class UserProfileTableViewController: UITableViewController {
         case 1:
             return 1
         case 2:
-            return 4
+            return 3
         case 3:
             return 3
         default:
@@ -90,6 +89,13 @@ class UserProfileTableViewController: UITableViewController {
     
     // MARK: - Actions
     
+    func setupImageView() {
+        imageView.layer.cornerRadius = 60 / 2
+        imageView.layer.borderWidth = 1.0
+        imageView.layer.borderColor = UIColor.white.cgColor
+        imageView.clipsToBounds = true
+    }
+    
     func getDetails() {
         if let id = userId {
             
@@ -100,7 +106,7 @@ class UserProfileTableViewController: UITableViewController {
                     } catch _ {
                         print("Creator image not found")
                     }
-                    self.labelName.text = json["basic"]["first_name"].stringValue + json["basic"]["last_name"].stringValue
+                    self.labelName.text = json["basic"]["first_name"].stringValue + " " + json["basic"]["last_name"].stringValue
                     self.labelAgeRange.text = json["age_range"].stringValue
                     self.labelGender.text = json["profile"]["gender"].stringValue
                     self.labelRace.text = self.raceOptions[json["profile"]["race"].intValue]
@@ -110,17 +116,27 @@ class UserProfileTableViewController: UITableViewController {
             })
         }
     }
-
-    // MARK: - Navigations
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    func getCurrentViewController() -> UIViewController? {
         
-        if segue.identifier == "SegueNewMessage" {
-            let controller = segue.destination as! NewMessageViewController
-            if let id = userId {
-                controller.receiverId = id
+        if let rootController = UIApplication.shared.keyWindow?.rootViewController {
+            var currentController: UIViewController! = rootController
+            while( currentController.presentedViewController != nil ) {
+                currentController = currentController.presentedViewController
             }
+            return currentController
         }
+        return nil
+    }
+    
+    @IBAction func NewMessage(_ sender: Any) {
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let navigationController = storyboard.instantiateViewController(withIdentifier: "NewMessage") as! UINavigationController
+        let viewMessageView = navigationController.viewControllers[0] as! NewMessageViewController
+        viewMessageView.receiverId = userId
+        let currentViewController = self.getCurrentViewController()
+        currentViewController?.present(navigationController, animated: true, completion: nil)
     }
     
 }

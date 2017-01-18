@@ -124,18 +124,14 @@ class SettingTableViewController: UITableViewController, UITextFieldDelegate {
     }
     
     func setupTextField() {
-        textFieldPhone.delegate = self
-        textFieldPhone.keyboardType = UIKeyboardType.decimalPad
-        
         let keyboardToolbar = UIToolbar()
-        
         keyboardToolbar.setItems([
             UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
             UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(UIViewController.dismissKeyboard)
             )], animated: true)
         
         keyboardToolbar.sizeToFit()
-        
+        textFieldPhone.delegate = self
         textFieldPhone.inputAccessoryView = keyboardToolbar
     }
 
