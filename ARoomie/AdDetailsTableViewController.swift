@@ -52,7 +52,7 @@ class AdDetailsTableViewController: UITableViewController, MKMapViewDelegate {
         case 1:
             return 22
         default:
-            return 40
+            return 30
         }
     }
     
@@ -77,6 +77,10 @@ class AdDetailsTableViewController: UITableViewController, MKMapViewDelegate {
         default:
             return 1
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        return false
     }
     
     // MARK: - Setup
