@@ -12,8 +12,7 @@ import MapKit
 class AdDetailsTableViewController: UITableViewController, MKMapViewDelegate {
 
     // MARK: - Properties
-    
-    var roomPictureUrl: String?
+
     @IBOutlet weak var roomPicture: UIImageView!
     @IBOutlet weak var profileAvatar: UIImageView!
     @IBOutlet weak var textFieldRental: UILabel!
@@ -35,9 +34,6 @@ class AdDetailsTableViewController: UITableViewController, MKMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let id = advertisementId {
-            print(id)
-        }
         setupImageView()
         setupMapView()
         getDetails()
@@ -56,7 +52,7 @@ class AdDetailsTableViewController: UITableViewController, MKMapViewDelegate {
         case 1:
             return 22
         default:
-            return 42
+            return 40
         }
     }
     
@@ -105,15 +101,19 @@ class AdDetailsTableViewController: UITableViewController, MKMapViewDelegate {
             
             APIManager.shared.getAdvertisement(byId: id, completionHandler: { json in
                 if json != nil {
-                    self.roomPictureUrl = json["photo"].stringValue
-                    if let url = self.roomPictureUrl {
-                         self.roomPicture.image = try! UIImage(data: Data(contentsOf: URL(string: url)!))
+                    do {
+                        self.roomPicture.image = try UIImage(data: Data(contentsOf: URL(string: json["photo"].stringValue)!))
+                    } catch _ {
+                        print("Room image not found")
                     }
                     
                     APIManager.shared.getUserProfile(byId: json["created_by"].intValue, completionHandler: { json in
-
                         if json != nil {
-                            self.profileAvatar.image = try! UIImage(data: Data(contentsOf: URL(string: json["profile"]["avatar"].stringValue)!))
+                            do {
+                                self.profileAvatar.image = try UIImage(data: Data(contentsOf: URL(string: json["profile"]["avatar"].stringValue)!))
+                            } catch _ {
+                                print("Creator image not found")
+                            }
                         }
                     })
                     
@@ -122,10 +122,17 @@ class AdDetailsTableViewController: UITableViewController, MKMapViewDelegate {
                     self.labelDeposit.text = json["deposit"].stringValue
                     self.textViewRules.text = json["rule"].stringValue
                     self.textViewAmenities.text = json["amenity"].stringValue
+                    
                     let coordinate = CLLocationCoordinate2D(latitude: json["lat"].doubleValue, longitude: json["lng"].doubleValue)
                     let annotation = MKPointAnnotation()
                     annotation.coordinate = coordinate
+                    annotation.title = json["place_name"].stringValue
                     self.mapView.addAnnotation(annotation)
+                    self.mapView.selectAnnotation(annotation, animated: true)
+                    
+                    let span = MKCoordinateSpanMake(0.05, 0.05)
+                    let region = MKCoordinateRegionMake(coordinate, span)
+                    self.mapView.setRegion(region, animated: true)
                 }
             })
         }
