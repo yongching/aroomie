@@ -50,7 +50,7 @@ class NewMessageViewController: UIViewController, UITextViewDelegate {
     
     func setupCustomView() {
         let customView = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 30))
-        labelCount = UILabel(frame: CGRect(x: UIScreen.main.bounds.width - 35, y: 0, width: 35, height: 20))
+        labelCount = UILabel(frame: CGRect(x: UIScreen.main.bounds.width - 40, y: 0, width: 40, height: 20))
         labelCount.text = String(countsLimit)
         labelCount.textColor = UIColor.lightGray
         labelCount.font = UIFont.italicSystemFont(ofSize: 20)
