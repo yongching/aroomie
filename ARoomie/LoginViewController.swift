@@ -44,6 +44,7 @@ class LoginViewController: UIViewController {
         
         if (FBSDKAccessToken.current() != nil) {
             print(Default.shared.getAccessToken())
+            print(Default.shared.getRefreshToken())
             let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let tabBarViewController = storyboard.instantiateViewController(withIdentifier: "TabBarViewController")
             self.present(tabBarViewController, animated: true, completion: nil)

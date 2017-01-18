@@ -11,6 +11,7 @@ import DropDown
 import Alamofire
 import AlamofireImage
 import SwiftyJSON
+import SVProgressHUD
 
 class NewAdDetailsTableViewController: UITableViewController, UITextFieldDelegate, UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -57,12 +58,7 @@ class NewAdDetailsTableViewController: UITableViewController, UITextFieldDelegat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //print(lat)
-        //print(lng)
-        
         navigationController?.navigationBar.tintColor = UIColor.black
-
         setupImagePicker()
         setupTextFieldsAndTextViews()
         setupDatePicker()
@@ -82,7 +78,7 @@ class NewAdDetailsTableViewController: UITableViewController, UITextFieldDelegat
         case 0:
             return CGFloat.leastNormalMagnitude
         default:
-            return 42
+            return 30
         }
     }
     
@@ -227,6 +223,8 @@ class NewAdDetailsTableViewController: UITableViewController, UITextFieldDelegat
             "race_pref": racePrefDropDown.indexForSelectedRow ?? -1
         ]
         
+        SVProgressHUD.show()
+        
         Alamofire.upload(multipartFormData: { MultipartFormData in
             
             if let image = self.imageView.image {
@@ -239,6 +237,7 @@ class NewAdDetailsTableViewController: UITableViewController, UITextFieldDelegat
         
         }, to: url!, encodingCompletion: { encodingResult in
             
+            SVProgressHUD.dismiss()
             switch encodingResult {
             case .success(let upload, _, _):
                 

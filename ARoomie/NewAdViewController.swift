@@ -160,7 +160,7 @@ class NewAdViewController: UIViewController, GMSMapViewDelegate, GMSAutocomplete
     
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
      
-        if segue.identifier == "segueNewDetails" {
+        if segue.identifier == "SegueNewAdDetails" {
             let controller = segue.destination as! NewAdDetailsTableViewController
             controller.lat = String(format: "%.6f", currentLat)
             controller.lng = String(format: "%.6f", currentLng)

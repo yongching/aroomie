@@ -110,9 +110,7 @@ class APIManager {
         if let expired = Default.shared.getExpired() as? Date {
 
             if Date() > expired {
-                
                 print("token refreshing")
-                
                 Alamofire.request(url!, method: .post, parameters: params, encoding: URLEncoding(), headers: nil)
                     .responseJSON { response in
                     

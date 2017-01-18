@@ -15,12 +15,15 @@ class AdDetailsTableViewController: UITableViewController, MKMapViewDelegate {
 
     @IBOutlet weak var roomPicture: UIImageView!
     @IBOutlet weak var profileAvatar: UIImageView!
+    @IBOutlet weak var labelCreatorName: UILabel!
     @IBOutlet weak var textFieldRental: UILabel!
     @IBOutlet weak var labelMoveInDate: UILabel!
     @IBOutlet weak var labelDeposit: UILabel!
     @IBOutlet weak var textViewRules: UITextView!
     @IBOutlet weak var textViewAmenities: UITextView!
     @IBOutlet weak var mapView: MKMapView!
+    
+    var creatorId: Int?
     
     // Map View
     let lat: Double? = 0.0
@@ -80,7 +83,16 @@ class AdDetailsTableViewController: UITableViewController, MKMapViewDelegate {
     }
     
     override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
-        return false
+        switch indexPath.section {
+        case 1:
+            return true
+        default:
+            return false
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     // MARK: - Setup
@@ -105,6 +117,9 @@ class AdDetailsTableViewController: UITableViewController, MKMapViewDelegate {
             
             APIManager.shared.getAdvertisement(byId: id, completionHandler: { json in
                 if json != nil {
+                    
+                    self.creatorId = json["created_by"].intValue
+                    
                     do {
                         self.roomPicture.image = try UIImage(data: Data(contentsOf: URL(string: json["photo"].stringValue)!))
                     } catch _ {
@@ -118,6 +133,7 @@ class AdDetailsTableViewController: UITableViewController, MKMapViewDelegate {
                             } catch _ {
                                 print("Creator image not found")
                             }
+                            self.labelCreatorName.text = json["basic"]["first_name"].stringValue + " " + json["basic"]["last_name"].stringValue
                         }
                     })
                     
@@ -144,6 +160,18 @@ class AdDetailsTableViewController: UITableViewController, MKMapViewDelegate {
     
     @IBAction func closeButton(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    // MARK: - Navigations
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "SegueProfileDetails" {
+            let controller = segue.destination as! UserProfileTableViewController
+            if let id = creatorId {
+                controller.userId = id
+            }
+        }
     }
 
 }

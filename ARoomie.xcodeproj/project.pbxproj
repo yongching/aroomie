@@ -39,6 +39,8 @@
 		ACE8DE451E0089FB0025530F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ACE8DE441E0089FB0025530F /* Assets.xcassets */; };
 		ACE8DE481E0089FB0025530F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACE8DE461E0089FB0025530F /* LaunchScreen.storyboard */; };
 		ACEA9EB91E2E2A550003F9A9 /* AdDetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEA9EB81E2E2A550003F9A9 /* AdDetailsTableViewController.swift */; };
+		ACEA9EBC1E2F6C940003F9A9 /* UserProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEA9EBB1E2F6C940003F9A9 /* UserProfileTableViewController.swift */; };
+		ACEA9EBE1E2F79AF0003F9A9 /* NewMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEA9EBD1E2F79AF0003F9A9 /* NewMessageViewController.swift */; };
 		ACEF8DE41E27BD0D004CD5B8 /* NewAdDetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEF8DE31E27BD0D004CD5B8 /* NewAdDetailsTableViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -80,6 +82,8 @@
 		ACE8DE471E0089FB0025530F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ACE8DE491E0089FB0025530F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ACEA9EB81E2E2A550003F9A9 /* AdDetailsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdDetailsTableViewController.swift; sourceTree = "<group>"; };
+		ACEA9EBB1E2F6C940003F9A9 /* UserProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileTableViewController.swift; sourceTree = "<group>"; };
+		ACEA9EBD1E2F79AF0003F9A9 /* NewMessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMessageViewController.swift; sourceTree = "<group>"; };
 		ACEF8DE31E27BD0D004CD5B8 /* NewAdDetailsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewAdDetailsTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -126,6 +130,8 @@
 		AC216CA01E0BDEED00B6C15B /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				ACEA9EBF1E2F7AAE0003F9A9 /* Message */,
+				ACEA9EBA1E2F6C710003F9A9 /* Profile */,
 				ACEF8DE01E27BCF6004CD5B8 /* Advertisement */,
 				AC33168F1E1BAD3D00EE3211 /* Camera */,
 				ACC2F9B91E03693F003585BF /* Account */,
@@ -279,6 +285,22 @@
 				AC6210341E01DB510011267D /* ARoomie.entitlements */,
 			);
 			path = ARoomie;
+			sourceTree = "<group>";
+		};
+		ACEA9EBA1E2F6C710003F9A9 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				ACEA9EBB1E2F6C940003F9A9 /* UserProfileTableViewController.swift */,
+			);
+			name = Profile;
+			sourceTree = "<group>";
+		};
+		ACEA9EBF1E2F7AAE0003F9A9 /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				ACEA9EBD1E2F79AF0003F9A9 /* NewMessageViewController.swift */,
+			);
+			name = Message;
 			sourceTree = "<group>";
 		};
 		ACEF8DE01E27BCF6004CD5B8 /* Advertisement */ = {
@@ -437,6 +459,7 @@
 				ACDDF18D1E14326B00A4002B /* LifestyleTableViewController.swift in Sources */,
 				AC86F3201E143E6C00BEB324 /* MyCell.swift in Sources */,
 				AC5C47681E1BB3B100AD3297 /* ARConfiguration.swift in Sources */,
+				ACEA9EBC1E2F6C940003F9A9 /* UserProfileTableViewController.swift in Sources */,
 				ACEA9EB91E2E2A550003F9A9 /* AdDetailsTableViewController.swift in Sources */,
 				AC5C47751E1BB3E300AD3297 /* DebugMapViewController.swift in Sources */,
 				ACEF8DE41E27BD0D004CD5B8 /* NewAdDetailsTableViewController.swift in Sources */,
@@ -454,6 +477,7 @@
 				AC2B8B0A1E19272B003AC6D4 /* Helper.swift in Sources */,
 				ACC036471E27FE80004DB095 /* NewAdViewController.swift in Sources */,
 				AC5C476A1E1BB3B100AD3297 /* ARViewController.swift in Sources */,
+				ACEA9EBE1E2F79AF0003F9A9 /* NewMessageViewController.swift in Sources */,
 				AC33168E1E1BAD0000EE3211 /* CameraViewController.swift in Sources */,
 				ACE8DE3E1E0089FB0025530F /* AppDelegate.swift in Sources */,
 				AC5C47661E1BB3B100AD3297 /* ARAnnotation.swift in Sources */,
