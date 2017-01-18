@@ -82,22 +82,23 @@ class NewMessageViewController: UIViewController, UITextViewDelegate {
     
     @IBAction func send(_ sender: Any) {
         
+        self.textView.endEditing(true)
+        
         if let id = receiverId {
             APIManager.shared.sendMessage(toId: id, contents: textView.text, completionHandler: { json in
                 
                 if json != nil {
                     let alert = UIAlertController(title: "Successfully Sent!", message: nil, preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
-                    self.present(alert, animated: true, completion: { result in
+                    alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: { completionHandler in 
                         self.dismiss(animated: true, completion: nil)
-                    })
+                    }))
+                    self.present(alert, animated: true, completion: nil)
                     
                 } else {
                     let message = "There is some problem sending your message!"
                     let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
                     self.present(alert, animated: true, completion: nil)
-
                 }
             })
         }
