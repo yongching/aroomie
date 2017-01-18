@@ -120,7 +120,7 @@ class APIManager {
                     case .success(let value):
                         
                         let jsonData = JSON(value)
-                        
+                        print(value)
                         self.accessToken = jsonData["access_token"].string!
                         self.refreshToken = jsonData["refresh_token"].string!
                         self.expired = Date().addingTimeInterval(TimeInterval(jsonData["expires_in"].int!))

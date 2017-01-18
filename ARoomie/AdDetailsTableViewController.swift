@@ -7,16 +7,25 @@
 //
 
 import UIKit
+import MapKit
 
-class AdDetailsTableViewController: UITableViewController {
+class AdDetailsTableViewController: UITableViewController, MKMapViewDelegate {
 
     // MARK: - Properties
     
+    var roomPictureUrl: String?
     @IBOutlet weak var roomPicture: UIImageView!
     @IBOutlet weak var profileAvatar: UIImageView!
     @IBOutlet weak var textFieldRental: UILabel!
     @IBOutlet weak var labelMoveInDate: UILabel!
     @IBOutlet weak var labelDeposit: UILabel!
+    @IBOutlet weak var textViewRules: UITextView!
+    @IBOutlet weak var textViewAmenities: UITextView!
+    @IBOutlet weak var mapView: MKMapView!
+    
+    // Map View
+    let lat: Double? = 0.0
+    let lng: Double? = 0.0
     
     // Segue
     var advertisementId: Int?
@@ -29,6 +38,8 @@ class AdDetailsTableViewController: UITableViewController {
         if let id = advertisementId {
             print(id)
         }
+        setupImageView()
+        setupMapView()
         getDetails()
     }
 
@@ -42,6 +53,8 @@ class AdDetailsTableViewController: UITableViewController {
         switch section {
         case 0:
             return CGFloat.leastNormalMagnitude
+        case 1:
+            return 22
         default:
             return 42
         }
@@ -69,6 +82,20 @@ class AdDetailsTableViewController: UITableViewController {
             return 1
         }
     }
+    
+    // MARK: - Setup
+    
+    func setupImageView() {
+        profileAvatar.layer.cornerRadius = 60 / 2
+        profileAvatar.layer.borderWidth = 1.0
+        profileAvatar.layer.borderColor = UIColor.white.cgColor
+        profileAvatar.clipsToBounds = true
+    }
+    
+    func setupMapView() {
+        mapView.delegate = self
+        mapView.showsUserLocation = true
+    }
 
     // MARK: - Actions
     
@@ -77,9 +104,11 @@ class AdDetailsTableViewController: UITableViewController {
         if let id = advertisementId {
             
             APIManager.shared.getAdvertisement(byId: id, completionHandler: { json in
-                
                 if json != nil {
-                    self.roomPicture.image = try! UIImage(data: Data(contentsOf: URL(string: json["photo"].stringValue)!))
+                    self.roomPictureUrl = json["photo"].stringValue
+                    if let url = self.roomPictureUrl {
+                         self.roomPicture.image = try! UIImage(data: Data(contentsOf: URL(string: url)!))
+                    }
                     
                     APIManager.shared.getUserProfile(byId: json["created_by"].intValue, completionHandler: { json in
 
@@ -91,6 +120,12 @@ class AdDetailsTableViewController: UITableViewController {
                     self.textFieldRental.text = json["rental"].stringValue
                     self.labelMoveInDate.text = json["move_in"].stringValue
                     self.labelDeposit.text = json["deposit"].stringValue
+                    self.textViewRules.text = json["rule"].stringValue
+                    self.textViewAmenities.text = json["amenity"].stringValue
+                    let coordinate = CLLocationCoordinate2D(latitude: json["lat"].doubleValue, longitude: json["lng"].doubleValue)
+                    let annotation = MKPointAnnotation()
+                    annotation.coordinate = coordinate
+                    self.mapView.addAnnotation(annotation)
                 }
             })
         }
