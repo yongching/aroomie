@@ -97,7 +97,7 @@ class CameraViewController: ARViewController, ARDataSource, UIImagePickerControl
                     annotation.createdBy = result["created_by"].intValue
                     
                     if let id = annotation.createdBy {
-                        //print("id: \(id)")
+                        
                         APIManager.shared.getUserProfile(byId: id, completionHandler: { json in
                             if json != nil {
                                 annotation.pictureUrl = json["profile"]["avatar"].stringValue
@@ -105,9 +105,9 @@ class CameraViewController: ARViewController, ARDataSource, UIImagePickerControl
                             } else {
                                 print("Error getting advertisement creator photo")
                             }
+                            annotations.append(annotation)
+                            completionHandler(annotations)
                         })
-                        annotations.append(annotation)
-                        completionHandler(annotations)
                     }
                 }
                 

@@ -181,7 +181,7 @@ class APIManager {
 
     /********** USER **********/
     
-    // API - Get user profile
+    // API - User
     func getUserProfile(completionHandler: @escaping (JSON) -> Void ) {
         
         let path = "api/user/profile/"
@@ -191,7 +191,6 @@ class APIManager {
         requestServer(.get, path, params, URLEncoding(), completionHandler)
     }
     
-    // API - Get other user profile
     func getUserProfile(byId: Int, completionHandler: @escaping (JSON) -> Void ) {
         
         let path = "api/user/profile/other/\(byId)/"
@@ -201,7 +200,6 @@ class APIManager {
         requestServer(.get, path, params, URLEncoding(), completionHandler)
     }
     
-    // API - Update user profile
     func updateUserProfile(params: [String: Any], completionHandler: @escaping (JSON) -> Void ) {
         
         let path = "api/user/profile/edit/"
@@ -212,11 +210,10 @@ class APIManager {
         requestServer(.post, path, merged, URLEncoding(), completionHandler)
     }
     
-    // API - Get advertisement list
+    // API - Advertisement
     func getAdvertisements(completionHandler: @escaping (JSON) -> Void ) {
         
         let path = "api/advertisements/"
-        
         requestServer(.get, path, nil, URLEncoding(), completionHandler)
     }
     
@@ -226,15 +223,40 @@ class APIManager {
         requestServer(.get, path, nil, URLEncoding(), completionHandler)
     }
     
-    // API - Send message
+    // API - Message
     func sendMessage(toId: Int, contents: String, completionHandler: @escaping (JSON) -> Void ) {
         
-        let path = "api/message/send/\(toId)"
+        let path = "api/message/send/\(toId)/"
         let params: [String: Any] = [
             "access_token": Default.shared.getAccessToken(),
             "content": contents
         ]
-        
         requestServer(.post, path, params, URLEncoding(), completionHandler)
+    }
+    
+    // API - Rating
+    func getRating(byId: Int, completionHandler: @escaping (JSON) -> Void ) {
+        
+        let path = "api/rating/\(byId)/"
+        requestServer(.get, path, nil, URLEncoding(), completionHandler)
+    }
+    
+    func addRating(toUserId: Int, score: Int, completionHandler: @escaping (JSON) -> Void ) {
+        
+        let path = "api/rating/add/\(toUserId)/"
+        let params: [String: Any] = [
+            "access_token": Default.shared.getAccessToken(),
+            "score": score
+        ]
+        requestServer(.post, path, params, URLEncoding(), completionHandler)
+    }
+    
+    func ratingCheck(userId: Int, completionHandler: @escaping (JSON) -> Void ) {
+        
+        let path = "api/rating/check/\(userId)/"
+        let param: [String: Any] = [
+            "access_token": Default.shared.getAccessToken()
+        ]
+        requestServer(.get, path, param, URLEncoding(), completionHandler)
     }
 }

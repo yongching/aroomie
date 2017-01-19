@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import HCSStarRatingView
 
 class UserProfileTableViewController: UITableViewController {
 
@@ -37,6 +38,7 @@ class UserProfileTableViewController: UITableViewController {
         super.viewDidLoad()
         navigationController?.navigationBar.tintColor = UIColor.black
         setupImageView()
+        getRating()
         getDetails()
     }
 
@@ -96,6 +98,19 @@ class UserProfileTableViewController: UITableViewController {
         imageView.clipsToBounds = true
     }
     
+    func getRating() {
+        
+        if let id = userId {
+            APIManager.shared.ratingCheck(userId: id, completionHandler: { json in
+                if json != nil {
+                    if json["rated"].boolValue == false {
+                        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Give Rating", style: .plain, target: self, action: #selector(UserProfileTableViewController.rateUser))
+                    }
+                }
+            })
+        }
+    }
+    
     func getDetails() {
         if let id = userId {
             
@@ -127,6 +142,47 @@ class UserProfileTableViewController: UITableViewController {
             return currentController
         }
         return nil
+    }
+    
+    func rateUser() {
+        
+        let margin:CGFloat = 10.0
+        let alertController = UIAlertController(title: "\n\n\n", message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
+        
+        // Custom view
+        let customViewWidth = alertController.view.bounds.size.width - margin * 4.0
+        let rect = CGRect(x: margin, y: margin, width: customViewWidth, height: 65)
+        let customView = UIView(frame: rect)
+        
+        // Star rating View
+        let width = alertController.view.bounds.size.width - margin * 6.0
+        let y = (customView.bounds.height - 30) / 2
+        let starRatingView = HCSStarRatingView(frame: CGRect(x: margin, y: y, width: width, height: 30))
+        starRatingView.value = 0
+        starRatingView.minimumValue = 0
+        starRatingView.maximumValue = 5
+        starRatingView.tintColor = UIColor.gray
+        starRatingView.backgroundColor = UIColor.clear
+        customView.addSubview(starRatingView)
+        
+        // Alert controller
+        alertController.view.addSubview(customView)
+        let submitAction = UIAlertAction(title: "Confirm", style: .default, handler: { (alert: UIAlertAction!) in
+            if starRatingView.value != 0 {
+                print(Int(starRatingView.value))
+                if let id = self.userId {
+                    APIManager.shared.addRating(toUserId: id, score: Int(starRatingView.value), completionHandler: { json in
+                        if json != nil {
+                            
+                        }
+                    })
+                }
+            }
+        })
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(submitAction)
+        alertController.addAction(cancelAction)
+        self.present(alertController, animated: true, completion: nil)
     }
     
     @IBAction func NewMessage(_ sender: Any) {

@@ -25,7 +25,7 @@ class NewMessageViewController: UIViewController, UITextViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+ 
         setupTextView()
         setupCustomView()
     }
@@ -73,7 +73,6 @@ class NewMessageViewController: UIViewController, UITextViewDelegate {
         return numberOfChars < countsLimit
     }
 
-    
     // MARK: - Actions
     
     @IBAction func closeButton(_ sender: Any) {
@@ -89,7 +88,7 @@ class NewMessageViewController: UIViewController, UITextViewDelegate {
                 
                 if json != nil {
                     let alert = UIAlertController(title: "Successfully Sent!", message: nil, preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: { completionHandler in 
+                    alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: { completionHandler in
                         self.dismiss(animated: true, completion: nil)
                     }))
                     self.present(alert, animated: true, completion: nil)

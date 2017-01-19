@@ -17,4 +17,5 @@ target 'ARoomie' do
   pod 'FBSDKLoginKit'
   pod 'FBSDKShareKit'
   pod 'SVProgressHUD', :git => 'https://github.com/SVProgressHUD/SVProgressHUD.git'
+  pod 'HCSStarRatingView', '~> 1.4.5'
 end
