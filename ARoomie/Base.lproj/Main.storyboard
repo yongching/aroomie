@@ -1538,30 +1538,25 @@
                             <tableViewSection headerTitle="RATING" id="l1A-7J-GJJ">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Y3O-NW-4hW">
-                                        <rect key="frame" x="0.0" y="171" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="172" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Y3O-NW-4hW" id="y9j-Un-b9R">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aib-bi-Orr">
-                                                    <rect key="frame" x="16" y="6" width="100" height="31"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gGJ-DG-dMS">
+                                                    <rect key="frame" x="16" y="7" width="200" height="30"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="31" id="C7K-ux-bpz"/>
-                                                        <constraint firstAttribute="width" constant="100" id="bXr-58-1Sr"/>
+                                                        <constraint firstAttribute="width" constant="200" id="1ZT-Yg-LGg"/>
+                                                        <constraint firstAttribute="height" constant="30" id="JGs-Iy-4H5"/>
                                                     </constraints>
-                                                </imageView>
+                                                </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="aib-bi-Orr" firstAttribute="leading" secondItem="y9j-Un-b9R" secondAttribute="leading" constant="16" id="3O0-YF-eoB"/>
-                                                <constraint firstItem="aib-bi-Orr" firstAttribute="centerY" secondItem="y9j-Un-b9R" secondAttribute="centerY" id="9yW-Td-TsJ"/>
-                                                <constraint firstAttribute="bottom" secondItem="aib-bi-Orr" secondAttribute="bottom" constant="8" id="oN6-ZI-iGU"/>
+                                                <constraint firstItem="gGJ-DG-dMS" firstAttribute="centerY" secondItem="y9j-Un-b9R" secondAttribute="centerY" id="BN4-rZ-fu2"/>
+                                                <constraint firstItem="gGJ-DG-dMS" firstAttribute="leading" secondItem="y9j-Un-b9R" secondAttribute="leading" constant="16" id="hSi-kI-3Rq"/>
                                             </constraints>
-                                            <variation key="default">
-                                                <mask key="constraints">
-                                                    <exclude reference="oN6-ZI-iGU"/>
-                                                </mask>
-                                            </variation>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -1569,7 +1564,7 @@
                             <tableViewSection headerTitle="BASIC PROFILE" id="Oen-pH-rGj">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="oMA-La-Gfl">
-                                        <rect key="frame" x="0.0" y="271" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="273" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oMA-La-Gfl" id="1Z2-Ge-YTi">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
@@ -1603,7 +1598,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="PUb-8q-wHd">
-                                        <rect key="frame" x="0.0" y="315" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="317" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PUb-8q-wHd" id="OuW-Z6-NZa">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
@@ -1637,7 +1632,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="oX3-Dj-d1J">
-                                        <rect key="frame" x="0.0" y="359" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="361" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oX3-Dj-d1J" id="Uux-Wj-5wv">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
@@ -1676,7 +1671,7 @@
                             <tableViewSection headerTitle="CONTACT" id="dDi-5R-rB0">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="FHg-Ng-v0Z">
-                                        <rect key="frame" x="0.0" y="459" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="462" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FHg-Ng-v0Z" id="sF1-dx-9hi">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
@@ -1717,7 +1712,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="39K-fe-V88">
-                                        <rect key="frame" x="0.0" y="503" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="506" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="39K-fe-V88" id="69d-1E-gS7">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
@@ -1753,7 +1748,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="hJu-a1-A1I">
-                                        <rect key="frame" x="0.0" y="547" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="550" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hJu-a1-A1I" id="3Z3-gy-MAp">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
@@ -1789,13 +1784,13 @@
                     <navigationItem key="navigationItem" title="Creator" id="Wa7-jj-UGs"/>
                     <connections>
                         <outlet property="imageView" destination="Osi-2G-5sD" id="hri-jm-N7p"/>
-                        <outlet property="imageViewScore" destination="aib-bi-Orr" id="vLL-lK-BEh"/>
                         <outlet property="labelAgeRange" destination="vka-5L-pzi" id="cPB-7w-JQr"/>
                         <outlet property="labelEmail" destination="r9a-hA-53s" id="7km-a8-3dA"/>
                         <outlet property="labelGender" destination="c52-4K-ABG" id="JW7-fz-eVW"/>
                         <outlet property="labelName" destination="EKv-pj-Jg8" id="VOt-2G-kcg"/>
                         <outlet property="labelPhone" destination="UKP-4q-wJB" id="nTB-Lj-KVx"/>
                         <outlet property="labelRace" destination="Xy8-fi-7ts" id="yf5-G1-lhA"/>
+                        <outlet property="starView" destination="gGJ-DG-dMS" id="NNw-sT-paH"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hDL-Je-ETl" userLabel="First Responder" sceneMemberID="firstResponder"/>

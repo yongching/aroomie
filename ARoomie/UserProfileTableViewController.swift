@@ -14,7 +14,7 @@ class UserProfileTableViewController: UITableViewController {
     // MARK: - Properties
     
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var imageViewScore: UIImageView!
+    @IBOutlet weak var starView: UIView!
     @IBOutlet weak var labelName: UILabel!
     @IBOutlet weak var labelAgeRange: UILabel!
     @IBOutlet weak var labelGender: UILabel!
@@ -37,6 +37,7 @@ class UserProfileTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.tintColor = UIColor.black
+        checkRating()
         setupImageView()
         getRating()
         getDetails()
@@ -91,14 +92,7 @@ class UserProfileTableViewController: UITableViewController {
     
     // MARK: - Actions
     
-    func setupImageView() {
-        imageView.layer.cornerRadius = 60 / 2
-        imageView.layer.borderWidth = 1.0
-        imageView.layer.borderColor = UIColor.white.cgColor
-        imageView.clipsToBounds = true
-    }
-    
-    func getRating() {
+    func checkRating() {
         
         if let id = userId {
             APIManager.shared.ratingCheck(userId: id, completionHandler: { json in
@@ -111,7 +105,34 @@ class UserProfileTableViewController: UITableViewController {
         }
     }
     
+    func setupImageView() {
+        imageView.layer.cornerRadius = 60 / 2
+        imageView.layer.borderWidth = 1.0
+        imageView.layer.borderColor = UIColor.white.cgColor
+        imageView.clipsToBounds = true
+    }
+    
+    func getRating() {
+        
+        if let id = userId {
+            
+            APIManager.shared.getRating(byId: id, completionHandler: { json in
+                if json != nil {
+                    // Star rating View
+                    let starRatingView = HCSStarRatingView(frame: self.starView.frame)
+                    starRatingView.value = CGFloat(json["score"].intValue)
+                    starRatingView.minimumValue = 0
+                    starRatingView.maximumValue = 5
+                    starRatingView.tintColor = UIColor.gray
+                    starRatingView.backgroundColor = UIColor.clear
+                    self.starView.addSubview(starRatingView)
+                }
+            })
+        }
+    }
+    
     func getDetails() {
+        
         if let id = userId {
             
             APIManager.shared.getUserProfile(byId: id, completionHandler: { json in
@@ -173,7 +194,17 @@ class UserProfileTableViewController: UITableViewController {
                 if let id = self.userId {
                     APIManager.shared.addRating(toUserId: id, score: Int(starRatingView.value), completionHandler: { json in
                         if json != nil {
+                            let alert = UIAlertController(title: "Successfully Rated!", message: nil, preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: { completionHandler in
+                                self.dismiss(animated: true, completion: nil)
+                            }))
+                            self.present(alert, animated: true, completion: nil)
                             
+                        } else {
+                            let message = "There is some problem sending your rating score!"
+                            let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+                            self.present(alert, animated: true, completion: nil)
                         }
                     })
                 }
