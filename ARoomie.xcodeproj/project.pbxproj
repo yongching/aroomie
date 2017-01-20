@@ -27,8 +27,6 @@
 		AC5C47771E1BB44100AD3297 /* AnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5C47761E1BB44100AD3297 /* AnnotationView.swift */; };
 		AC6210361E034B790011267D /* FBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6210351E034B790011267D /* FBManager.swift */; };
 		AC6210381E034DE50011267D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6210371E034DE50011267D /* LoginViewController.swift */; };
-		AC86F3201E143E6C00BEB324 /* MyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC86F31F1E143E6C00BEB324 /* MyCell.swift */; };
-		AC86F3221E143E7800BEB324 /* MyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC86F3211E143E7800BEB324 /* MyCell.xib */; };
 		ACA210941E14096800C6BF2F /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA210931E14096800C6BF2F /* SettingTableViewController.swift */; };
 		ACC036471E27FE80004DB095 /* NewAdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC036461E27FE80004DB095 /* NewAdViewController.swift */; };
 		ACDDF1891E14293B00A4002B /* PreferenceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDDF1881E14293B00A4002B /* PreferenceTableViewController.swift */; };
@@ -41,6 +39,8 @@
 		ACEA9EB91E2E2A550003F9A9 /* AdDetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEA9EB81E2E2A550003F9A9 /* AdDetailsTableViewController.swift */; };
 		ACEA9EBC1E2F6C940003F9A9 /* UserProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEA9EBB1E2F6C940003F9A9 /* UserProfileTableViewController.swift */; };
 		ACEA9EBE1E2F79AF0003F9A9 /* NewMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEA9EBD1E2F79AF0003F9A9 /* NewMessageViewController.swift */; };
+		ACEA9EC21E31CB470003F9A9 /* MessagesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEA9EC11E31CB470003F9A9 /* MessagesTableViewController.swift */; };
+		ACEA9EC51E3202640003F9A9 /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEA9EC41E3202640003F9A9 /* MessageTableViewCell.swift */; };
 		ACEF8DE41E27BD0D004CD5B8 /* NewAdDetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEF8DE31E27BD0D004CD5B8 /* NewAdDetailsTableViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -68,8 +68,6 @@
 		AC6210341E01DB510011267D /* ARoomie.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ARoomie.entitlements; sourceTree = "<group>"; };
 		AC6210351E034B790011267D /* FBManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBManager.swift; sourceTree = "<group>"; };
 		AC6210371E034DE50011267D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		AC86F31F1E143E6C00BEB324 /* MyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCell.swift; sourceTree = "<group>"; };
-		AC86F3211E143E7800BEB324 /* MyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyCell.xib; sourceTree = "<group>"; };
 		ACA210931E14096800C6BF2F /* SettingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
 		ACC036461E27FE80004DB095 /* NewAdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewAdViewController.swift; sourceTree = "<group>"; };
 		ACDDF1881E14293B00A4002B /* PreferenceTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferenceTableViewController.swift; sourceTree = "<group>"; };
@@ -84,6 +82,8 @@
 		ACEA9EB81E2E2A550003F9A9 /* AdDetailsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdDetailsTableViewController.swift; sourceTree = "<group>"; };
 		ACEA9EBB1E2F6C940003F9A9 /* UserProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileTableViewController.swift; sourceTree = "<group>"; };
 		ACEA9EBD1E2F79AF0003F9A9 /* NewMessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMessageViewController.swift; sourceTree = "<group>"; };
+		ACEA9EC11E31CB470003F9A9 /* MessagesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesTableViewController.swift; sourceTree = "<group>"; };
+		ACEA9EC41E3202640003F9A9 /* MessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
 		ACEF8DE31E27BD0D004CD5B8 /* NewAdDetailsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewAdDetailsTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -143,7 +143,7 @@
 		AC216CA11E0BDF8A00B6C15B /* View */ = {
 			isa = PBXGroup;
 			children = (
-				AC25E6441E0F109900973623 /* Setting */,
+				ACEA9EC31E31FFAE0003F9A9 /* Message */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -155,14 +155,6 @@
 				AC5C475D1E1BB34900AD3297 /* Button */,
 			);
 			name = Library;
-			sourceTree = "<group>";
-		};
-		AC25E6441E0F109900973623 /* Setting */ = {
-			isa = PBXGroup;
-			children = (
-				AC86F31F1E143E6C00BEB324 /* MyCell.swift */,
-			);
-			name = Setting;
 			sourceTree = "<group>";
 		};
 		AC33168F1E1BAD3D00EE3211 /* Camera */ = {
@@ -244,7 +236,6 @@
 		ACC2F9BA1E037245003585BF /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
-				AC86F3211E143E7800BEB324 /* MyCell.xib */,
 				ACE8DE461E0089FB0025530F /* LaunchScreen.storyboard */,
 				ACE8DE411E0089FB0025530F /* Main.storyboard */,
 			);
@@ -299,6 +290,15 @@
 			isa = PBXGroup;
 			children = (
 				ACEA9EBD1E2F79AF0003F9A9 /* NewMessageViewController.swift */,
+				ACEA9EC11E31CB470003F9A9 /* MessagesTableViewController.swift */,
+			);
+			name = Message;
+			sourceTree = "<group>";
+		};
+		ACEA9EC31E31FFAE0003F9A9 /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				ACEA9EC41E3202640003F9A9 /* MessageTableViewCell.swift */,
 			);
 			name = Message;
 			sourceTree = "<group>";
@@ -395,7 +395,6 @@
 				ACE8DE481E0089FB0025530F /* LaunchScreen.storyboard in Resources */,
 				AC5C47721E1BB3CD00AD3297 /* hdar_close@3x.png in Resources */,
 				AC5C47711E1BB3CD00AD3297 /* hdar_close@2x.png in Resources */,
-				AC86F3221E143E7800BEB324 /* MyCell.xib in Resources */,
 				ACE8DE451E0089FB0025530F /* Assets.xcassets in Resources */,
 				ACE8DE431E0089FB0025530F /* Main.storyboard in Resources */,
 			);
@@ -457,7 +456,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				ACDDF18D1E14326B00A4002B /* LifestyleTableViewController.swift in Sources */,
-				AC86F3201E143E6C00BEB324 /* MyCell.swift in Sources */,
 				AC5C47681E1BB3B100AD3297 /* ARConfiguration.swift in Sources */,
 				ACEA9EBC1E2F6C940003F9A9 /* UserProfileTableViewController.swift in Sources */,
 				ACEA9EB91E2E2A550003F9A9 /* AdDetailsTableViewController.swift in Sources */,
@@ -468,7 +466,9 @@
 				AC2B8B041E18FB87003AC6D4 /* DropDownButton.swift in Sources */,
 				AC2B8B021E18F811003AC6D4 /* APIManager.swift in Sources */,
 				ACDDF1891E14293B00A4002B /* PreferenceTableViewController.swift in Sources */,
+				ACEA9EC51E3202640003F9A9 /* MessageTableViewCell.swift in Sources */,
 				ACE8DE401E0089FB0025530F /* ViewController.swift in Sources */,
+				ACEA9EC21E31CB470003F9A9 /* MessagesTableViewController.swift in Sources */,
 				AC5C47771E1BB44100AD3297 /* AnnotationView.swift in Sources */,
 				AC25E6411E0F0F2100973623 /* User.swift in Sources */,
 				ACA210941E14096800C6BF2F /* SettingTableViewController.swift in Sources */,

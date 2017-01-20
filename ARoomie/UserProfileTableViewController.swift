@@ -205,7 +205,6 @@ class UserProfileTableViewController: UITableViewController {
         alertController.view.addSubview(customView)
         let submitAction = UIAlertAction(title: "Confirm", style: .default, handler: { (alert: UIAlertAction!) in
             if starRatingView.value != 0 {
-                print(Int(starRatingView.value))
                 if let id = self.userId {
                     APIManager.shared.addRating(toUserId: id, score: Int(starRatingView.value), completionHandler: { json in
                         if json != nil {

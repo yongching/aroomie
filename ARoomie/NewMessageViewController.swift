@@ -84,7 +84,7 @@ class NewMessageViewController: UIViewController, UITextViewDelegate {
         self.textView.endEditing(true)
         
         if let id = receiverId {
-            APIManager.shared.sendMessage(toId: id, contents: textView.text, completionHandler: { json in
+            APIManager.shared.sendMessage(toId: id, content: textView.text, completionHandler: { json in
                 
                 if json != nil {
                     let alert = UIAlertController(title: "Successfully Sent!", message: nil, preferredStyle: .alert)
