@@ -12,14 +12,14 @@ class NewMessageViewController: UIViewController, UITextViewDelegate {
 
     // MARK: - Properties
     
+    // Segue
+    var receiverId: Int?
+    
     @IBOutlet weak var textView: UITextView!
     
     let countsLimit: Int = 500
     var labelPlaceholder : UILabel!
     var labelCount: UILabel!
-    
-    // Segue
-    var receiverId: Int?
     
     // MARK: - View Lifecycle
     

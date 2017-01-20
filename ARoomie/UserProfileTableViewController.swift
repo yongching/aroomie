@@ -13,6 +13,9 @@ class UserProfileTableViewController: UITableViewController {
 
     // MARK: - Properties
     
+    // Segue
+    var userId: Int?
+    
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var starView: UIView!
     @IBOutlet weak var labelName: UILabel!
@@ -22,15 +25,16 @@ class UserProfileTableViewController: UITableViewController {
     @IBOutlet weak var labelPhone: UILabel!
     @IBOutlet weak var labelEmail: UILabel!
     
+    // Star rating
+    let starRatingView = HCSStarRatingView(frame: CGRect(x: 0, y: 0, width: 120, height: 30))
+    
+    // Drop down
     let raceOptions: [String] = [
         "malay",
         "chinese",
         "indian",
         "others"
     ]
-    
-    // Segue
-    var userId: Int?
     
     // MARK: - View Lifecycle
     
@@ -119,13 +123,14 @@ class UserProfileTableViewController: UITableViewController {
             APIManager.shared.getRating(byId: id, completionHandler: { json in
                 if json != nil {
                     // Star rating View
-                    let starRatingView = HCSStarRatingView(frame: self.starView.frame)
-                    starRatingView.value = CGFloat(json["score"].intValue)
-                    starRatingView.minimumValue = 0
-                    starRatingView.maximumValue = 5
-                    starRatingView.tintColor = UIColor.gray
-                    starRatingView.backgroundColor = UIColor.clear
-                    self.starView.addSubview(starRatingView)
+                    self.starRatingView.removeFromSuperview()
+                    self.starRatingView.value = CGFloat(json["score"].intValue)
+                    self.starRatingView.minimumValue = 0
+                    self.starRatingView.maximumValue = 5
+                    self.starRatingView.tintColor = UIColor.gray
+                    self.starRatingView.backgroundColor = UIColor.clear
+                    self.starRatingView.isUserInteractionEnabled = false
+                    self.starView.addSubview(self.starRatingView)
                 }
             })
         }
@@ -165,6 +170,16 @@ class UserProfileTableViewController: UITableViewController {
         return nil
     }
     
+    @IBAction func NewMessage(_ sender: Any) {
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let navigationController = storyboard.instantiateViewController(withIdentifier: "NewMessage") as! UINavigationController
+        let viewMessageView = navigationController.viewControllers[0] as! NewMessageViewController
+        viewMessageView.receiverId = userId
+        let currentViewController = self.getCurrentViewController()
+        currentViewController?.present(navigationController, animated: true, completion: nil)
+    }
+    
     func rateUser() {
         
         let margin:CGFloat = 10.0
@@ -196,7 +211,7 @@ class UserProfileTableViewController: UITableViewController {
                         if json != nil {
                             let alert = UIAlertController(title: "Successfully Rated!", message: nil, preferredStyle: .alert)
                             alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: { completionHandler in
-                                self.dismiss(animated: true, completion: nil)
+                                self.getRating()
                             }))
                             self.present(alert, animated: true, completion: nil)
                             
@@ -214,16 +229,6 @@ class UserProfileTableViewController: UITableViewController {
         alertController.addAction(submitAction)
         alertController.addAction(cancelAction)
         self.present(alertController, animated: true, completion: nil)
-    }
-    
-    @IBAction func NewMessage(_ sender: Any) {
-        
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let navigationController = storyboard.instantiateViewController(withIdentifier: "NewMessage") as! UINavigationController
-        let viewMessageView = navigationController.viewControllers[0] as! NewMessageViewController
-        viewMessageView.receiverId = userId
-        let currentViewController = self.getCurrentViewController()
-        currentViewController?.present(navigationController, animated: true, completion: nil)
     }
     
 }

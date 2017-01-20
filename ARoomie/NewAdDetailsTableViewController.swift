@@ -17,6 +17,10 @@ class NewAdDetailsTableViewController: UITableViewController, UITextFieldDelegat
     
     // MARK: - Properties
     
+    // Segue
+    var lat: String = "0"
+    var lng: String = "0"
+    
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet var textFields: [UITextField]!
     @IBOutlet weak var buttonGenderPref: DropDownButton!
@@ -49,10 +53,6 @@ class NewAdDetailsTableViewController: UITableViewController, UITextFieldDelegat
             self.racePrefDropDown
         ]
     }()
-    
-    // Segue
-    var lat: String = "0"
-    var lng: String = "0"
     
     // MARK: - View Lifecycle
     
@@ -237,12 +237,11 @@ class NewAdDetailsTableViewController: UITableViewController, UITextFieldDelegat
         
         }, to: url!, encodingCompletion: { encodingResult in
             
-            SVProgressHUD.dismiss()
             switch encodingResult {
             case .success(let upload, _, _):
                 
                 upload.responseJSON { response in
-                    
+                    SVProgressHUD.dismiss()
                     //debugPrint(response)
                     //print(JSON(response.result.value!))
                     
@@ -262,6 +261,7 @@ class NewAdDetailsTableViewController: UITableViewController, UITextFieldDelegat
                 break
                 
             case .failure( _):
+                SVProgressHUD.dismiss()
                 break
             }
         })
