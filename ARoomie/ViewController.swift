@@ -19,7 +19,7 @@ class ViewController: UITabBarController {
         UITabBar.appearance().tintColor = UIColor.black
         
         // Sets the default color of the background of the UITabBar
-        //UITabBar.appearance().barTintColor = UIColor.black
+        UITabBar.appearance().barTintColor = UIColor.white
         
         self.selectedIndex = 1
     }

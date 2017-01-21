@@ -233,6 +233,15 @@ class APIManager {
         requestServer(.get, path, param, URLEncoding(), completionHandler)
     }
     
+    func getMessageThread(byId: Int, completionHandler: @escaping (JSON) -> Void ) {
+        
+        let path = "api/message/\(byId)/"
+        let param: [String: Any] = [
+            "access_token": Default.shared.getAccessToken()
+        ]
+        requestServer(.get, path, param, URLEncoding(), completionHandler)
+    }
+    
     func sendMessage(toId: Int, content: String, completionHandler: @escaping (JSON) -> Void ) {
         
         let path = "api/message/send/\(toId)/"

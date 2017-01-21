@@ -18,4 +18,5 @@ target 'ARoomie' do
   pod 'FBSDKShareKit'
   pod 'SVProgressHUD', :git => 'https://github.com/SVProgressHUD/SVProgressHUD.git'
   pod 'HCSStarRatingView', '~> 1.4.5'
+  pod 'JSQMessagesViewController'
 end

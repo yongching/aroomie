@@ -7,28 +7,36 @@
 //
 
 import UIKit
+import JSQMessagesViewController
 
 class MessagesTableViewController: UITableViewController {
 
     // MARK: - Properties
     
     var counts: Int = 0
-    var userIds: [Int] = []
+    var userId: Int?
+    var senderIds: [Int] = []
     var avatarUrls: [String] = []
-    var userNames: [String] = []
+    var senderNames: [String] = []
     var contents: [String] = []
     
     // MARK: - View lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.tableFooterView = UIView()
         getMessages()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = false
+        getMessages()
+    }
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -50,9 +58,22 @@ class MessagesTableViewController: UITableViewController {
 
             }
         }
-        cell.labelName.text = userNames[indexPath.row]
+        cell.labelName.text = senderNames[indexPath.row]
         cell.labelContent.text = contents[indexPath.row]
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        if senderIds.count >= indexPath.count {
+            let chatView = MessageDetailsViewController()
+            chatView.userId = self.userId
+            chatView.oppositeSenderId = senderIds[indexPath.row]
+            chatView.oppositeSenderName = senderNames[indexPath.row]
+            self.navigationController?.pushViewController(chatView, animated: true)
+        }
     }
     
     // MARK: - Actions
@@ -67,14 +88,14 @@ class MessagesTableViewController: UITableViewController {
                         if json2 != nil {
                             self.counts = count
                             self.avatarUrls.append(json2["profile"]["avatar"].stringValue)
+                            self.userId = result["sent_to"].intValue
+                            self.senderIds.append(result["sent_by"].intValue)
+                            self.senderNames.append(result["sent_by_name"].stringValue)
+                            self.contents.append(result["content"].stringValue)
                             self.tableView.reloadData()
                         }
                     })
-                    self.userIds.append(result["sent_by"].intValue)
-                    self.userNames.append(result["sent_by_name"].stringValue)
-                    self.contents.append(result["content"].stringValue)
                 }
-                self.tableView.reloadData()
             }
         })
     }

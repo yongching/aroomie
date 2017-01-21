@@ -28,6 +28,7 @@
 		AC6210361E034B790011267D /* FBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6210351E034B790011267D /* FBManager.swift */; };
 		AC6210381E034DE50011267D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6210371E034DE50011267D /* LoginViewController.swift */; };
 		ACA210941E14096800C6BF2F /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA210931E14096800C6BF2F /* SettingTableViewController.swift */; };
+		ACA29FDB1E33B11700605E76 /* MessageDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA29FDA1E33B11700605E76 /* MessageDetailsViewController.swift */; };
 		ACC036471E27FE80004DB095 /* NewAdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC036461E27FE80004DB095 /* NewAdViewController.swift */; };
 		ACDDF1891E14293B00A4002B /* PreferenceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDDF1881E14293B00A4002B /* PreferenceTableViewController.swift */; };
 		ACDDF18D1E14326B00A4002B /* LifestyleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDDF18C1E14326B00A4002B /* LifestyleTableViewController.swift */; };
@@ -69,6 +70,7 @@
 		AC6210351E034B790011267D /* FBManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBManager.swift; sourceTree = "<group>"; };
 		AC6210371E034DE50011267D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		ACA210931E14096800C6BF2F /* SettingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
+		ACA29FDA1E33B11700605E76 /* MessageDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageDetailsViewController.swift; sourceTree = "<group>"; };
 		ACC036461E27FE80004DB095 /* NewAdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewAdViewController.swift; sourceTree = "<group>"; };
 		ACDDF1881E14293B00A4002B /* PreferenceTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferenceTableViewController.swift; sourceTree = "<group>"; };
 		ACDDF18C1E14326B00A4002B /* LifestyleTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LifestyleTableViewController.swift; sourceTree = "<group>"; };
@@ -291,6 +293,7 @@
 			children = (
 				ACEA9EBD1E2F79AF0003F9A9 /* NewMessageViewController.swift */,
 				ACEA9EC11E31CB470003F9A9 /* MessagesTableViewController.swift */,
+				ACA29FDA1E33B11700605E76 /* MessageDetailsViewController.swift */,
 			);
 			name = Message;
 			sourceTree = "<group>";
@@ -482,6 +485,7 @@
 				ACE8DE3E1E0089FB0025530F /* AppDelegate.swift in Sources */,
 				AC5C47661E1BB3B100AD3297 /* ARAnnotation.swift in Sources */,
 				AC2B8B061E18FE30003AC6D4 /* Constants.swift in Sources */,
+				ACA29FDB1E33B11700605E76 /* MessageDetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

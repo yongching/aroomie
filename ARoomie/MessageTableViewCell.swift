@@ -22,9 +22,9 @@ class MessageTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
-        profileAvatar.layer.cornerRadius = 60 / 2
+        profileAvatar.layer.cornerRadius = 50 / 2
         profileAvatar.layer.borderWidth = 0.5
-        profileAvatar.layer.borderColor = UIColor.lightGray.cgColor
+        profileAvatar.layer.borderColor = UIColor.black.cgColor
         profileAvatar.clipsToBounds = true
     }
 
