@@ -34,6 +34,7 @@ class MessagesTableViewController: UITableViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = false
+        self.resetArray()
         getMessages()
     }
     
@@ -77,6 +78,13 @@ class MessagesTableViewController: UITableViewController {
     }
     
     // MARK: - Actions
+    
+    func resetArray() {
+        self.avatarUrls.removeAll()
+        self.senderIds.removeAll()
+        self.senderNames.removeAll()
+        self.contents.removeAll()
+    }
     
     func getMessages() {
         var count = 0
