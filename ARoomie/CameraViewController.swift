@@ -172,6 +172,14 @@ class CameraViewController: ARViewController, ARDataSource, UIImagePickerControl
         customButtonView1.backgroundColor = UIColor.white
         customButtonView2.backgroundColor = UIColor.white
         customButtonView3.backgroundColor = UIColor.white
+
+        let tapGesture1 = UITapGestureRecognizer(target: self, action: #selector(CameraViewController.refresh))
+        let tapGesture2 = UITapGestureRecognizer(target: self, action: #selector(CameraViewController.filter))
+        let tapGesture3 = UITapGestureRecognizer(target: self, action: #selector(CameraViewController.new(_:)))
+        
+        customButtonView1.addGestureRecognizer(tapGesture1)
+        customButtonView2.addGestureRecognizer(tapGesture2)
+        customButtonView3.addGestureRecognizer(tapGesture3)
         
         let iconWidth = width / 2
         let iconHeight = height / 2
@@ -202,14 +210,38 @@ class CameraViewController: ARViewController, ARDataSource, UIImagePickerControl
     // MARK : - Actions
     
     func refresh() {
-        
+        self.getAnnotationsFromAPI(completionHandler: { newAnnotations in
+            
+            // Check if device has hardware needed for augmented reality
+            let result = ARViewController.createCaptureSession()
+            if result.error != nil
+            {
+                //let message = result.error?.userInfo["description"] as? String
+                //let alertView = UIAlertView(title: "Error", message: message, delegate: nil, cancelButtonTitle: "Close")
+                //alertView.show()
+                return
+            }
+            
+            if newAnnotations.count > 0 {
+                
+                // Present ARViewController
+                self.dataSource = self
+                self.maxVisibleAnnotations = 100
+                self.maxVerticalLevel = 5
+                self.headingSmoothingFactor = 0.05
+                self.trackingManager.userDistanceFilter = 25
+                self.trackingManager.reloadDistanceFilter = 75
+                //self.setAnnotations(dummyAnnotations)
+                self.setAnnotations(newAnnotations)
+            }
+        })
     }
     
     func filter() {
-        
+        print("filter")
     }
     
-    func new() {
+    func new(_ sender: UITapGestureRecognizer) {
         let newAds = storyboard!.instantiateViewController(withIdentifier: "NewAdvertisement") as! UINavigationController
         present(newAds, animated: true, completion: nil)
     }
