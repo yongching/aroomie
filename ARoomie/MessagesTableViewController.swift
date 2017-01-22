@@ -26,7 +26,7 @@ class MessagesTableViewController: UITableViewController {
         super.viewDidLoad()
         tableView.tableFooterView = UIView()
         setupPullToRefresh()
-        getMessages()
+        getMessages(animation: true)
     }
 
     override func didReceiveMemoryWarning() {
@@ -93,14 +93,13 @@ class MessagesTableViewController: UITableViewController {
     }
     
     func handleRefresh(refreshControl: UIRefreshControl) {
-        print("pulling")
         self.resetArray()
-        self.getMessages()
+        self.getMessages(animation: false)
     }
     
-    func getMessages() {
+    func getMessages(animation: Bool) {
         var count = 0
-        APIManager.shared.getMessages(completionHandler: { json in
+        APIManager.shared.getMessages(loadingAnimation: animation, completionHandler: { json in
             if json != nil {
                 for result in json["messages_received"].arrayValue {
                     APIManager.shared.getUserProfile(byId: result["sent_by"].intValue, completionHandler: { json2 in

@@ -22,9 +22,10 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         
         if (FBSDKAccessToken.current() != nil) {
-            //print("viewDidLoad FBSDKToken exist")
+            print("viewDidLoad FBSDKToken exist")
         } else {
-            //print("viewDidLoad FBSDKToken empty")
+            print("viewDidLoad FBSDKToken empty")
+            //Default.shared.resetUserDefault()
         }
         
         setupButton()
@@ -37,9 +38,10 @@ class LoginViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         
         if (FBSDKAccessToken.current() != nil) {
-            //print("viewDidAppear FBSDKToken exist")
+            print("viewDidAppear FBSDKToken exist")
         } else {
-            //print("viewDidAppear FBSDKToken empty")
+            print("viewDidAppear FBSDKToken empty")
+            //Default.shared.resetUserDefault()
         }
         
         if (FBSDKAccessToken.current() != nil) {
@@ -73,7 +75,7 @@ class LoginViewController: UIViewController {
             self.viewDidAppear(true)
             
         } else {
-            
+            print("Performing fb login")
             FBManager.shared.logIn(
                 withReadPermissions: ["public_profile", "email"],
                 from: self,
@@ -84,6 +86,7 @@ class LoginViewController: UIViewController {
                             self.viewDidAppear(true)
                         })
                         **/
+                        print("Success fb login")
                         APIManager.shared.login(completionHandler: { error in
                             if error == nil {
                                 self.viewDidAppear(true)

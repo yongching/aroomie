@@ -28,8 +28,16 @@ class MessageDetailsViewController: JSQMessagesViewController {
         
         if let id = userId {
             self.senderId = "\(id)"
+            self.senderDisplayName = ""
+            
+        } else {
+            self.senderId = ""
+            self.senderDisplayName = ""
         }
-        self.senderDisplayName = ""
+        
+        if let name = oppositeSenderName {
+            self.title = name
+        }
         
         // Get all the chat
         getAllChat()

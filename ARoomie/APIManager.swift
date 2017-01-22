@@ -230,13 +230,13 @@ class APIManager {
     }
     
     // API - Message
-    func getMessages(completionHandler: @escaping (JSON) -> Void ) {
+    func getMessages(loadingAnimation: Bool, completionHandler: @escaping (JSON) -> Void ) {
         
         let path = "api/messages/"
         let param: [String: Any] = [
             "access_token": Default.shared.getAccessToken()
         ]
-        requestServer(false, .get, path, param, URLEncoding(), completionHandler)
+        requestServer(loadingAnimation, .get, path, param, URLEncoding(), completionHandler)
     }
     
     func getMessageThread(byId: Int, completionHandler: @escaping (JSON) -> Void ) {
