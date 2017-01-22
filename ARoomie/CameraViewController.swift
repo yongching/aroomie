@@ -10,16 +10,42 @@ import UIKit
 
 import AVFoundation
 import CoreLocation
+import SCLAlertView
+import DropDown
 
-class CameraViewController: ARViewController, ARDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+class CameraViewController: ARViewController, ARDataSource, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
     // MARK: - Properties
     
+    // Accessory buttons
     var newAnnotations: [ARAnnotation] = []
-    
     var newButton = UIButton()
     var filterButton = UIButton()
     var refreshButton = UIButton()
+    
+    // SCLAlertView
+    var textFieldGender = UITextField()
+    var textFieldRace = UITextField()
+    var textFieldBudget = UITextField()
+    var textFieldMoveIn = UITextField()
+    
+    // DropDown
+    let genderDropDown = DropDown()
+    let raceDropDown = DropDown()
+    let genderOptions: [String] = [
+        "male",
+        "female"
+    ]
+    let raceOptions: [String] = [
+        "malay",
+        "chinese",
+        "indian",
+        "others"
+    ]
+    
+    // Date Formatter
+    let dateFormatter = DateFormatter()
+    let datePicker: UIDatePicker = UIDatePicker()
     
     // MARK: - View Lifecycle
     
@@ -49,32 +75,7 @@ class CameraViewController: ARViewController, ARDataSource, UIImagePickerControl
         
         self.uiOptions.debugEnabled = true
         self.uiOptions.closeButtonEnabled = false
-        
-        self.getAnnotationsFromAPI(completionHandler: { newAnnotations in
-            
-            // Check if device has hardware needed for augmented reality
-            let result = ARViewController.createCaptureSession()
-            if result.error != nil
-            {
-                //let message = result.error?.userInfo["description"] as? String
-                //let alertView = UIAlertView(title: "Error", message: message, delegate: nil, cancelButtonTitle: "Close")
-                //alertView.show()
-                return
-            }
-
-            if newAnnotations.count > 0 {
-
-                // Present ARViewController
-                self.dataSource = self
-                self.maxVisibleAnnotations = 100
-                self.maxVerticalLevel = 5
-                self.headingSmoothingFactor = 0.05
-                self.trackingManager.userDistanceFilter = 25
-                self.trackingManager.reloadDistanceFilter = 75
-                //self.setAnnotations(dummyAnnotations)
-                self.setAnnotations(newAnnotations)
-            }
-        })
+        self.refresh()
     }
     
     func ar(_ arViewController: ARViewController, viewForAnnotation: ARAnnotation) -> ARAnnotationView
@@ -85,13 +86,14 @@ class CameraViewController: ARViewController, ARDataSource, UIImagePickerControl
         return annotationView
     }
     
-    fileprivate func getAnnotationsFromAPI(completionHandler: @escaping ([ARAnnotation]) -> Void )  {
+    fileprivate func getAnnotationsFromAPI(params: [String: Any], completionHandler: @escaping ([ARAnnotation]) -> Void )  {
         
         self.newAnnotations.removeAll()
         
-        APIManager.shared.getAdvertisements(completionHandler: { json in
+        APIManager.shared.getAdvertisements(params: params, completionHandler: { json in
             
             if json != nil {
+                print(json)
                 for result in json.arrayValue {
                     let annotation = ARAnnotation()
                     annotation.advertisementId = result["id"].intValue
@@ -175,7 +177,7 @@ class CameraViewController: ARViewController, ARDataSource, UIImagePickerControl
 
         let tapGesture1 = UITapGestureRecognizer(target: self, action: #selector(CameraViewController.refresh))
         let tapGesture2 = UITapGestureRecognizer(target: self, action: #selector(CameraViewController.filter))
-        let tapGesture3 = UITapGestureRecognizer(target: self, action: #selector(CameraViewController.new(_:)))
+        let tapGesture3 = UITapGestureRecognizer(target: self, action: #selector(CameraViewController.new))
         
         customButtonView1.addGestureRecognizer(tapGesture1)
         customButtonView2.addGestureRecognizer(tapGesture2)
@@ -207,10 +209,111 @@ class CameraViewController: ARViewController, ARDataSource, UIImagePickerControl
         self.view.addSubview(customButtonView3)
     }
     
+    // MARK : - UITextFieldDelegate
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textFieldGender.isFirstResponder {
+            textFieldGender.resignFirstResponder()
+            genderDropDown.show()
+        }
+        
+        if textFieldRace.isFirstResponder {
+            textFieldRace.resignFirstResponder()
+            raceDropDown.show()
+        }
+    }
+    
     // MARK : - Actions
     
     func refresh() {
-        self.getAnnotationsFromAPI(completionHandler: { newAnnotations in
+        getAdvertisements(gender: "", race: "", budget: "", moveIn: "")
+    }
+    
+    func filter() {
+        
+        // Keyboard Toolbar
+        let keyboardToolbar = UIToolbar()
+        keyboardToolbar.setItems([
+            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
+            UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(CameraViewController.dismissKeyboard)
+            )], animated: true)
+        keyboardToolbar.sizeToFit()
+        
+        // SCLAlertView
+        let appearance = SCLAlertView.SCLAppearance(showCloseButton: false)
+        let alert = SCLAlertView(appearance: appearance)
+        
+        textFieldGender = alert.addTextField("Select gender")
+        textFieldRace = alert.addTextField("Select race")
+        textFieldGender.delegate = self
+        textFieldRace.delegate = self
+        
+        textFieldBudget = alert.addTextField("Enter your budget")
+        textFieldBudget.keyboardType = UIKeyboardType.numberPad
+        textFieldBudget.inputAccessoryView = keyboardToolbar
+        
+        textFieldMoveIn = alert.addTextField("Enter move-in date")
+        textFieldMoveIn.delegate = self
+        datePicker.datePickerMode = UIDatePickerMode.date
+        textFieldMoveIn.inputView = datePicker
+        textFieldMoveIn.inputAccessoryView = keyboardToolbar
+        datePicker.addTarget(self, action: #selector(CameraViewController.datePickerChanged), for: UIControlEvents.valueChanged)
+        dateFormatter.dateStyle = DateFormatter.Style.medium
+        dateFormatter.timeStyle = DateFormatter.Style.none
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        
+        alert.addButton("Done") {
+            var gender = ""
+            var race = ""
+            if let index = self.genderDropDown.indexForSelectedRow {
+                gender = "\(index)"
+            }
+            if let index = self.raceDropDown.indexForSelectedRow {
+                race = "\(index)"
+            }
+            self.getAdvertisements(gender: gender, race: race, budget: self.textFieldBudget.text ?? "", moveIn: self.textFieldMoveIn.text ?? "")
+        }
+        
+        // Drop Down
+        let dropDowns: [DropDown] = [
+            genderDropDown,
+            raceDropDown
+        ]
+        dropDowns.forEach {
+            $0.dismissMode = .onTap
+            $0.direction = .bottom
+        }
+        genderDropDown.anchorView = self.textFieldGender
+        genderDropDown.bottomOffset = CGPoint(x: 0, y: genderDropDown.bounds.height)
+        genderDropDown.dataSource = genderOptions
+        genderDropDown.selectionAction = { [unowned self] (index, item) in
+            self.textFieldGender.text = item
+        }
+        raceDropDown.anchorView = self.textFieldRace
+        raceDropDown.bottomOffset = CGPoint(x: 0, y: raceDropDown.bounds.height)
+        raceDropDown.dataSource = raceOptions
+        raceDropDown.selectionAction = { [unowned self] (index, item) in
+            self.textFieldRace.text = item
+        }
+        
+        alert.showEdit("Filter", subTitle: "")
+    }
+    
+    func new() {
+        let newAds = storyboard!.instantiateViewController(withIdentifier: "NewAdvertisement") as! UINavigationController
+        present(newAds, animated: true, completion: nil)
+    }
+    
+    func getAdvertisements(gender: String, race: String, budget: String, moveIn: String) {
+        
+        let params: [String: Any] = [
+            "gender_pref": gender,
+            "race_pref": race,
+            "budget": budget,
+            "move_in": moveIn
+        ]
+        
+        self.getAnnotationsFromAPI(params: params, completionHandler: { newAnnotations in
             
             // Check if device has hardware needed for augmented reality
             let result = ARViewController.createCaptureSession()
@@ -237,13 +340,12 @@ class CameraViewController: ARViewController, ARDataSource, UIImagePickerControl
         })
     }
     
-    func filter() {
-        print("filter")
+    func datePickerChanged(datePicker: UIDatePicker) {
+        textFieldMoveIn.text = dateFormatter.string(from: datePicker.date)
     }
     
-    func new(_ sender: UITapGestureRecognizer) {
-        let newAds = storyboard!.instantiateViewController(withIdentifier: "NewAdvertisement") as! UINavigationController
-        present(newAds, animated: true, completion: nil)
+    override func dismissKeyboard() {
+        textFieldBudget.resignFirstResponder()
+        textFieldMoveIn.resignFirstResponder()
     }
-    
 }

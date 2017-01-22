@@ -28,7 +28,7 @@ class UserProfileTableViewController: UITableViewController {
     // Star rating
     let starRatingView = HCSStarRatingView(frame: CGRect(x: 0, y: 0, width: 120, height: 30))
     
-    // Drop down
+    // Drop down options
     let raceOptions: [String] = [
         "malay",
         "chinese",

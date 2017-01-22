@@ -19,4 +19,5 @@ target 'ARoomie' do
   pod 'SVProgressHUD', :git => 'https://github.com/SVProgressHUD/SVProgressHUD.git'
   pod 'HCSStarRatingView', '~> 1.4.5'
   pod 'JSQMessagesViewController'
+  pod 'SCLAlertView'
 end

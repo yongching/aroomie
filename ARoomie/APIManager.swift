@@ -225,10 +225,10 @@ class APIManager {
     }
     
     // API - Advertisement
-    func getAdvertisements(completionHandler: @escaping (JSON) -> Void ) {
+    func getAdvertisements(params: [String: Any], completionHandler: @escaping (JSON) -> Void ) {
         
         let path = "api/advertisements/"
-        requestServer(true, .get, path, nil, URLEncoding(), completionHandler)
+        requestServer(true, .get, path, params, URLEncoding(), completionHandler)
     }
     
     func getAdvertisement(byId: Int, completionHandler: @escaping (JSON) -> Void ) {
