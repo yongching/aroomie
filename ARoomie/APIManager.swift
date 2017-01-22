@@ -111,9 +111,11 @@ class APIManager {
 
             if Date() > expired {
                 print("token refreshing")
+                SVProgressHUD.show()
                 Alamofire.request(url!, method: .post, parameters: params, encoding: URLEncoding(), headers: nil)
                     .responseJSON { response in
                     
+                    SVProgressHUD.dismiss()
                     switch response.result {
                     case .success(let value):
                         
@@ -147,19 +149,23 @@ class APIManager {
     }
     
     // Alamofire Wrapper
-    func requestServer(_ method: HTTPMethod,_ path: String,_ params: [String: Any]?,_ encoding: ParameterEncoding,_ completionHandler: @escaping (JSON) -> Void ) {
+    func requestServer(_ loadingAnimation: Bool, _ method: HTTPMethod,_ path: String,_ params: [String: Any]?,_ encoding: ParameterEncoding,_ completionHandler: @escaping (JSON) -> Void ) {
         
         let url = baseURL?.appendingPathComponent(path)
         
         refreshTokenIfNeed( completionHandler: {
             
-            SVProgressHUD.show()
+            if loadingAnimation {
+                SVProgressHUD.show()
+            }
             
             Alamofire.request(url!, method: method, parameters: params, encoding: encoding, headers: nil)
                 .responseJSON { response in
                 
-                SVProgressHUD.dismiss()
-                    
+                if loadingAnimation {
+                    SVProgressHUD.dismiss()
+                }
+        
                 switch response.result {
                 case .success(let value):
                     if response.response?.statusCode == 200 {
@@ -188,7 +194,7 @@ class APIManager {
         let params: [String: Any] = [
             "access_token": Default.shared.getAccessToken()
         ]
-        requestServer(.get, path, params, URLEncoding(), completionHandler)
+        requestServer(true, .get, path, params, URLEncoding(), completionHandler)
     }
     
     func getUserProfile(byId: Int, completionHandler: @escaping (JSON) -> Void ) {
@@ -197,7 +203,7 @@ class APIManager {
         let params: [String: Any] = [
             "access_token": Default.shared.getAccessToken()
         ]
-        requestServer(.get, path, params, URLEncoding(), completionHandler)
+        requestServer(false, .get, path, params, URLEncoding(), completionHandler)
     }
     
     func updateUserProfile(params: [String: Any], completionHandler: @escaping (JSON) -> Void ) {
@@ -207,20 +213,20 @@ class APIManager {
             "access_token": Default.shared.getAccessToken()
         ]
         let merged = params2.merged(with: params)
-        requestServer(.post, path, merged, URLEncoding(), completionHandler)
+        requestServer(true, .post, path, merged, URLEncoding(), completionHandler)
     }
     
     // API - Advertisement
     func getAdvertisements(completionHandler: @escaping (JSON) -> Void ) {
         
         let path = "api/advertisements/"
-        requestServer(.get, path, nil, URLEncoding(), completionHandler)
+        requestServer(true, .get, path, nil, URLEncoding(), completionHandler)
     }
     
     func getAdvertisement(byId: Int, completionHandler: @escaping (JSON) -> Void ) {
         
         let path = "api/advertisement/\(byId)/"
-        requestServer(.get, path, nil, URLEncoding(), completionHandler)
+        requestServer(true, .get, path, nil, URLEncoding(), completionHandler)
     }
     
     // API - Message
@@ -230,7 +236,7 @@ class APIManager {
         let param: [String: Any] = [
             "access_token": Default.shared.getAccessToken()
         ]
-        requestServer(.get, path, param, URLEncoding(), completionHandler)
+        requestServer(false, .get, path, param, URLEncoding(), completionHandler)
     }
     
     func getMessageThread(byId: Int, completionHandler: @escaping (JSON) -> Void ) {
@@ -239,7 +245,7 @@ class APIManager {
         let param: [String: Any] = [
             "access_token": Default.shared.getAccessToken()
         ]
-        requestServer(.get, path, param, URLEncoding(), completionHandler)
+        requestServer(true, .get, path, param, URLEncoding(), completionHandler)
     }
     
     func sendMessage(toId: Int, content: String, completionHandler: @escaping (JSON) -> Void ) {
@@ -249,14 +255,14 @@ class APIManager {
             "access_token": Default.shared.getAccessToken(),
             "content": content
         ]
-        requestServer(.post, path, params, URLEncoding(), completionHandler)
+        requestServer(true, .post, path, params, URLEncoding(), completionHandler)
     }
     
     // API - Rating
     func getRating(byId: Int, completionHandler: @escaping (JSON) -> Void ) {
         
         let path = "api/rating/\(byId)/"
-        requestServer(.get, path, nil, URLEncoding(), completionHandler)
+        requestServer(true, .get, path, nil, URLEncoding(), completionHandler)
     }
     
     func addRating(toUserId: Int, score: Int, completionHandler: @escaping (JSON) -> Void ) {
@@ -266,7 +272,7 @@ class APIManager {
             "access_token": Default.shared.getAccessToken(),
             "score": score
         ]
-        requestServer(.post, path, params, URLEncoding(), completionHandler)
+        requestServer(true, .post, path, params, URLEncoding(), completionHandler)
     }
     
     func ratingCheck(userId: Int, completionHandler: @escaping (JSON) -> Void ) {
@@ -275,6 +281,6 @@ class APIManager {
         let param: [String: Any] = [
             "access_token": Default.shared.getAccessToken()
         ]
-        requestServer(.get, path, param, URLEncoding(), completionHandler)
+        requestServer(true, .get, path, param, URLEncoding(), completionHandler)
     }
 }

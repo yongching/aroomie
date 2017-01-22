@@ -25,6 +25,7 @@ class MessagesTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.tableFooterView = UIView()
+        setupPullToRefresh()
         getMessages()
     }
 
@@ -34,8 +35,6 @@ class MessagesTableViewController: UITableViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = false
-        self.resetArray()
-        getMessages()
     }
     
     // MARK: - Table view data source
@@ -68,13 +67,20 @@ class MessagesTableViewController: UITableViewController {
         
         tableView.deselectRow(at: indexPath, animated: true)
         
-        if senderIds.count >= indexPath.count {
+        if contents.count > 0 {
             let chatView = MessageDetailsViewController()
             chatView.userId = self.userId
             chatView.oppositeSenderId = senderIds[indexPath.row]
             chatView.oppositeSenderName = senderNames[indexPath.row]
             self.navigationController?.pushViewController(chatView, animated: true)
         }
+    }
+    
+    // MARK: - Setup
+    
+    func setupPullToRefresh() {
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl?.addTarget(self, action: #selector(MessagesTableViewController.handleRefresh(refreshControl:)), for: UIControlEvents.valueChanged)
     }
     
     // MARK: - Actions
@@ -84,6 +90,12 @@ class MessagesTableViewController: UITableViewController {
         self.senderIds.removeAll()
         self.senderNames.removeAll()
         self.contents.removeAll()
+    }
+    
+    func handleRefresh(refreshControl: UIRefreshControl) {
+        print("pulling")
+        self.resetArray()
+        self.getMessages()
     }
     
     func getMessages() {
@@ -101,6 +113,7 @@ class MessagesTableViewController: UITableViewController {
                             self.senderNames.append(result["sent_by_name"].stringValue)
                             self.contents.append(result["content"].stringValue)
                             self.tableView.reloadData()
+                            self.refreshControl?.endRefreshing()
                         }
                     })
                 }
