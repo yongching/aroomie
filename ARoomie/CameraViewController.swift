@@ -53,6 +53,7 @@ class CameraViewController: ARViewController, ARDataSource, UITextFieldDelegate,
         super.viewDidLoad()
         showARViewController()
         setupButtons()
+        setupDropDown()
     }
     
     override func didReceiveMemoryWarning() {
@@ -93,7 +94,7 @@ class CameraViewController: ARViewController, ARDataSource, UITextFieldDelegate,
         APIManager.shared.getAdvertisements(params: params, completionHandler: { json in
             
             if json != nil {
-                print(json)
+                //print(json)
                 for result in json.arrayValue {
                     let annotation = ARAnnotation()
                     annotation.advertisementId = result["id"].intValue
@@ -262,6 +263,10 @@ class CameraViewController: ARViewController, ARDataSource, UITextFieldDelegate,
         dateFormatter.timeStyle = DateFormatter.Style.none
         dateFormatter.dateFormat = "yyyy-MM-dd"
         
+        // Drop Down
+        genderDropDown.anchorView = self.textFieldGender
+        raceDropDown.anchorView = self.textFieldRace
+        
         alert.addButton("Done") {
             var gender = ""
             var race = ""
@@ -272,28 +277,6 @@ class CameraViewController: ARViewController, ARDataSource, UITextFieldDelegate,
                 race = "\(index)"
             }
             self.getAdvertisements(gender: gender, race: race, budget: self.textFieldBudget.text ?? "", moveIn: self.textFieldMoveIn.text ?? "")
-        }
-        
-        // Drop Down
-        let dropDowns: [DropDown] = [
-            genderDropDown,
-            raceDropDown
-        ]
-        dropDowns.forEach {
-            $0.dismissMode = .onTap
-            $0.direction = .bottom
-        }
-        genderDropDown.anchorView = self.textFieldGender
-        genderDropDown.bottomOffset = CGPoint(x: 0, y: genderDropDown.bounds.height)
-        genderDropDown.dataSource = genderOptions
-        genderDropDown.selectionAction = { [unowned self] (index, item) in
-            self.textFieldGender.text = item
-        }
-        raceDropDown.anchorView = self.textFieldRace
-        raceDropDown.bottomOffset = CGPoint(x: 0, y: raceDropDown.bounds.height)
-        raceDropDown.dataSource = raceOptions
-        raceDropDown.selectionAction = { [unowned self] (index, item) in
-            self.textFieldRace.text = item
         }
         
         alert.showEdit("Filter", subTitle: "")
@@ -338,6 +321,30 @@ class CameraViewController: ARViewController, ARDataSource, UITextFieldDelegate,
                 self.setAnnotations(newAnnotations)
             }
         })
+    }
+    
+    func setupDropDown() {
+        
+        let dropDowns: [DropDown] = [
+            genderDropDown,
+            raceDropDown
+        ]
+        dropDowns.forEach {
+            $0.dismissMode = .onTap
+            $0.direction = .bottom
+        }
+        
+        genderDropDown.bottomOffset = CGPoint(x: 0, y: genderDropDown.bounds.height)
+        genderDropDown.dataSource = genderOptions
+        genderDropDown.selectionAction = { [unowned self] (index, item) in
+            self.textFieldGender.text = item
+        }
+        
+        raceDropDown.bottomOffset = CGPoint(x: 0, y: raceDropDown.bounds.height)
+        raceDropDown.dataSource = raceOptions
+        raceDropDown.selectionAction = { [unowned self] (index, item) in
+            self.textFieldRace.text = item
+        }
     }
     
     func datePickerChanged(datePicker: UIDatePicker) {

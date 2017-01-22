@@ -114,6 +114,9 @@ class MessageDetailsViewController: JSQMessagesViewController {
         }
     }
     
+    override func didPressAccessoryButton(_ sender: UIButton) {
+    }
+    
     //MARK: - JSQMessages CollectionView DataSource
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
