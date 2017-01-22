@@ -40,8 +40,12 @@ class APIManager {
                 "token": fbToken!
             ]
             
+            SVProgressHUD.show()
+            
             Alamofire.request(url!, method: .post, parameters: params, encoding: URLEncoding(), headers: nil)
                 .responseJSON { response in
+                    
+                    SVProgressHUD.dismiss()
                     
                     switch response.result {
                     case .success(let value):
@@ -79,9 +83,13 @@ class APIManager {
             "token": Default.shared.getAccessToken()
         ]
         
+        SVProgressHUD.show()
+        
         Alamofire.request(url!, method: .post, parameters: params, encoding: URLEncoding(), headers: nil)
             .responseString { response in
-
+                
+            SVProgressHUD.dismiss()
+                
             switch response.result {
             case .success:
                 completionHandler(nil)

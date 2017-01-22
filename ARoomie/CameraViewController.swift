@@ -15,8 +15,11 @@ class CameraViewController: ARViewController, ARDataSource, UIImagePickerControl
     
     // MARK: - Properties
     
+    var newAnnotations: [ARAnnotation] = []
+    
     var newButton = UIButton()
     var filterButton = UIButton()
+    var refreshButton = UIButton()
     
     // MARK: - View Lifecycle
     
@@ -47,7 +50,7 @@ class CameraViewController: ARViewController, ARDataSource, UIImagePickerControl
         self.uiOptions.debugEnabled = true
         self.uiOptions.closeButtonEnabled = false
         
-        self.getAnnotationsFromAPI(completionHandler: { annotations in
+        self.getAnnotationsFromAPI(completionHandler: { newAnnotations in
             
             // Check if device has hardware needed for augmented reality
             let result = ARViewController.createCaptureSession()
@@ -59,7 +62,7 @@ class CameraViewController: ARViewController, ARDataSource, UIImagePickerControl
                 return
             }
 
-            if annotations.count > 0 {
+            if newAnnotations.count > 0 {
 
                 // Present ARViewController
                 self.dataSource = self
@@ -69,7 +72,7 @@ class CameraViewController: ARViewController, ARDataSource, UIImagePickerControl
                 self.trackingManager.userDistanceFilter = 25
                 self.trackingManager.reloadDistanceFilter = 75
                 //self.setAnnotations(dummyAnnotations)
-                self.setAnnotations(annotations)
+                self.setAnnotations(newAnnotations)
             }
         })
     }
@@ -84,7 +87,7 @@ class CameraViewController: ARViewController, ARDataSource, UIImagePickerControl
     
     fileprivate func getAnnotationsFromAPI(completionHandler: @escaping ([ARAnnotation]) -> Void )  {
         
-        var annotations: [ARAnnotation] = []
+        self.newAnnotations.removeAll()
         
         APIManager.shared.getAdvertisements(completionHandler: { json in
             
@@ -105,8 +108,8 @@ class CameraViewController: ARViewController, ARDataSource, UIImagePickerControl
                             } else {
                                 print("Error getting advertisement creator photo")
                             }
-                            annotations.append(annotation)
-                            completionHandler(annotations)
+                            self.newAnnotations.append(annotation)
+                            completionHandler(self.newAnnotations)
                         })
                     }
                 }
@@ -152,28 +155,63 @@ class CameraViewController: ARViewController, ARDataSource, UIImagePickerControl
     func setupButtons() {
         
         let screen = UIScreen.main.bounds
+        let rightMargin: CGFloat = 16.0
+        let bottomMargin: CGFloat = 49.0
+        let width: CGFloat = 50.0
+        let height: CGFloat = 50.0
+        let x = screen.width - rightMargin - width
         
-        newButton.setImage(UIImage(named: "ic_add_white"), for: UIControlState())
-        newButton.frame = CGRect(x: screen.width - 40, y: 6, width: 40, height: 40)
-        newButton.addTarget(self, action: #selector(CameraViewController.newButtonTapped), for: UIControlEvents.touchUpInside)
+        let customButtonView1 = UIView(frame: CGRect(x: x, y: screen.height - bottomMargin - (height * 1 + 40), width: width, height: height))
+        let customButtonView2 = UIView(frame: CGRect(x: x, y: screen.height - bottomMargin - (height * 2 + 50), width: width, height: height))
+        let customButtonView3 = UIView(frame: CGRect(x: x, y: screen.height - bottomMargin - (height * 3 + 60), width: width, height: height))
         
-        filterButton.setImage(UIImage(named: "ic_filter_white"), for: UIControlState())
-        filterButton.frame = CGRect(x: screen.width - 80, y: 10, width: 30, height: 30)
-        filterButton.addTarget(self, action: #selector(CameraViewController.filterButtonTapped), for: UIControlEvents.touchUpInside)
+        customButtonView1.layer.cornerRadius = customButtonView1.bounds.size.width / 2
+        customButtonView2.layer.cornerRadius = customButtonView1.bounds.size.width / 2
+        customButtonView3.layer.cornerRadius = customButtonView1.bounds.size.width / 2
         
-        self.view.addSubview(newButton)
-        self.view.addSubview(filterButton)
+        customButtonView1.backgroundColor = UIColor.white
+        customButtonView2.backgroundColor = UIColor.white
+        customButtonView3.backgroundColor = UIColor.white
+        
+        let iconWidth = width / 2
+        let iconHeight = height / 2
+        let iconX = width / 2 - (iconWidth / 2)
+        let iconY = height / 2 - (iconHeight / 2)
+        
+        refreshButton.setImage(UIImage(named: "ic_refresh_48pt"), for: UIControlState())
+        refreshButton.frame = CGRect(x: iconX, y: iconY, width: iconWidth, height: iconHeight)
+        refreshButton.addTarget(self, action: #selector(CameraViewController.refresh), for: UIControlEvents.touchUpInside)
+        
+        filterButton.setImage(UIImage(named: "ic_filter_48pt"), for: UIControlState())
+        filterButton.frame = CGRect(x: iconX, y: iconY, width: iconWidth, height: iconHeight)
+        filterButton.addTarget(self, action: #selector(CameraViewController.filter), for: UIControlEvents.touchUpInside)
+        
+        newButton.setImage(UIImage(named: "ic_add_48pt"), for: UIControlState())
+        newButton.frame = CGRect(x: iconX, y: iconY, width: iconWidth, height: iconHeight)
+        newButton.addTarget(self, action: #selector(CameraViewController.new), for: UIControlEvents.touchUpInside)
+
+        customButtonView1.addSubview(refreshButton)
+        customButtonView2.addSubview(filterButton)
+        customButtonView3.addSubview(newButton)
+        
+        self.view.addSubview(customButtonView1)
+        self.view.addSubview(customButtonView2)
+        self.view.addSubview(customButtonView3)
     }
     
     // MARK : - Actions
     
-    func newButtonTapped() {
-        let newAds = storyboard!.instantiateViewController(withIdentifier: "NewAdvertisement") as! UINavigationController
-        present(newAds, animated: true, completion: nil)
+    func refresh() {
+        
     }
     
-    func filterButtonTapped() {
+    func filter() {
         
+    }
+    
+    func new() {
+        let newAds = storyboard!.instantiateViewController(withIdentifier: "NewAdvertisement") as! UINavigationController
+        present(newAds, animated: true, completion: nil)
     }
     
 }
