@@ -792,7 +792,7 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wb6-d7-5dd">
-                                            <rect key="frame" x="92" y="28.5" width="234" height="24"/>
+                                            <rect key="frame" x="92" y="28" width="234" height="24"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -1158,7 +1158,7 @@
         <!--Select Location-->
         <scene sceneID="38W-1H-uTJ">
             <objects>
-                <viewController id="pzC-hC-QpJ" customClass="NewAdViewController" customModule="ARoomie" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="pzC-hC-QpJ" customClass="SelectLocationViewController" customModule="ARoomie" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Vqq-HT-L2f"/>
                         <viewControllerLayoutGuide type="bottom" id="LRp-0g-dOr"/>
@@ -1172,7 +1172,7 @@
                         <barButtonItem key="leftBarButtonItem" image="ic_close" id="wn4-22-4TB">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <action selector="closeButton:" destination="pzC-hC-QpJ" id="se1-JV-cwT"/>
+                                <action selector="closeButton:" destination="pzC-hC-QpJ" id="Iqc-EV-38x"/>
                             </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
@@ -1185,7 +1185,7 @@
                             <barButtonItem image="ic_search" id="C9e-5X-jMr">
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <action selector="searchButtonTapped:" destination="pzC-hC-QpJ" id="CNE-tJ-qkJ"/>
+                                    <action selector="searchLocation:" destination="pzC-hC-QpJ" id="QPr-tK-fVc"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
@@ -1549,7 +1549,7 @@
             <objects>
                 <navigationController storyboardIdentifier="NewAdvertisement" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="RNQ-oL-0by" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="OLb-93-wHn">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="OLb-93-wHn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1569,7 +1569,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yQ7-Dg-mmu" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Settings" image="ic_settings" id="pDK-OW-eXC"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="xWs-cp-Cem">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="xWs-cp-Cem">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1588,7 +1588,7 @@
             <objects>
                 <navigationController storyboardIdentifier="ViewAdvertisement" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="u5M-8S-lKx" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="mIE-Va-29E">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="mIE-Va-29E">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1963,7 +1963,7 @@
             <objects>
                 <navigationController storyboardIdentifier="NewMessage" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="TNd-aw-DBY" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ai7-qA-385">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ai7-qA-385">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1982,7 +1982,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dyg-tQ-Zol" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Inbox" image="ic_textsms" id="Pc0-QP-Zmm"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="BJ3-AO-eJi">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="BJ3-AO-eJi">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

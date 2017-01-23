@@ -1,8 +1,8 @@
 //
-//  NewAdViewController.swift
+//  SelectLocationViewController.swift
 //  ARoomie
 //
-//  Created by Yong Ching on 13/01/2017.
+//  Created by Yong Ching on 23/01/2017.
 //  Copyright © 2017 Yong Ching. All rights reserved.
 //
 
@@ -10,12 +10,16 @@ import UIKit
 import GoogleMaps
 import GooglePlaces
 
-class NewAdViewController: UIViewController, GMSMapViewDelegate, GMSAutocompleteViewControllerDelegate {
-
+class SelectLocationViewController: UIViewController, GMSMapViewDelegate, GMSAutocompleteViewControllerDelegate {
+    
     // MARK: - Properties
+    
+    // Segue
+    var advertisementId: Int?
     
     var locationManager = CLLocationManager()
     var currentLocation: CLLocation?
+    var camera = GMSCameraPosition()
     var mapView: GMSMapView!
     var placesClient: GMSPlacesClient!
     var zoomLevel: Float = 15.0
@@ -36,7 +40,7 @@ class NewAdViewController: UIViewController, GMSMapViewDelegate, GMSAutocomplete
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Initialize the location manager
         locationManager = CLLocationManager()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -46,43 +50,52 @@ class NewAdViewController: UIViewController, GMSMapViewDelegate, GMSAutocomplete
         locationManager.delegate = self
         placesClient = GMSPlacesClient.shared()
         
-        var camera = GMSCameraPosition()
-        
         if (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedWhenInUse ||
-            CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways){
+            CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways) {
             currentLocation = locationManager.location
-
-            camera = GMSCameraPosition.camera(withLatitude: (currentLocation?.coordinate.latitude)!,
-                                                  longitude: (currentLocation?.coordinate.longitude)!,
-                                                  zoom: zoomLevel)
-
-        } else {
-            camera = GMSCameraPosition.camera(withLatitude: defaultLocation.coordinate.latitude,
-                                                  longitude: defaultLocation.coordinate.longitude,
-                                                  zoom: zoomLevel)
         }
         
-        // Create a map
-        mapView = GMSMapView.map(withFrame: view.bounds, camera: camera)
-        mapView.delegate = self
-        mapView.isMyLocationEnabled = true
-        mapView.settings.myLocationButton = true
-        mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        
-        // Add the map to the view, hide it until we've got a location update.
-        view.addSubview(mapView)
-        //mapView.isHidden = true
-        
-        // Add pin button
-        pinButton.setImage(UIImage(named: "ic_pickup_pin"), for: UIControlState())
-        pinButton.frame = CGRect(x: view.frame.width / 2 - 15, y: view.frame.height / 2 - 30, width: 30, height: 30)
-        view.addSubview(pinButton)
+        if let _ = advertisementId {
+            initializeAdvertisement()
+            
+        } else {
+            
+            if (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedWhenInUse ||
+                CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways){
+                currentLocation = locationManager.location
+                
+                camera = GMSCameraPosition.camera(withLatitude: (currentLocation?.coordinate.latitude)!,
+                                                  longitude: (currentLocation?.coordinate.longitude)!,
+                                                  zoom: zoomLevel)
+                
+            } else {
+                camera = GMSCameraPosition.camera(withLatitude: defaultLocation.coordinate.latitude,
+                                                  longitude: defaultLocation.coordinate.longitude,
+                                                  zoom: zoomLevel)
+            }
+            
+            // Create a map
+            mapView = GMSMapView.map(withFrame: view.bounds, camera: camera)
+            mapView.delegate = self
+            mapView.isMyLocationEnabled = true
+            mapView.settings.myLocationButton = true
+            mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            
+            // Add the map to the view, hide it until we've got a location update.
+            view.addSubview(mapView)
+            //mapView.isHidden = true
+            
+            // Add pin button
+            pinButton.setImage(UIImage(named: "ic_pickup_pin"), for: UIControlState())
+            pinButton.frame = CGRect(x: view.frame.width / 2 - 15, y: view.frame.height / 2 - 30, width: 30, height: 30)
+            view.addSubview(pinButton)
+        }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
+    
     // MARK: - GMSMapVieDelegate
     
     func mapView(_ mapView: GMSMapView, willMove gesture: Bool) {
@@ -114,7 +127,7 @@ class NewAdViewController: UIViewController, GMSMapViewDelegate, GMSAutocomplete
             }
         }
     }
-
+    
     // MARK: - GMSAutocompleteViewControllerDelegate
     
     // Handle the user's selection.
@@ -146,50 +159,82 @@ class NewAdViewController: UIViewController, GMSMapViewDelegate, GMSAutocomplete
     
     // MARK: - Actions
     
-    @IBAction func closeButton(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+    // For advertisement update
+    func initializeAdvertisement() {
+        
+        if let id = self.advertisementId {
+            APIManager.shared.getAdvertisement(byId: id, completionHandler: { json in
+                
+                if json != nil {
+                    self.currentLat = json["lat"].doubleValue
+                    self.currentLng = json["lng"].doubleValue
+                    self.camera = GMSCameraPosition.camera(withLatitude: self.currentLat,
+                                                           longitude: self.currentLng,
+                                                           zoom: self.zoomLevel)
+                    // Create a map
+                    self.mapView = GMSMapView.map(withFrame: self.view.bounds, camera: self.camera)
+                    self.mapView.delegate = self
+                    self.mapView.isMyLocationEnabled = true
+                    self.mapView.settings.myLocationButton = true
+                    self.mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+                    self.view.addSubview(self.mapView)
+                    
+                    // Add pin button
+                    self.pinButton.setImage(UIImage(named: "ic_pickup_pin"), for: UIControlState())
+                    self.pinButton.frame = CGRect(x: self.view.frame.width / 2 - 15, y: self.view.frame.height / 2 - 30, width: 30, height: 30)
+                    self.view.addSubview(self.pinButton)
+                }
+            })
+        }
     }
     
-    @IBAction func searchButtonTapped(_ sender: Any) {
+    @IBAction func closeButton(_ sender: Any) {
+        self.dismiss(animated: true,completion: nil)
+    }
+    
+    @IBAction func searchLocation(_ sender: Any) {
         let acController = GMSAutocompleteViewController()
         acController.delegate = self
         present(acController, animated: true, completion: nil)
     }
     
-     // MARK: - Navigation
+    // MARK: - Navigation
     
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         if segue.identifier == "SegueNewAdDetails" {
             let controller = segue.destination as! NewAdDetailsTableViewController
+            if let id = self.advertisementId {
+                controller.advertisementId = id
+            }
             controller.lat = String(format: "%.6f", currentLat)
             controller.lng = String(format: "%.6f", currentLng)
         }
-     }
+    }
 }
 
 // Delegate to handle events for the location manager
-extension NewAdViewController: CLLocationManagerDelegate {
+extension SelectLocationViewController: CLLocationManagerDelegate {
     
     // Handle incoming location events.
     
     /**
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let location: CLLocation = locations.last!
-        //print("Location: \(location)")
-        
-        let camera = GMSCameraPosition.camera(withLatitude: location.coordinate.latitude,
-                                              longitude: location.coordinate.longitude,
-                                              zoom: zoomLevel)
-        
-        if mapView.isHidden {
-            mapView.isHidden = false
-            mapView.camera = camera
-        } else {
-            mapView.animate(to: camera)
-        }
-    }
-    */
+     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+     let location: CLLocation = locations.last!
+     //print("Location: \(location)")
+     
+     let camera = GMSCameraPosition.camera(withLatitude: location.coordinate.latitude,
+     longitude: location.coordinate.longitude,
+     zoom: zoomLevel)
+     
+     if mapView.isHidden {
+     mapView.isHidden = false
+     mapView.camera = camera
+     } else {
+     mapView.animate(to: camera)
+     }
+     }
+     */
     
     // Handle authorization for the location manager.
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {

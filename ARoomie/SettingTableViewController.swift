@@ -85,15 +85,6 @@ class SettingTableViewController: UITableViewController, UITextFieldDelegate {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
-    
-    // MARK: - Text Field Delegate
-    
-    /*
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textFieldPhone.resignFirstResponder()
-        return true
-    }
-    */
 
     // MARK: - Setup
     

@@ -18,6 +18,7 @@ class NewAdDetailsTableViewController: UITableViewController, UITextFieldDelegat
     // MARK: - Properties
     
     // Segue
+    var advertisementId: Int?
     var lat: String = "0"
     var lng: String = "0"
     
@@ -59,11 +60,12 @@ class NewAdDetailsTableViewController: UITableViewController, UITextFieldDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.tintColor = UIColor.black
+        setupDropDowns()
         setupImagePicker()
         setupTextFieldsAndTextViews()
         setupDatePicker()
-        setupDropDowns()
         hideKeyboardWhenTappedAround()
+        initializeAdvertisement()
     }
     
     override func didReceiveMemoryWarning() {
@@ -203,12 +205,47 @@ class NewAdDetailsTableViewController: UITableViewController, UITextFieldDelegat
     
     // MARK: - Actions
     
+    // For advertisement update
+    func initializeAdvertisement() {
+        
+        if let id = self.advertisementId {
+            APIManager.shared.getAdvertisement(byId: id, completionHandler: { json in
+                
+                if json != nil {
+                    do {
+                        self.imageView.image = try UIImage(data: Data(contentsOf: URL(string: json["photo"].stringValue)!))
+                    } catch _ {}
+                    self.textFields[0].text = json["place_name"].stringValue
+                    self.textFields[1].text = json["rental"].stringValue
+                    self.textFields[2].text = json["move_in"].stringValue
+                    self.textFields[3].text = json["deposit"].stringValue
+                    self.genderPrefDropDown.selectRow(at: json["gender_pref"].intValue)
+                    self.buttonGenderPref.setTitle(self.genderOptions[json["gender_pref"].intValue], for: .normal)
+                    self.racePrefDropDown.selectRow(at: json["race_pref"].intValue)
+                    self.buttonRacePref.setTitle(self.raceOptions[json["race_pref"].intValue], for: .normal)
+                    self.textViewRules.text = json["rule"].stringValue
+                    self.textViewAmenities.text = json["amenity"].stringValue
+                }
+            })
+        }
+    }
+    
     @IBAction func postButton(_ sender: Any) {
         
-        let baseURL = NSURL(string: BASE_URL)
-        let path = "api/advertisement/add/"
-        let url = baseURL!.appendingPathComponent(path)
+        var path = ""
+        var method: HTTPMethod?
         
+        if let id = self.advertisementId {
+            path = "api/advertisement/edit/\(id)/"
+            method = HTTPMethod.put
+            
+        } else {
+            path = "api/advertisement/add/"
+            method = HTTPMethod.post
+        }
+        
+        let baseURL = NSURL(string: BASE_URL)
+        let url = baseURL!.appendingPathComponent(path)
         let parameters: [String: Any] = [
             "access_token": Default.shared.getAccessToken(),
             "place_name": textFields[0].text!,
@@ -235,7 +272,7 @@ class NewAdDetailsTableViewController: UITableViewController, UITextFieldDelegat
                 MultipartFormData.append("\(value)".data(using: String.Encoding.utf8, allowLossyConversion: true)!, withName:key)
             }
         
-        }, to: url!, encodingCompletion: { encodingResult in
+        }, to: url!, method: method!, encodingCompletion: { encodingResult in
             
             switch encodingResult {
             case .success(let upload, _, _):
@@ -246,14 +283,35 @@ class NewAdDetailsTableViewController: UITableViewController, UITextFieldDelegat
                     //print(JSON(response.result.value!))
                     
                     if response.response?.statusCode == 200 {
-                        let alert = UIAlertController(title: "Successfully Posted!", message: nil, preferredStyle: .alert)
+                        
+                        var title = ""
+                        
+                        if let _ = self.advertisementId {
+                            title = "Successfully Updated!"
+                            
+                        } else {
+                            title = "Successfully Posted!"
+                        }
+                        
+                        let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
                         alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: {
                             completionHandler in
                             self.dismiss(animated: true, completion: nil)
                         }))
                         self.present(alert, animated: true, completion: nil)
+                        
                     } else {
-                        let alert = UIAlertController(title: "Error Posting!", message: "Please select an image and fill up all the required columns.", preferredStyle: .alert)
+                        
+                        var title = ""
+                        
+                        if let _ = self.advertisementId {
+                            title = "Error Posting!"
+                            
+                        } else {
+                            title = "Error Updating!"
+                        }
+                        
+                        let alert = UIAlertController(title: title, message: "Please select an image and fill up all the required columns.", preferredStyle: .alert)
                         alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
                         self.present(alert, animated: true, completion: nil)
                     }

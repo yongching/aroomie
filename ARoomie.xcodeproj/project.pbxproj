@@ -30,9 +30,9 @@
 		AC7C27C81E35F39B00201AB0 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC7C27C71E35F39B00201AB0 /* UserNotifications.framework */; };
 		ACA210941E14096800C6BF2F /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA210931E14096800C6BF2F /* SettingTableViewController.swift */; };
 		ACA29FDB1E33B11700605E76 /* MessageDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA29FDA1E33B11700605E76 /* MessageDetailsViewController.swift */; };
-		ACC036471E27FE80004DB095 /* NewAdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC036461E27FE80004DB095 /* NewAdViewController.swift */; };
 		ACCDBDFE1E360C9100F0F61B /* MyAdTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCDBDFD1E360C9100F0F61B /* MyAdTableViewController.swift */; };
 		ACCDBE011E3611DA00F0F61B /* AdvertisementTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCDBE001E3611DA00F0F61B /* AdvertisementTableViewCell.swift */; };
+		ACCDBE031E365E0500F0F61B /* SelectLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCDBE021E365E0500F0F61B /* SelectLocationViewController.swift */; };
 		ACDDF1891E14293B00A4002B /* PreferenceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDDF1881E14293B00A4002B /* PreferenceTableViewController.swift */; };
 		ACDDF18D1E14326B00A4002B /* LifestyleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDDF18C1E14326B00A4002B /* LifestyleTableViewController.swift */; };
 		ACE8DE3E1E0089FB0025530F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE8DE3D1E0089FB0025530F /* AppDelegate.swift */; };
@@ -75,9 +75,9 @@
 		AC7C27C71E35F39B00201AB0 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		ACA210931E14096800C6BF2F /* SettingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
 		ACA29FDA1E33B11700605E76 /* MessageDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageDetailsViewController.swift; sourceTree = "<group>"; };
-		ACC036461E27FE80004DB095 /* NewAdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewAdViewController.swift; sourceTree = "<group>"; };
 		ACCDBDFD1E360C9100F0F61B /* MyAdTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyAdTableViewController.swift; sourceTree = "<group>"; };
 		ACCDBE001E3611DA00F0F61B /* AdvertisementTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvertisementTableViewCell.swift; sourceTree = "<group>"; };
+		ACCDBE021E365E0500F0F61B /* SelectLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectLocationViewController.swift; sourceTree = "<group>"; };
 		ACDDF1881E14293B00A4002B /* PreferenceTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferenceTableViewController.swift; sourceTree = "<group>"; };
 		ACDDF18C1E14326B00A4002B /* LifestyleTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LifestyleTableViewController.swift; sourceTree = "<group>"; };
 		ACE8DE3A1E0089FB0025530F /* ARoomie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARoomie.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -325,7 +325,7 @@
 		ACEF8DE01E27BCF6004CD5B8 /* Advertisement */ = {
 			isa = PBXGroup;
 			children = (
-				ACC036461E27FE80004DB095 /* NewAdViewController.swift */,
+				ACCDBE021E365E0500F0F61B /* SelectLocationViewController.swift */,
 				ACEF8DE31E27BD0D004CD5B8 /* NewAdDetailsTableViewController.swift */,
 				ACEA9EB81E2E2A550003F9A9 /* AdDetailsTableViewController.swift */,
 				ACCDBDFD1E360C9100F0F61B /* MyAdTableViewController.swift */,
@@ -486,6 +486,7 @@
 				AC5C47691E1BB3B100AD3297 /* ARTrackingManager.swift in Sources */,
 				AC6210381E034DE50011267D /* LoginViewController.swift in Sources */,
 				AC2B8B041E18FB87003AC6D4 /* DropDownButton.swift in Sources */,
+				ACCDBE031E365E0500F0F61B /* SelectLocationViewController.swift in Sources */,
 				AC2B8B021E18F811003AC6D4 /* APIManager.swift in Sources */,
 				ACDDF1891E14293B00A4002B /* PreferenceTableViewController.swift in Sources */,
 				ACEA9EC51E3202640003F9A9 /* MessageTableViewCell.swift in Sources */,
@@ -498,7 +499,6 @@
 				AC6210361E034B790011267D /* FBManager.swift in Sources */,
 				AC5C47671E1BB3B100AD3297 /* ARAnnotationView.swift in Sources */,
 				AC2B8B0A1E19272B003AC6D4 /* Helper.swift in Sources */,
-				ACC036471E27FE80004DB095 /* NewAdViewController.swift in Sources */,
 				AC5C476A1E1BB3B100AD3297 /* ARViewController.swift in Sources */,
 				ACEA9EBE1E2F79AF0003F9A9 /* NewMessageViewController.swift in Sources */,
 				AC33168E1E1BAD0000EE3211 /* CameraViewController.swift in Sources */,

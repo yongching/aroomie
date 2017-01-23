@@ -179,7 +179,7 @@ class APIManager {
                     if response.response?.statusCode == 200 {
                         let jsonData = JSON(value)
                         completionHandler(jsonData)
-                        print("200")
+
                     } else {
                         completionHandler(nil)
                     }
@@ -245,6 +245,12 @@ class APIManager {
             "access_token": Default.shared.getAccessToken()
         ]
         requestServer(true, .get, path, param, URLEncoding(), completionHandler)
+    }
+    
+    func updateAdvertisement(params: [String: Any], byId: Int, completionHandler: @escaping (JSON) -> Void ) {
+        
+        let path = "api/advertisement/edit/\(byId)"
+        requestServer(true, .put, path, params, URLEncoding(), completionHandler)
     }
     
     func deleteAdvertisement(byId: Int, completionHandler: @escaping (JSON) -> Void ) {

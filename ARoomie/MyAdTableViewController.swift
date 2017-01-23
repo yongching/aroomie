@@ -61,6 +61,11 @@ class MyAdTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        let navigationController = storyboard!.instantiateViewController(withIdentifier: "NewAdvertisement") as! UINavigationController
+        let selectLocationViewController = navigationController.viewControllers[0] as! SelectLocationViewController
+        selectLocationViewController.advertisementId = advertisementIds[indexPath.row]
+        present(navigationController, animated: true, completion: nil)
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
@@ -82,11 +87,12 @@ class MyAdTableViewController: UITableViewController {
     
     func getAdvertisements() {
         
+        advertisementIds.removeAll()
         roomUrls.removeAll()
         placeNames.removeAll()
         
         APIManager.shared.getUserAdvertisements(completionHandler: { json in
-            print(json)
+
             if json != nil {
                 for result in json.arrayValue {
                     self.advertisementIds.append(result["id"].intValue)
@@ -96,6 +102,8 @@ class MyAdTableViewController: UITableViewController {
                 self.tableView.reloadData()
             }
         })
-    
     }
+    
+    // 
+    
 }
