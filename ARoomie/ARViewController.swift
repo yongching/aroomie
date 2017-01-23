@@ -318,6 +318,9 @@ open class ARViewController: UIViewController, ARTrackingManagerDelegate
                 validAnnotations.append(annotation)
             }
         }
+        
+        // added by yc
+        self.annotations.removeAll()
         self.annotations = validAnnotations
         self.reloadAnnotations()
     }

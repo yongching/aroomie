@@ -93,28 +93,38 @@ class CameraViewController: ARViewController, ARDataSource, UITextFieldDelegate,
         
         APIManager.shared.getAdvertisements(params: params, completionHandler: { json in
             
+            var count = 0
+            
             if json != nil {
-                //print(json)
-                for result in json.arrayValue {
-                    let annotation = ARAnnotation()
-                    annotation.advertisementId = result["id"].intValue
-                    annotation.location = CLLocation(latitude: result["lat"].doubleValue, longitude: result["lng"].doubleValue)
-                    annotation.title = result["place_name"].stringValue
-                    annotation.createdBy = result["created_by"].intValue
-                    
-                    if let id = annotation.createdBy {
+                print(json)
+                
+                if json.arrayValue.count > 0 {
+                    for result in json.arrayValue {
+                        let annotation = ARAnnotation()
+                        annotation.advertisementId = result["id"].intValue
+                        annotation.location = CLLocation(latitude: result["lat"].doubleValue, longitude: result["lng"].doubleValue)
+                        annotation.title = result["place_name"].stringValue
+                        annotation.createdBy = result["created_by"].intValue
                         
-                        APIManager.shared.getUserProfile(byId: id, completionHandler: { json in
-                            if json != nil {
-                                annotation.pictureUrl = json["profile"]["avatar"].stringValue
-                                
-                            } else {
-                                print("Error getting advertisement creator photo")
-                            }
-                            self.newAnnotations.append(annotation)
-                            completionHandler(self.newAnnotations)
-                        })
+                        if let id = annotation.createdBy {
+                            APIManager.shared.getUserProfile(byId: id, completionHandler: { json2 in
+                                count += 1
+                                if json2 != nil {
+                                    annotation.pictureUrl = json2["profile"]["avatar"].stringValue
+                                    
+                                } else {
+                                    print("Error getting advertisement creator photo")
+                                }
+                                self.newAnnotations.append(annotation)
+                                if count == json.arrayValue.count {
+                                    completionHandler(self.newAnnotations)
+                                }
+                            })
+                        }
                     }
+                    
+                } else {
+                    completionHandler(self.newAnnotations)
                 }
                 
             } else {
@@ -224,7 +234,64 @@ class CameraViewController: ARViewController, ARDataSource, UITextFieldDelegate,
         }
     }
     
+    // MARK : - Setup
+    
+    func setupDropDown() {
+        
+        let dropDowns: [DropDown] = [
+            genderDropDown,
+            raceDropDown
+        ]
+        dropDowns.forEach {
+            $0.dismissMode = .onTap
+            $0.direction = .bottom
+        }
+        
+        genderDropDown.bottomOffset = CGPoint(x: 0, y: genderDropDown.bounds.height)
+        genderDropDown.dataSource = genderOptions
+        genderDropDown.selectionAction = { [unowned self] (index, item) in
+            self.textFieldGender.text = item
+        }
+        
+        raceDropDown.bottomOffset = CGPoint(x: 0, y: raceDropDown.bounds.height)
+        raceDropDown.dataSource = raceOptions
+        raceDropDown.selectionAction = { [unowned self] (index, item) in
+            self.textFieldRace.text = item
+        }
+    }
+    
     // MARK : - Actions
+    
+    func getAdvertisements(gender: String, race: String, budget: String, moveIn: String) {
+        
+        let params: [String: Any] = [
+            "gender_pref": gender,
+            "race_pref": race,
+            "budget": budget,
+            "move_in": moveIn
+        ]
+        
+        self.getAnnotationsFromAPI(params: params, completionHandler: { newAnnotations in
+            
+            // Check if device has hardware needed for augmented reality
+            let result = ARViewController.createCaptureSession()
+            if result.error != nil
+            {
+                //let message = result.error?.userInfo["description"] as? String
+                //let alertView = UIAlertView(title: "Error", message: message, delegate: nil, cancelButtonTitle: "Close")
+                //alertView.show()
+                return
+            }
+            
+            self.dataSource = self
+            self.maxVisibleAnnotations = 100
+            self.maxVerticalLevel = 5
+            self.headingSmoothingFactor = 0.05
+            self.trackingManager.userDistanceFilter = 25
+            self.trackingManager.reloadDistanceFilter = 75
+            self.setAnnotations(newAnnotations)
+        })
+    }
     
     func refresh() {
         getAdvertisements(gender: "", race: "", budget: "", moveIn: "")
@@ -285,66 +352,6 @@ class CameraViewController: ARViewController, ARDataSource, UITextFieldDelegate,
     func new() {
         let newAds = storyboard!.instantiateViewController(withIdentifier: "NewAdvertisement") as! UINavigationController
         present(newAds, animated: true, completion: nil)
-    }
-    
-    func getAdvertisements(gender: String, race: String, budget: String, moveIn: String) {
-        
-        let params: [String: Any] = [
-            "gender_pref": gender,
-            "race_pref": race,
-            "budget": budget,
-            "move_in": moveIn
-        ]
-        
-        self.getAnnotationsFromAPI(params: params, completionHandler: { newAnnotations in
-            
-            // Check if device has hardware needed for augmented reality
-            let result = ARViewController.createCaptureSession()
-            if result.error != nil
-            {
-                //let message = result.error?.userInfo["description"] as? String
-                //let alertView = UIAlertView(title: "Error", message: message, delegate: nil, cancelButtonTitle: "Close")
-                //alertView.show()
-                return
-            }
-            
-            if newAnnotations.count > 0 {
-                
-                // Present ARViewController
-                self.dataSource = self
-                self.maxVisibleAnnotations = 100
-                self.maxVerticalLevel = 5
-                self.headingSmoothingFactor = 0.05
-                self.trackingManager.userDistanceFilter = 25
-                self.trackingManager.reloadDistanceFilter = 75
-                //self.setAnnotations(dummyAnnotations)
-                self.setAnnotations(newAnnotations)
-            }
-        })
-    }
-    
-    func setupDropDown() {
-        
-        let dropDowns: [DropDown] = [
-            genderDropDown,
-            raceDropDown
-        ]
-        dropDowns.forEach {
-            $0.dismissMode = .onTap
-            $0.direction = .bottom
-        }
-        
-        genderDropDown.bottomOffset = CGPoint(x: 0, y: genderDropDown.bounds.height)
-        genderDropDown.dataSource = genderOptions
-        genderDropDown.selectionAction = { [unowned self] (index, item) in
-            self.textFieldGender.text = item
-        }
-        
-        raceDropDown.bottomOffset = CGPoint(x: 0, y: raceDropDown.bounds.height)
-        raceDropDown.dataSource = raceOptions
-        raceDropDown.selectionAction = { [unowned self] (index, item) in
-            self.textFieldRace.text = item
-        }
     }
     
     func datePickerChanged(datePicker: UIDatePicker) {
