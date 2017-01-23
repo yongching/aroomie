@@ -225,6 +225,15 @@ class APIManager {
     }
     
     // API - Advertisement
+    func getUserAdvertisements(completionHandler: @escaping (JSON) -> Void ) {
+        
+        let path = "api/advertisements/self/"
+        let param: [String: Any] = [
+            "access_token": Default.shared.getAccessToken()
+        ]
+        requestServer(true, .get, path, param, URLEncoding(), completionHandler)
+    }
+    
     func getAdvertisements(params: [String: Any], completionHandler: @escaping (JSON) -> Void ) {
         
         let path = "api/advertisements/"

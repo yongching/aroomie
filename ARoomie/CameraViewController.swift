@@ -96,7 +96,8 @@ class CameraViewController: ARViewController, ARDataSource, UITextFieldDelegate,
             var count = 0
             
             if json != nil {
-                print(json)
+                
+                //print(json)
                 
                 if json.arrayValue.count > 0 {
                     for result in json.arrayValue {

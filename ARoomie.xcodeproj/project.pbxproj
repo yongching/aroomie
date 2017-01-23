@@ -27,9 +27,12 @@
 		AC5C47771E1BB44100AD3297 /* AnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5C47761E1BB44100AD3297 /* AnnotationView.swift */; };
 		AC6210361E034B790011267D /* FBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6210351E034B790011267D /* FBManager.swift */; };
 		AC6210381E034DE50011267D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6210371E034DE50011267D /* LoginViewController.swift */; };
+		AC7C27C81E35F39B00201AB0 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC7C27C71E35F39B00201AB0 /* UserNotifications.framework */; };
 		ACA210941E14096800C6BF2F /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA210931E14096800C6BF2F /* SettingTableViewController.swift */; };
 		ACA29FDB1E33B11700605E76 /* MessageDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA29FDA1E33B11700605E76 /* MessageDetailsViewController.swift */; };
 		ACC036471E27FE80004DB095 /* NewAdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC036461E27FE80004DB095 /* NewAdViewController.swift */; };
+		ACCDBDFE1E360C9100F0F61B /* MyAdTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCDBDFD1E360C9100F0F61B /* MyAdTableViewController.swift */; };
+		ACCDBE011E3611DA00F0F61B /* AdvertisementTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCDBE001E3611DA00F0F61B /* AdvertisementTableViewCell.swift */; };
 		ACDDF1891E14293B00A4002B /* PreferenceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDDF1881E14293B00A4002B /* PreferenceTableViewController.swift */; };
 		ACDDF18D1E14326B00A4002B /* LifestyleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDDF18C1E14326B00A4002B /* LifestyleTableViewController.swift */; };
 		ACE8DE3E1E0089FB0025530F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE8DE3D1E0089FB0025530F /* AppDelegate.swift */; };
@@ -69,9 +72,12 @@
 		AC6210341E01DB510011267D /* ARoomie.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ARoomie.entitlements; sourceTree = "<group>"; };
 		AC6210351E034B790011267D /* FBManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBManager.swift; sourceTree = "<group>"; };
 		AC6210371E034DE50011267D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		AC7C27C71E35F39B00201AB0 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		ACA210931E14096800C6BF2F /* SettingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
 		ACA29FDA1E33B11700605E76 /* MessageDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageDetailsViewController.swift; sourceTree = "<group>"; };
 		ACC036461E27FE80004DB095 /* NewAdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewAdViewController.swift; sourceTree = "<group>"; };
+		ACCDBDFD1E360C9100F0F61B /* MyAdTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyAdTableViewController.swift; sourceTree = "<group>"; };
+		ACCDBE001E3611DA00F0F61B /* AdvertisementTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvertisementTableViewCell.swift; sourceTree = "<group>"; };
 		ACDDF1881E14293B00A4002B /* PreferenceTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferenceTableViewController.swift; sourceTree = "<group>"; };
 		ACDDF18C1E14326B00A4002B /* LifestyleTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LifestyleTableViewController.swift; sourceTree = "<group>"; };
 		ACE8DE3A1E0089FB0025530F /* ARoomie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARoomie.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -94,6 +100,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC7C27C81E35F39B00201AB0 /* UserNotifications.framework in Frameworks */,
 				514E343DA7E2014F03BF49B1 /* Pods_ARoomie.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -145,6 +152,7 @@
 		AC216CA11E0BDF8A00B6C15B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				ACCDBDFF1E3611C100F0F61B /* Advertisement */,
 				ACEA9EC31E31FFAE0003F9A9 /* Message */,
 			);
 			name = View;
@@ -244,6 +252,14 @@
 			name = Storyboard;
 			sourceTree = "<group>";
 		};
+		ACCDBDFF1E3611C100F0F61B /* Advertisement */ = {
+			isa = PBXGroup;
+			children = (
+				ACCDBE001E3611DA00F0F61B /* AdvertisementTableViewCell.swift */,
+			);
+			name = Advertisement;
+			sourceTree = "<group>";
+		};
 		ACE8DE311E0089FB0025530F = {
 			isa = PBXGroup;
 			children = (
@@ -309,9 +325,10 @@
 		ACEF8DE01E27BCF6004CD5B8 /* Advertisement */ = {
 			isa = PBXGroup;
 			children = (
-				ACEF8DE31E27BD0D004CD5B8 /* NewAdDetailsTableViewController.swift */,
 				ACC036461E27FE80004DB095 /* NewAdViewController.swift */,
+				ACEF8DE31E27BD0D004CD5B8 /* NewAdDetailsTableViewController.swift */,
 				ACEA9EB81E2E2A550003F9A9 /* AdDetailsTableViewController.swift */,
+				ACCDBDFD1E360C9100F0F61B /* MyAdTableViewController.swift */,
 			);
 			name = Advertisement;
 			sourceTree = "<group>";
@@ -319,6 +336,7 @@
 		D72EFA559BCFA842295CABD4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AC7C27C71E35F39B00201AB0 /* UserNotifications.framework */,
 				836C3D9CAED0B2FD6DE9531B /* Pods_ARoomie.framework */,
 			);
 			name = Frameworks;
@@ -462,6 +480,7 @@
 				AC5C47681E1BB3B100AD3297 /* ARConfiguration.swift in Sources */,
 				ACEA9EBC1E2F6C940003F9A9 /* UserProfileTableViewController.swift in Sources */,
 				ACEA9EB91E2E2A550003F9A9 /* AdDetailsTableViewController.swift in Sources */,
+				ACCDBE011E3611DA00F0F61B /* AdvertisementTableViewCell.swift in Sources */,
 				AC5C47751E1BB3E300AD3297 /* DebugMapViewController.swift in Sources */,
 				ACEF8DE41E27BD0D004CD5B8 /* NewAdDetailsTableViewController.swift in Sources */,
 				AC5C47691E1BB3B100AD3297 /* ARTrackingManager.swift in Sources */,
@@ -473,6 +492,7 @@
 				ACE8DE401E0089FB0025530F /* ViewController.swift in Sources */,
 				ACEA9EC21E31CB470003F9A9 /* MessagesTableViewController.swift in Sources */,
 				AC5C47771E1BB44100AD3297 /* AnnotationView.swift in Sources */,
+				ACCDBDFE1E360C9100F0F61B /* MyAdTableViewController.swift in Sources */,
 				AC25E6411E0F0F2100973623 /* User.swift in Sources */,
 				ACA210941E14096800C6BF2F /* SettingTableViewController.swift in Sources */,
 				AC6210361E034B790011267D /* FBManager.swift in Sources */,

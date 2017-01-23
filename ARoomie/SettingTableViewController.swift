@@ -65,7 +65,7 @@ class SettingTableViewController: UITableViewController, UITextFieldDelegate {
         case 2:
             return 2
         case 3:
-            return 2
+            return 3
         case 4:
             return 1
         default:
