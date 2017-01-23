@@ -179,6 +179,7 @@ class APIManager {
                     if response.response?.statusCode == 200 {
                         let jsonData = JSON(value)
                         completionHandler(jsonData)
+                        print("200")
                     } else {
                         completionHandler(nil)
                     }
@@ -225,15 +226,6 @@ class APIManager {
     }
     
     // API - Advertisement
-    func getUserAdvertisements(completionHandler: @escaping (JSON) -> Void ) {
-        
-        let path = "api/advertisements/self/"
-        let param: [String: Any] = [
-            "access_token": Default.shared.getAccessToken()
-        ]
-        requestServer(true, .get, path, param, URLEncoding(), completionHandler)
-    }
-    
     func getAdvertisements(params: [String: Any], completionHandler: @escaping (JSON) -> Void ) {
         
         let path = "api/advertisements/"
@@ -246,7 +238,32 @@ class APIManager {
         requestServer(true, .get, path, nil, URLEncoding(), completionHandler)
     }
     
+    func getUserAdvertisements(completionHandler: @escaping (JSON) -> Void ) {
+        
+        let path = "api/advertisements/self/"
+        let param: [String: Any] = [
+            "access_token": Default.shared.getAccessToken()
+        ]
+        requestServer(true, .get, path, param, URLEncoding(), completionHandler)
+    }
+    
+    func deleteAdvertisement(byId: Int, completionHandler: @escaping (JSON) -> Void ) {
+        
+        let path = "api/advertisement/delete/\(byId)/"
+        requestServer(true, .delete, path, nil, URLEncoding(), completionHandler)
+    }
+    
     // API - Message
+    func sendMessage(toId: Int, content: String, completionHandler: @escaping (JSON) -> Void ) {
+        
+        let path = "api/message/send/\(toId)/"
+        let params: [String: Any] = [
+            "access_token": Default.shared.getAccessToken(),
+            "content": content
+        ]
+        requestServer(true, .post, path, params, URLEncoding(), completionHandler)
+    }
+    
     func getMessages(loadingAnimation: Bool, completionHandler: @escaping (JSON) -> Void ) {
         
         let path = "api/messages/"
@@ -263,16 +280,6 @@ class APIManager {
             "access_token": Default.shared.getAccessToken()
         ]
         requestServer(true, .get, path, param, URLEncoding(), completionHandler)
-    }
-    
-    func sendMessage(toId: Int, content: String, completionHandler: @escaping (JSON) -> Void ) {
-        
-        let path = "api/message/send/\(toId)/"
-        let params: [String: Any] = [
-            "access_token": Default.shared.getAccessToken(),
-            "content": content
-        ]
-        requestServer(true, .post, path, params, URLEncoding(), completionHandler)
     }
     
     // API - Rating

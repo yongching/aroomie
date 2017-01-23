@@ -11,8 +11,7 @@ import UIKit
 class MyAdTableViewController: UITableViewController {
 
     // MARK : - Properties
-    
-    var counts = 0
+    var advertisementIds: [Int] = []
     var roomUrls: [String] = []
     var placeNames: [String] = []
     
@@ -37,7 +36,7 @@ class MyAdTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return counts
+        return placeNames.count
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -59,7 +58,26 @@ class MyAdTableViewController: UITableViewController {
         
         return cell
     }
-
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.delete {
+            
+            APIManager.shared.deleteAdvertisement(byId: advertisementIds[indexPath.row], completionHandler: { json in
+                
+                if json != nil {
+                    self.advertisementIds.remove(at: indexPath.row)
+                    self.roomUrls.remove(at: indexPath.row)
+                    self.placeNames.remove(at: indexPath.row)
+                    tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
+                }
+            })
+        }
+    }
+    
     // MARK : - Actions
     
     func getAdvertisements() {
@@ -70,8 +88,8 @@ class MyAdTableViewController: UITableViewController {
         APIManager.shared.getUserAdvertisements(completionHandler: { json in
             print(json)
             if json != nil {
-                self.counts = json.arrayValue.count
                 for result in json.arrayValue {
+                    self.advertisementIds.append(result["id"].intValue)
                     self.roomUrls.append(result["photo"].stringValue)
                     self.placeNames.append(result["place_name"].stringValue)
                 }
