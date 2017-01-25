@@ -15,6 +15,8 @@ class UserProfileTableViewController: UITableViewController {
     
     // Segue
     var userId: Int?
+    var lifestyle: String?
+    var isOns: [Int] = []
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var starView: UIView!
@@ -22,8 +24,11 @@ class UserProfileTableViewController: UITableViewController {
     @IBOutlet weak var labelAgeRange: UILabel!
     @IBOutlet weak var labelGender: UILabel!
     @IBOutlet weak var labelRace: UILabel!
+    @IBOutlet weak var labelLifestyleInfo: UILabel!
     @IBOutlet weak var labelPhone: UILabel!
     @IBOutlet weak var labelEmail: UILabel!
+    
+    let emojiUnicodes: Array<String> = ["\u{1F3CA}", "\u{1F3C4}", "\u{1F485}", "\u{1F6B4}", "\u{1F4DA}", "\u{1F483}", "\u{1F3AE}", "\u{1F4AA}", "\u{1F3C0}", "\u{1F3BE}", "\u{26BD}", "\u{26BE}", "\u{1F3B5}", "\u{1F3B1}", "\u{1F3A8}", "\u{1F3A4}", "\u{1F3A6}", "\u{1F3A3}", "\u{1F37B}", "\u{1F355}", "\u{1F3B3}"]
     
     // Star rating
     let starRatingView = HCSStarRatingView(frame: CGRect(x: 0, y: 0, width: 120, height: 30))
@@ -44,6 +49,7 @@ class UserProfileTableViewController: UITableViewController {
         checkRating()
         setupImageView()
         getRating()
+        getLifestyleInfo()
         getDetails()
     }
 
@@ -62,7 +68,7 @@ class UserProfileTableViewController: UITableViewController {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
        
-        return 4
+        return 5
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -75,6 +81,8 @@ class UserProfileTableViewController: UITableViewController {
         case 2:
             return 3
         case 3:
+            return 1
+        case 4:
             return 3
         default:
             return 0
@@ -135,6 +143,27 @@ class UserProfileTableViewController: UITableViewController {
                     self.starView.addSubview(self.starRatingView)
                 }
             })
+        }
+    }
+    
+    func getLifestyleInfo() {
+        
+        if let ls = lifestyle {
+            let array = ls.components(separatedBy: ",")
+            
+            var selected = ""
+            
+            for item in array {
+                isOns.append(Int(item)!)
+            }
+            
+            for (index, choice) in (isOns.enumerated()) {
+                if choice == 1 {
+                    selected += emojiUnicodes[index]
+                }
+            }
+            self.labelLifestyleInfo.text = selected
+            self.tableView.reloadData()
         }
     }
     

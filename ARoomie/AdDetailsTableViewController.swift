@@ -24,6 +24,7 @@ class AdDetailsTableViewController: UITableViewController, MKMapViewDelegate {
     @IBOutlet weak var mapView: MKMapView!
     
     var creatorId: Int?
+    var lifestyle: String?
     
     // Map View
     let lat: Double? = 0.0
@@ -128,6 +129,7 @@ class AdDetailsTableViewController: UITableViewController, MKMapViewDelegate {
                     
                     APIManager.shared.getUserProfile(false, byId: json["created_by"].intValue, completionHandler: { json in
                         if json != nil {
+                            self.lifestyle = json["profile"]["lifestyle_info"].stringValue
                             do {
                                 self.profileAvatar.image = try UIImage(data: Data(contentsOf: URL(string: json["profile"]["avatar"].stringValue)!))
                             } catch _ {
@@ -170,6 +172,9 @@ class AdDetailsTableViewController: UITableViewController, MKMapViewDelegate {
             let controller = segue.destination as! UserProfileTableViewController
             if let id = creatorId {
                 controller.userId = id
+            }
+            if let ls = lifestyle {
+                controller.lifestyle = ls
             }
         }
     }

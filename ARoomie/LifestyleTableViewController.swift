@@ -66,7 +66,7 @@ class LifestyleTableViewController: UITableViewController {
     // MARK: - Actions
     
     func getLifestyle() {
-
+        
         isOns.removeAll()
         let lifestyle = User.currentUser.lifestyle
         let array = lifestyle?.components(separatedBy: ",")
