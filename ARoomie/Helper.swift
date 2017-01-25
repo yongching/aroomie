@@ -15,6 +15,13 @@ class Default {
     let defaults = UserDefaults.standard
     
     // Getter
+    func getDeviceToken() -> String {
+        if let accessToken = defaults.object(forKey: "device_token") {
+            return accessToken as! String
+        }
+        return ""
+    }
+    
     func getAccessToken() -> String {
         if let accessToken = defaults.object(forKey: "access_token") {
             return accessToken as! String
@@ -38,6 +45,10 @@ class Default {
     
     // Reset user default
     func resetUserDefault() -> Void {
+        if !(getAccessToken().isEmpty) {
+            defaults.removeObject(forKey: "device_token")
+        }
+        
         if !(getAccessToken().isEmpty) {
             defaults.removeObject(forKey: "access_token")
         }
