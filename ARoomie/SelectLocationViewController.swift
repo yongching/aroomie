@@ -41,6 +41,8 @@ class SelectLocationViewController: UIViewController, GMSMapViewDelegate, GMSAut
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.tabBarController?.tabBar.isHidden = true
+        
         // Initialize the location manager
         locationManager = CLLocationManager()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -163,6 +165,8 @@ class SelectLocationViewController: UIViewController, GMSMapViewDelegate, GMSAut
     func initializeAdvertisement() {
         
         if let id = self.advertisementId {
+            
+                self.navigationItem.title = "Edit Location"
             APIManager.shared.getAdvertisement(byId: id, completionHandler: { json in
                 
                 if json != nil {

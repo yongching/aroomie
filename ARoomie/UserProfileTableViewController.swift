@@ -99,13 +99,15 @@ class UserProfileTableViewController: UITableViewController {
     func checkRating() {
         
         if let id = userId {
-            APIManager.shared.ratingCheck(userId: id, completionHandler: { json in
-                if json != nil {
-                    if json["rated"].boolValue == false {
-                        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Give Rating", style: .plain, target: self, action: #selector(UserProfileTableViewController.rateUser))
+            if id != User.currentUser.id {
+                APIManager.shared.ratingCheck(userId: id, completionHandler: { json in
+                    if json != nil {
+                        if json["rated"].boolValue == false {
+                            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Give Rating", style: .plain, target: self, action: #selector(UserProfileTableViewController.rateUser))
+                        }
                     }
-                }
-            })
+                })
+            }
         }
     }
     
@@ -140,7 +142,7 @@ class UserProfileTableViewController: UITableViewController {
         
         if let id = userId {
             
-            APIManager.shared.getUserProfile(byId: id, completionHandler: { json in
+            APIManager.shared.getUserProfile(true, byId: id, completionHandler: { json in
                 if json != nil {
                     do {
                         self.imageView.image = try UIImage(data: Data(contentsOf: URL(string: json["profile"]["avatar"].stringValue)!))

@@ -102,7 +102,7 @@ class MessagesTableViewController: UITableViewController {
         APIManager.shared.getMessages(loadingAnimation: animation, completionHandler: { json in
             if json != nil {
                 for result in json["messages_received"].arrayValue {
-                    APIManager.shared.getUserProfile(byId: result["sent_by"].intValue, completionHandler: { json2 in
+                    APIManager.shared.getUserProfile(true, byId: result["sent_by"].intValue, completionHandler: { json2 in
                         count += 1
                         if json2 != nil {
                             self.counts = count

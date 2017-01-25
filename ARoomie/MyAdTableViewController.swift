@@ -103,7 +103,5 @@ class MyAdTableViewController: UITableViewController {
             }
         })
     }
-    
-    // 
-    
+
 }

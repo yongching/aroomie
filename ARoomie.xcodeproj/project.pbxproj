@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		514E343DA7E2014F03BF49B1 /* Pods_ARoomie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 836C3D9CAED0B2FD6DE9531B /* Pods_ARoomie.framework */; };
+		AC1521D41E37C11700EE2F70 /* EmojiTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1521D31E37C11600EE2F70 /* EmojiTableViewCell.swift */; };
 		AC25E6411E0F0F2100973623 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC25E6401E0F0F2100973623 /* User.swift */; };
 		AC2B8B021E18F811003AC6D4 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2B8B011E18F811003AC6D4 /* APIManager.swift */; };
 		AC2B8B041E18FB87003AC6D4 /* DropDownButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2B8B031E18FB87003AC6D4 /* DropDownButton.swift */; };
@@ -52,6 +53,7 @@
 		836C3D9CAED0B2FD6DE9531B /* Pods_ARoomie.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ARoomie.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8ED54050A3161D71010C5DA7 /* Pods-ARoomie.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARoomie.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ARoomie/Pods-ARoomie.debug.xcconfig"; sourceTree = "<group>"; };
 		9EA1B70793769F89F9486BB2 /* Pods-ARoomie.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARoomie.release.xcconfig"; path = "Pods/Target Support Files/Pods-ARoomie/Pods-ARoomie.release.xcconfig"; sourceTree = "<group>"; };
+		AC1521D31E37C11600EE2F70 /* EmojiTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmojiTableViewCell.swift; sourceTree = "<group>"; };
 		AC25E6401E0F0F2100973623 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		AC2B8B011E18F811003AC6D4 /* APIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		AC2B8B031E18FB87003AC6D4 /* DropDownButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropDownButton.swift; sourceTree = "<group>"; };
@@ -117,6 +119,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		AC1521D51E37C11D00EE2F70 /* Emoji */ = {
+			isa = PBXGroup;
+			children = (
+				AC1521D31E37C11600EE2F70 /* EmojiTableViewCell.swift */,
+			);
+			name = Emoji;
+			sourceTree = "<group>";
+		};
 		AC216C9E1E0BDE7A00B6C15B /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -152,6 +162,7 @@
 		AC216CA11E0BDF8A00B6C15B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				AC1521D51E37C11D00EE2F70 /* Emoji */,
 				ACCDBDFF1E3611C100F0F61B /* Advertisement */,
 				ACEA9EC31E31FFAE0003F9A9 /* Message */,
 			);
@@ -485,6 +496,7 @@
 				ACEF8DE41E27BD0D004CD5B8 /* NewAdDetailsTableViewController.swift in Sources */,
 				AC5C47691E1BB3B100AD3297 /* ARTrackingManager.swift in Sources */,
 				AC6210381E034DE50011267D /* LoginViewController.swift in Sources */,
+				AC1521D41E37C11700EE2F70 /* EmojiTableViewCell.swift in Sources */,
 				AC2B8B041E18FB87003AC6D4 /* DropDownButton.swift in Sources */,
 				ACCDBE031E365E0500F0F61B /* SelectLocationViewController.swift in Sources */,
 				AC2B8B021E18F811003AC6D4 /* APIManager.swift in Sources */,

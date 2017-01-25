@@ -126,7 +126,7 @@ class AdDetailsTableViewController: UITableViewController, MKMapViewDelegate {
                         print("Room image not found")
                     }
                     
-                    APIManager.shared.getUserProfile(byId: json["created_by"].intValue, completionHandler: { json in
+                    APIManager.shared.getUserProfile(false, byId: json["created_by"].intValue, completionHandler: { json in
                         if json != nil {
                             do {
                                 self.profileAvatar.image = try UIImage(data: Data(contentsOf: URL(string: json["profile"]["avatar"].stringValue)!))

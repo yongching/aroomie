@@ -17,7 +17,10 @@ class User {
     var email: String?
     var pictureURL: String?
     **/
- 
+    
+    static let currentUser = User()
+    
+    var id: Int?
     var pictureURL: String?
     var name: String?
     var age_range: String?
@@ -25,13 +28,12 @@ class User {
     var race: Int?
     var email: String?
     var phone: String?
+    var lifestyle: String?
     
     var gender_pref: Int?
     var race_pref: Int?
     var budget_pref: String?
     var move_in_pref: String?
-
-    static let currentUser = User()
     
     /**
     func setInfo(json: JSON) {
@@ -48,6 +50,7 @@ class User {
     **/
     
     func setInfo(json: JSON) {
+        self.id = json["basic"]["id"].intValue
         self.pictureURL = json["profile"]["avatar"].stringValue
         self.name = json["basic"]["first_name"].stringValue + " " + json["basic"]["last_name"].stringValue
         self.age_range = json["age_range"].stringValue
@@ -58,6 +61,7 @@ class User {
         }
         self.email = json["basic"]["email"].stringValue
         self.phone = json["profile"]["phone"].stringValue
+        self.lifestyle = json["profile"]["lifestyle_info"].stringValue
         
         let gender_pref = json["profile"]["gender_pref"].stringValue
         if !(gender_pref == "") {
@@ -79,6 +83,7 @@ class User {
     }
     
     func resetInfo() {
+        self.id = nil
         self.pictureURL = nil
         self.name = nil
         self.age_range = nil
@@ -86,6 +91,7 @@ class User {
         self.race = nil
         self.email = nil
         self.phone = nil
+        self.lifestyle = nil
         
         self.gender_pref = nil
         self.race_pref = nil

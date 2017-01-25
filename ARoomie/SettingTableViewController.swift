@@ -38,7 +38,7 @@ class SettingTableViewController: UITableViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.tabBarController?.tabBar.isHidden = false
         setupAvatar()
         setupDropDown()
         setupTextField()

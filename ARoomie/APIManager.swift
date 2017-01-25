@@ -206,13 +206,13 @@ class APIManager {
         requestServer(true, .get, path, params, URLEncoding(), completionHandler)
     }
     
-    func getUserProfile(byId: Int, completionHandler: @escaping (JSON) -> Void ) {
+    func getUserProfile(_ loadingAnimation: Bool, byId: Int, completionHandler: @escaping (JSON) -> Void ) {
         
         let path = "api/user/profile/other/\(byId)/"
         let params: [String: Any] = [
             "access_token": Default.shared.getAccessToken()
         ]
-        requestServer(false, .get, path, params, URLEncoding(), completionHandler)
+        requestServer(loadingAnimation, .get, path, params, URLEncoding(), completionHandler)
     }
     
     func updateUserProfile(params: [String: Any], completionHandler: @escaping (JSON) -> Void ) {

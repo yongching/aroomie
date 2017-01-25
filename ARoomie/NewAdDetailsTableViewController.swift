@@ -17,6 +17,8 @@ class NewAdDetailsTableViewController: UITableViewController, UITextFieldDelegat
     
     // MARK: - Properties
     
+    @IBOutlet weak var rightBarButton: UIBarButtonItem!
+    
     // Segue
     var advertisementId: Int?
     var lat: String = "0"
@@ -209,6 +211,9 @@ class NewAdDetailsTableViewController: UITableViewController, UITextFieldDelegat
     func initializeAdvertisement() {
         
         if let id = self.advertisementId {
+            
+                self.navigationItem.title = "Edit Details"
+                self.rightBarButton.title = "Update"
             APIManager.shared.getAdvertisement(byId: id, completionHandler: { json in
                 
                 if json != nil {

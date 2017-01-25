@@ -108,7 +108,7 @@ class CameraViewController: ARViewController, ARDataSource, UITextFieldDelegate,
                         annotation.createdBy = result["created_by"].intValue
                         
                         if let id = annotation.createdBy {
-                            APIManager.shared.getUserProfile(byId: id, completionHandler: { json2 in
+                            APIManager.shared.getUserProfile(false, byId: id, completionHandler: { json2 in
                                 count += 1
                                 if json2 != nil {
                                     annotation.pictureUrl = json2["profile"]["avatar"].stringValue
