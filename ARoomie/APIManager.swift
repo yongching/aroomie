@@ -218,11 +218,21 @@ class APIManager {
     func updateUserProfile(params: [String: Any], completionHandler: @escaping (JSON) -> Void ) {
         
         let path = "api/user/profile/edit/"
-        let params2: [String: Any] = [
+        let defaultParam: [String: Any] = [
             "access_token": Default.shared.getAccessToken()
         ]
-        let merged = params2.merged(with: params)
+        let merged = defaultParam.merged(with: params)
         requestServer(true, .post, path, merged, URLEncoding(), completionHandler)
+    }
+    
+    func updateDeviceToken(token: String, completionHandler: @escaping (JSON) -> Void ) {
+        
+        let path = "api/user/device-token/"
+        let params: [String: Any] = [
+            "access_token": Default.shared.getAccessToken(),
+            "device_token": token
+        ]
+        requestServer(false, .post, path, params, URLEncoding(), completionHandler)
     }
     
     // API - Advertisement

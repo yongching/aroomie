@@ -13,8 +13,9 @@
 		AC2B8B021E18F811003AC6D4 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2B8B011E18F811003AC6D4 /* APIManager.swift */; };
 		AC2B8B041E18FB87003AC6D4 /* DropDownButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2B8B031E18FB87003AC6D4 /* DropDownButton.swift */; };
 		AC2B8B061E18FE30003AC6D4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2B8B051E18FE30003AC6D4 /* Constants.swift */; };
-		AC2B8B0A1E19272B003AC6D4 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2B8B091E19272B003AC6D4 /* Helper.swift */; };
+		AC2B8B0A1E19272B003AC6D4 /* Default.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2B8B091E19272B003AC6D4 /* Default.swift */; };
 		AC33168E1E1BAD0000EE3211 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC33168D1E1BAD0000EE3211 /* CameraViewController.swift */; };
+		AC5583401E39DED800B76604 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC55833F1E39DED800B76604 /* Extension.swift */; };
 		AC5C47661E1BB3B100AD3297 /* ARAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5C47611E1BB3B100AD3297 /* ARAnnotation.swift */; };
 		AC5C47671E1BB3B100AD3297 /* ARAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5C47621E1BB3B100AD3297 /* ARAnnotationView.swift */; };
 		AC5C47681E1BB3B100AD3297 /* ARConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5C47631E1BB3B100AD3297 /* ARConfiguration.swift */; };
@@ -58,8 +59,9 @@
 		AC2B8B011E18F811003AC6D4 /* APIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		AC2B8B031E18FB87003AC6D4 /* DropDownButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropDownButton.swift; sourceTree = "<group>"; };
 		AC2B8B051E18FE30003AC6D4 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		AC2B8B091E19272B003AC6D4 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		AC2B8B091E19272B003AC6D4 /* Default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Default.swift; sourceTree = "<group>"; };
 		AC33168D1E1BAD0000EE3211 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		AC55833F1E39DED800B76604 /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		AC5C47611E1BB3B100AD3297 /* ARAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARAnnotation.swift; sourceTree = "<group>"; };
 		AC5C47621E1BB3B100AD3297 /* ARAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARAnnotationView.swift; sourceTree = "<group>"; };
 		AC5C47631E1BB3B100AD3297 /* ARConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARConfiguration.swift; sourceTree = "<group>"; };
@@ -141,7 +143,8 @@
 				AC6210351E034B790011267D /* FBManager.swift */,
 				AC2B8B011E18F811003AC6D4 /* APIManager.swift */,
 				AC2B8B051E18FE30003AC6D4 /* Constants.swift */,
-				AC2B8B091E19272B003AC6D4 /* Helper.swift */,
+				AC2B8B091E19272B003AC6D4 /* Default.swift */,
+				AC55833F1E39DED800B76604 /* Extension.swift */,
 			);
 			name = Manager;
 			sourceTree = "<group>";
@@ -497,6 +500,7 @@
 				ACCDBE011E3611DA00F0F61B /* AdvertisementTableViewCell.swift in Sources */,
 				AC5C47751E1BB3E300AD3297 /* DebugMapViewController.swift in Sources */,
 				ACEF8DE41E27BD0D004CD5B8 /* NewAdDetailsTableViewController.swift in Sources */,
+				AC5583401E39DED800B76604 /* Extension.swift in Sources */,
 				AC5C47691E1BB3B100AD3297 /* ARTrackingManager.swift in Sources */,
 				AC6210381E034DE50011267D /* LoginViewController.swift in Sources */,
 				AC1521D41E37C11700EE2F70 /* EmojiTableViewCell.swift in Sources */,
@@ -513,7 +517,7 @@
 				ACA210941E14096800C6BF2F /* SettingTableViewController.swift in Sources */,
 				AC6210361E034B790011267D /* FBManager.swift in Sources */,
 				AC5C47671E1BB3B100AD3297 /* ARAnnotationView.swift in Sources */,
-				AC2B8B0A1E19272B003AC6D4 /* Helper.swift in Sources */,
+				AC2B8B0A1E19272B003AC6D4 /* Default.swift in Sources */,
 				AC5C476A1E1BB3B100AD3297 /* ARViewController.swift in Sources */,
 				ACEA9EBE1E2F79AF0003F9A9 /* NewMessageViewController.swift in Sources */,
 				AC33168E1E1BAD0000EE3211 /* CameraViewController.swift in Sources */,

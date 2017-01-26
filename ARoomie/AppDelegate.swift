@@ -77,9 +77,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         for i in 0..<deviceToken.count {
             token = token + String(format: "%02.2hhx", arguments: [deviceToken[i]])
         }
-        print(token)
+        
         let defaults = UserDefaults.standard
         defaults.set(token, forKey: "device_token")
+        APIManager.shared.updateDeviceToken(token: token, completionHandler: { json in
+            
+            if json != nil {
+                print("Successfully stored token")
+            }
+        })
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
