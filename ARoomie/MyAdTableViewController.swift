@@ -14,6 +14,7 @@ class MyAdTableViewController: UITableViewController {
     var advertisementIds: [Int] = []
     var roomUrls: [String] = []
     var placeNames: [String] = []
+    var loaded: Bool = false
     
     // MARK : - View lifecycle
     
@@ -48,11 +49,13 @@ class MyAdTableViewController: UITableViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "AdvertisementCell", for: indexPath) as! AdvertisementTableViewCell
         
-        do {
-            cell.roomImage.image = try UIImage(data: Data(contentsOf: URL(string: roomUrls[indexPath.row])!))
-            
-        } catch _ {
-            
+        if !loaded {
+            do {
+                cell.roomImage.image = try UIImage(data: Data(contentsOf: URL(string: roomUrls[indexPath.row])!))
+            } catch _ {}
+            if indexPath.row == self.roomUrls.count-1 {
+                self.loaded = true
+            }
         }
         cell.labelPlace.text = self.placeNames[indexPath.row]
         
