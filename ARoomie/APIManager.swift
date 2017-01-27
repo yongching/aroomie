@@ -227,7 +227,7 @@ class APIManager {
     
     func updateDeviceToken(token: String, completionHandler: @escaping (JSON) -> Void ) {
         
-        let path = "api/user/device-token/"
+        let path = "api/device/apns/create/"
         let params: [String: Any] = [
             "access_token": Default.shared.getAccessToken(),
             "device_token": token

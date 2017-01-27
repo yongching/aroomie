@@ -23,11 +23,29 @@ class ViewController: UITabBarController {
         
         self.selectedIndex = 1
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        NotificationCenter.default.addObserver(self, selector: #selector(self.catchNotification), name: NSNotification.Name(rawValue: "notification"), object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self)
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    }
+    
+    // MARK : - Actions
+    
+    func catchNotification(_ notification: Notification){
+        
+        let advertisementId: Int = notification.object as! Int
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let navigationController = storyboard.instantiateViewController(withIdentifier: "ViewAdvertisement") as! UINavigationController
+        let adDetailsTableViewController = navigationController.viewControllers[0] as! AdDetailsTableViewController
+        adDetailsTableViewController.advertisementId = advertisementId
+        present(navigationController, animated: true, completion: nil)
     }
 
 }
-

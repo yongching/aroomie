@@ -16,6 +16,7 @@
 		AC2B8B0A1E19272B003AC6D4 /* Default.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2B8B091E19272B003AC6D4 /* Default.swift */; };
 		AC33168E1E1BAD0000EE3211 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC33168D1E1BAD0000EE3211 /* CameraViewController.swift */; };
 		AC5583401E39DED800B76604 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC55833F1E39DED800B76604 /* Extension.swift */; };
+		AC5583411E3AACD900B76604 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC7C27C71E35F39B00201AB0 /* UserNotifications.framework */; };
 		AC5C47661E1BB3B100AD3297 /* ARAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5C47611E1BB3B100AD3297 /* ARAnnotation.swift */; };
 		AC5C47671E1BB3B100AD3297 /* ARAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5C47621E1BB3B100AD3297 /* ARAnnotationView.swift */; };
 		AC5C47681E1BB3B100AD3297 /* ARConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5C47631E1BB3B100AD3297 /* ARConfiguration.swift */; };
@@ -29,7 +30,6 @@
 		AC5C47771E1BB44100AD3297 /* AnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5C47761E1BB44100AD3297 /* AnnotationView.swift */; };
 		AC6210361E034B790011267D /* FBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6210351E034B790011267D /* FBManager.swift */; };
 		AC6210381E034DE50011267D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6210371E034DE50011267D /* LoginViewController.swift */; };
-		AC7C27C81E35F39B00201AB0 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC7C27C71E35F39B00201AB0 /* UserNotifications.framework */; };
 		ACA210941E14096800C6BF2F /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA210931E14096800C6BF2F /* SettingTableViewController.swift */; };
 		ACA29FDB1E33B11700605E76 /* MessageDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA29FDA1E33B11700605E76 /* MessageDetailsViewController.swift */; };
 		ACCDBDFE1E360C9100F0F61B /* MyAdTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCDBDFD1E360C9100F0F61B /* MyAdTableViewController.swift */; };
@@ -104,7 +104,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AC7C27C81E35F39B00201AB0 /* UserNotifications.framework in Frameworks */,
+				AC5583411E3AACD900B76604 /* UserNotifications.framework in Frameworks */,
 				514E343DA7E2014F03BF49B1 /* Pods_ARoomie.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

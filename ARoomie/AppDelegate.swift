@@ -11,26 +11,33 @@ import FBSDKCoreKit
 import DropDown
 import GoogleMaps
 import GooglePlaces
+import UserNotifications
+import SwiftyJSON
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        // DropDown
-        DropDown.startListeningToKeyboard()
+        // Push Notification
+        if #available(iOS 10, *) {
+            UNUserNotificationCenter.current().requestAuthorization(options:[.badge, .alert, .sound]){ (granted, error) in }
+            application.registerForRemoteNotifications()
+        }
+            
+        else if #available(iOS 9, *) {
+            UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: nil))
+            UIApplication.shared.registerForRemoteNotifications()
+        }
         
         // Google Map API
         GMSServices.provideAPIKey("AIzaSyDVM2x25xBAoXcxQtJIXn-rfBrxYqzBUpw")
         GMSPlacesClient.provideAPIKey("AIzaSyDVM2x25xBAoXcxQtJIXn-rfBrxYqzBUpw")
         
-        // Push Notification
-        let notificationTypes: UIUserNotificationType = [UIUserNotificationType.alert, UIUserNotificationType.badge, UIUserNotificationType.sound]
-        let pushNotificationSettings = UIUserNotificationSettings(types: notificationTypes, categories: nil)
-        application.registerUserNotificationSettings(pushNotificationSettings)
-        application.registerForRemoteNotifications()
+        // DropDown
+        DropDown.startListeningToKeyboard()
         
         return FBSDKApplicationDelegate.sharedInstance().application(
             application,
@@ -83,17 +90,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         APIManager.shared.updateDeviceToken(token: token, completionHandler: { json in
             
             if json != nil {
-                print("Successfully stored token")
+                print("Stored or updated device_token")
+            } else {
+                print("Device_token not stored")
             }
         })
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print("DidFailToRegister")
         print(error)
     }
     
-    private func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-        print(userInfo)
+    func application(_ application: UIApplication, didReceiveRemoteNotification data: [AnyHashable : Any]) {
+        
+        UIApplication.shared.applicationIconBadgeNumber = 0
+        
+        switch application.applicationState {
+            
+        // app is currently active, can update badges count here
+        case .active:
+            break
+            
+        // app is transitioning from background to foreground (user taps the notification)
+        // do what you need when user taps here
+        case .inactive:
+            let data = JSON(data)
+            let advertisementId = data["advertisementId"].intValue
+            NotificationCenter.default.post(name: Notification.Name(rawValue: "notification"), object: advertisementId)
+        
+        // app is in background, if content-avaialble key is set to 1, poll to your backend to retrieve data
+        // and update your interface here
+        case .background:
+            break
+        }
     }
 }
 
