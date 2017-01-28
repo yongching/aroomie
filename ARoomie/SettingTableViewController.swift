@@ -52,6 +52,15 @@ class SettingTableViewController: UITableViewController, UITextFieldDelegate {
     
     // MARK: - Table view data source
     
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        switch section {
+        case 0:
+            return 20.0
+        default:
+            return 30.0
+        }
+    }
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 5
     }
@@ -91,7 +100,7 @@ class SettingTableViewController: UITableViewController, UITextFieldDelegate {
     func setupAvatar() {
         imageAvatar.layer.cornerRadius = 60 / 2
         imageAvatar.layer.borderWidth = 1.0
-        imageAvatar.layer.borderColor = UIColor.white.cgColor
+        imageAvatar.layer.borderColor = UIColor.black.cgColor
         imageAvatar.clipsToBounds = true
     }
     
