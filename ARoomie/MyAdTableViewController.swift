@@ -10,13 +10,14 @@ import UIKit
 
 class MyAdTableViewController: UITableViewController {
 
-    // MARK : - Properties
+    // MARK: - Properties
+    
     var advertisementIds: [Int] = []
     var roomUrls: [String] = []
     var placeNames: [String] = []
     var loaded: Bool = false
     
-    // MARK : - View lifecycle
+    // MARK: - View lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,19 +75,27 @@ class MyAdTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == UITableViewCellEditingStyle.delete {
             
-            APIManager.shared.deleteAdvertisement(byId: advertisementIds[indexPath.row], completionHandler: { json in
+            let alert = UIAlertController(title: "Are you sure?", message: nil, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Delete", style: .default, handler: {
+                action in
                 
-                if json != nil {
-                    self.advertisementIds.remove(at: indexPath.row)
-                    self.roomUrls.remove(at: indexPath.row)
-                    self.placeNames.remove(at: indexPath.row)
-                    tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
-                }
-            })
+                APIManager.shared.deleteAdvertisement(byId: self.advertisementIds[indexPath.row], completionHandler: { json in
+                    
+                    if json != nil {
+                        self.advertisementIds.remove(at: indexPath.row)
+                        self.roomUrls.remove(at: indexPath.row)
+                        self.placeNames.remove(at: indexPath.row)
+                        tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
+                    }
+                })
+            }))
+            
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         }
     }
     
-    // MARK : - Actions
+    // MARK: - Actions
     
     func getAdvertisements() {
         
