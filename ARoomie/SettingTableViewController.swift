@@ -100,7 +100,7 @@ class SettingTableViewController: UITableViewController, UITextFieldDelegate {
     func setupAvatar() {
         imageAvatar.layer.cornerRadius = 60 / 2
         imageAvatar.layer.borderWidth = 1.0
-        imageAvatar.layer.borderColor = UIColor.black.cgColor
+        imageAvatar.layer.borderColor = UIColor.gray.cgColor
         imageAvatar.clipsToBounds = true
     }
     

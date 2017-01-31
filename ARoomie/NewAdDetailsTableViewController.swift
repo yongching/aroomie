@@ -283,7 +283,9 @@ class NewAdDetailsTableViewController: UITableViewController, UITextFieldDelegat
             case .success(let upload, _, _):
                 
                 upload.responseJSON { response in
+                    
                     SVProgressHUD.dismiss()
+                    
                     //debugPrint(response)
                     //print(JSON(response.result.value!))
                     
@@ -310,10 +312,10 @@ class NewAdDetailsTableViewController: UITableViewController, UITextFieldDelegat
                         var title = ""
                         
                         if let _ = self.advertisementId {
-                            title = "Error Posting!"
+                            title = "Error Updating!"
                             
                         } else {
-                            title = "Error Updating!"
+                            title = "Error Posting!"
                         }
                         
                         let alert = UIAlertController(title: title, message: "Please select an image and fill up all the required columns.", preferredStyle: .alert)

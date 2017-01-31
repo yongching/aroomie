@@ -110,8 +110,8 @@ class SelectLocationViewController: UIViewController, GMSMapViewDelegate, GMSAut
         currentLat = Double(cameraPosition.target.latitude).roundTo(places: 6)
         currentLng = Double(cameraPosition.target.longitude).roundTo(places: 6)
         
-        //print("lat \(currentLat)")
-        //print("lng \(currentLng)")
+        print("lat \(currentLat)")
+        print("lng \(currentLng)")
         
         geocoder.reverseGeocodeCoordinate(cameraPosition.target) { (response, error) in
             guard error == nil else {
