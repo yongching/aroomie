@@ -241,6 +241,7 @@ class UserProfileTableViewController: UITableViewController {
                         if json != nil {
                             let alert = UIAlertController(title: "Successfully Rated!", message: nil, preferredStyle: .alert)
                             alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: { completionHandler in
+                                self.navigationItem.rightBarButtonItem?.isEnabled = false
                                 self.getRating()
                             }))
                             self.present(alert, animated: true, completion: nil)
