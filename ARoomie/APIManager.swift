@@ -206,13 +206,13 @@ class APIManager {
         requestServer(true, .get, path, params, URLEncoding(), completionHandler)
     }
     
-    func getUserProfile(_ loadingAnimation: Bool, byId: Int, completionHandler: @escaping (JSON) -> Void ) {
+    func getUserProfile(_ animation: Bool, byId: Int, completionHandler: @escaping (JSON) -> Void ) {
         
         let path = "api/user/profile/other/\(byId)/"
         let params: [String: Any] = [
             "access_token": Default.shared.getAccessToken()
         ]
-        requestServer(loadingAnimation, .get, path, params, URLEncoding(), completionHandler)
+        requestServer(animation, .get, path, params, URLEncoding(), completionHandler)
     }
     
     func updateUserProfile(params: [String: Any], completionHandler: @escaping (JSON) -> Void ) {
@@ -280,13 +280,13 @@ class APIManager {
         requestServer(true, .post, path, params, URLEncoding(), completionHandler)
     }
     
-    func getMessages(loadingAnimation: Bool, completionHandler: @escaping (JSON) -> Void ) {
+    func getMessages(animation: Bool, completionHandler: @escaping (JSON) -> Void ) {
         
         let path = "api/messages/"
         let param: [String: Any] = [
             "access_token": Default.shared.getAccessToken()
         ]
-        requestServer(loadingAnimation, .get, path, param, URLEncoding(), completionHandler)
+        requestServer(animation, .get, path, param, URLEncoding(), completionHandler)
     }
     
     func getMessageThread(byId: Int, completionHandler: @escaping (JSON) -> Void ) {

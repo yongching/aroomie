@@ -46,11 +46,11 @@ class UserProfileTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.tintColor = UIColor.black
-        checkRating()
         setupImageView()
+        getDetails()
         getRating()
         getLifestyleInfo()
-        getDetails()
+        checkRating()
     }
 
     override func didReceiveMemoryWarning() {

@@ -92,35 +92,20 @@ class CameraViewController: ARViewController, ARDataSource, UITextFieldDelegate,
         self.newAnnotations.removeAll()
         
         APIManager.shared.getAdvertisements(params: params, completionHandler: { json in
-            
-            var count = 0
-            
+
             if json != nil {
-                
-                //print(json)
-                
                 if json.arrayValue.count > 0 {
-                    for result in json.arrayValue {
+                    for (index, result) in json.arrayValue.enumerated() {
                         let annotation = ARAnnotation()
                         annotation.advertisementId = result["id"].intValue
                         annotation.location = CLLocation(latitude: result["lat"].doubleValue, longitude: result["lng"].doubleValue)
                         annotation.title = result["place_name"].stringValue
                         annotation.createdBy = result["created_by"].intValue
+                        annotation.pictureUrl = result["creator_avatar"].stringValue
+                        self.newAnnotations.append(annotation)
                         
-                        if let id = annotation.createdBy {
-                            APIManager.shared.getUserProfile(false, byId: id, completionHandler: { json2 in
-                                count += 1
-                                if json2 != nil {
-                                    annotation.pictureUrl = json2["profile"]["avatar"].stringValue
-                                    
-                                } else {
-                                    print("Error getting advertisement creator photo")
-                                }
-                                self.newAnnotations.append(annotation)
-                                if count == json.arrayValue.count {
-                                    completionHandler(self.newAnnotations)
-                                }
-                            })
+                        if index == json.arrayValue.count-1 {
+                            completionHandler(self.newAnnotations)
                         }
                     }
                     

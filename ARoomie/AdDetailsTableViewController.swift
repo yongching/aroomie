@@ -119,26 +119,17 @@ class AdDetailsTableViewController: UITableViewController, MKMapViewDelegate {
             APIManager.shared.getAdvertisement(byId: id, completionHandler: { json in
                 if json != nil {
                     
-                    self.creatorId = json["created_by"].intValue
-                    
                     do {
                         self.roomPicture.image = try UIImage(data: Data(contentsOf: URL(string: json["photo"].stringValue)!))
-                    } catch _ {
-                        print("Room image not found")
-                    }
+                    } catch _ {}
                     
-                    APIManager.shared.getUserProfile(false, byId: json["created_by"].intValue, completionHandler: { json in
-                        if json != nil {
-                            self.lifestyle = json["profile"]["lifestyle_info"].stringValue
-                            do {
-                                self.profileAvatar.image = try UIImage(data: Data(contentsOf: URL(string: json["profile"]["avatar"].stringValue)!))
-                            } catch _ {
-                                print("Creator image not found")
-                            }
-                            self.labelCreatorName.text = json["basic"]["first_name"].stringValue + " " + json["basic"]["last_name"].stringValue
-                        }
-                    })
+                    do {
+                        self.profileAvatar.image = try UIImage(data: Data(contentsOf: URL(string: json["creator_avatar"].stringValue)!))
+                    } catch _ {}
                     
+                    self.creatorId = json["created_by"].intValue
+                    self.lifestyle = json["lifestyle_info"].stringValue
+                    self.labelCreatorName.text = json["creator_name"].stringValue
                     self.textFieldRental.text = json["rental"].stringValue
                     self.labelMoveInDate.text = json["move_in"].stringValue
                     self.labelDeposit.text = json["deposit"].stringValue

@@ -43,7 +43,7 @@ class MessageDetailsViewController: JSQMessagesViewController {
         getAllChat()
         
         // Bubbles with tails
-        incomingBubble = JSQMessagesBubbleImageFactory().incomingMessagesBubbleImage(with: UIColor.jsq_messageBubbleBlue())
+        incomingBubble = JSQMessagesBubbleImageFactory().incomingMessagesBubbleImage(with: UIColor.groupTableViewBackground)
         outgoingBubble = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImage(with: UIColor.jsq_messageBubbleBlue())
         
         // Remove avatar

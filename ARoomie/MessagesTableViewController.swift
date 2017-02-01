@@ -51,15 +51,13 @@ class MessagesTableViewController: UITableViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath) as! MessageTableViewCell
 
-        if avatarUrls.count > 0 {
+        if senderIds.count == self.counts {
             do {
                 cell.profileAvatar.image = try UIImage(data: Data(contentsOf: URL(string: avatarUrls[indexPath.row])!))
-            } catch _ {
-
-            }
+            } catch _ {}
+            cell.labelName.text = senderNames[indexPath.row]
+            cell.labelContent.text = contents[indexPath.row]
         }
-        cell.labelName.text = senderNames[indexPath.row]
-        cell.labelContent.text = contents[indexPath.row]
         return cell
     }
     
@@ -67,7 +65,7 @@ class MessagesTableViewController: UITableViewController {
         
         tableView.deselectRow(at: indexPath, animated: true)
         
-        if contents.count > 0 {
+        if senderIds.count == self.counts {
             let chatView = MessageDetailsViewController()
             chatView.userId = self.userId
             chatView.oppositeSenderId = senderIds[indexPath.row]
@@ -85,6 +83,10 @@ class MessagesTableViewController: UITableViewController {
     
     // MARK: - Actions
     
+    func handleRefresh(refreshControl: UIRefreshControl) {
+        self.getMessages(animation: false)
+    }
+    
     func resetArray() {
         self.avatarUrls.removeAll()
         self.senderIds.removeAll()
@@ -92,29 +94,26 @@ class MessagesTableViewController: UITableViewController {
         self.contents.removeAll()
     }
     
-    func handleRefresh(refreshControl: UIRefreshControl) {
-        self.resetArray()
-        self.getMessages(animation: false)
-    }
-    
     func getMessages(animation: Bool) {
-        var count = 0
-        APIManager.shared.getMessages(loadingAnimation: animation, completionHandler: { json in
+        
+        self.resetArray()
+        
+        APIManager.shared.getMessages(animation: animation, completionHandler: { json in
             if json != nil {
+                
+                self.counts = json["messages_received"].arrayValue.count
+                
                 for result in json["messages_received"].arrayValue {
-                    APIManager.shared.getUserProfile(true, byId: result["sent_by"].intValue, completionHandler: { json2 in
-                        count += 1
-                        if json2 != nil {
-                            self.counts = count
-                            self.avatarUrls.append(json2["profile"]["avatar"].stringValue)
-                            self.userId = result["sent_to"].intValue
-                            self.senderIds.append(result["sent_by"].intValue)
-                            self.senderNames.append(result["sent_by_name"].stringValue)
-                            self.contents.append(result["content"].stringValue)
-                            self.tableView.reloadData()
-                            self.refreshControl?.endRefreshing()
-                        }
-                    })
+                    self.userId = result["sent_to"].intValue
+                    self.senderIds.append(result["sent_by"].intValue)
+                    self.senderNames.append(result["sent_by_name"].stringValue)
+                    self.contents.append(result["content"].stringValue)
+                    self.avatarUrls.append(result["sender_avatar"].stringValue)
+                    
+                    if self.avatarUrls.count == self.counts {
+                        self.tableView.reloadData()
+                        self.refreshControl?.endRefreshing()
+                    }
                 }
             }
         })
