@@ -25,6 +25,7 @@ class NewAdDetailsTableViewController: UITableViewController, UITextFieldDelegat
     var lng: String = "0"
     
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var labelAddPhoto: UILabel!
     @IBOutlet var textFields: [UITextField]!
     @IBOutlet weak var buttonGenderPref: DropDownButton!
     @IBOutlet weak var buttonRacePref: DropDownButton!
@@ -62,10 +63,10 @@ class NewAdDetailsTableViewController: UITableViewController, UITextFieldDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.tintColor = UIColor.black
-        setupDropDowns()
         setupImagePicker()
         setupTextFieldsAndTextViews()
         setupDatePicker()
+        setupDropDowns()
         hideKeyboardWhenTappedAround()
         initializeAdvertisement()
     }
@@ -115,16 +116,14 @@ class NewAdDetailsTableViewController: UITableViewController, UITextFieldDelegat
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         let selectedImage = info[UIImagePickerControllerOriginalImage] as! UIImage
         self.imageView.image = selectedImage
+        self.labelAddPhoto.isHidden = true
         dismiss(animated: true, completion: nil)
     }
     
     // MARK: - Setup
     
     func setupImagePicker() {
-        imageView.layer.cornerRadius = 220 / 2
-        imageView.layer.borderWidth = 1.0
-        imageView.layer.borderColor = UIColor.white.cgColor
-        imageView.clipsToBounds = true
+        imageView.contentMode = UIViewContentMode.scaleAspectFill
         
         self.imagePicker.delegate = self
         self.imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewAdDetailsTableViewController.imageViewTapped)))

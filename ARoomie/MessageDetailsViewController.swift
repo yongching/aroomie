@@ -127,6 +127,17 @@ class MessageDetailsViewController: JSQMessagesViewController {
         return messages[indexPath.item]
     }
     
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell: JSQMessagesCollectionViewCell = super.collectionView(collectionView, cellForItemAt: indexPath) as! JSQMessagesCollectionViewCell
+        
+        if Int(messages[indexPath.item].senderId) == userId {
+            cell.textView.textColor = UIColor.white
+        } else {
+            cell.textView.textColor = UIColor.black
+        }
+        return cell
+    }
+    
     override func collectionView(_ collectionView: JSQMessagesCollectionView, messageBubbleImageDataForItemAt indexPath: IndexPath) -> JSQMessageBubbleImageDataSource {
         
         return Int(messages[indexPath.item].senderId) == userId ? outgoingBubble : incomingBubble
@@ -136,7 +147,6 @@ class MessageDetailsViewController: JSQMessagesViewController {
 
         if (indexPath.item % 3 == 0) {
             let message = self.messages[indexPath.item]
-            
             return JSQMessagesTimestampFormatter.shared().attributedTimestamp(for: message.date)
         }
         

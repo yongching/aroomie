@@ -98,6 +98,10 @@ class AdDetailsTableViewController: UITableViewController, MKMapViewDelegate {
     
     // MARK: - Setup
     
+    func setupRoomImageView() {
+        roomPicture.contentMode = UIViewContentMode.scaleAspectFill
+    }
+    
     func setupImageView() {
         profileAvatar.layer.cornerRadius = 60 / 2
         profileAvatar.layer.borderWidth = 1.0
