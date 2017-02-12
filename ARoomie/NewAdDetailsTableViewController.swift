@@ -25,6 +25,7 @@ class NewAdDetailsTableViewController: UITableViewController, UITextFieldDelegat
     var lng: String = "0"
     
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var imageViewCameraIcon: UIImageView!
     @IBOutlet weak var labelAddPhoto: UILabel!
     @IBOutlet var textFields: [UITextField]!
     @IBOutlet weak var buttonGenderPref: DropDownButton!
@@ -211,8 +212,10 @@ class NewAdDetailsTableViewController: UITableViewController, UITextFieldDelegat
         
         if let id = self.advertisementId {
             
-                self.navigationItem.title = "Edit Details"
-                self.rightBarButton.title = "Update"
+            self.imageViewCameraIcon.isHidden = true
+            self.labelAddPhoto.isHidden = true
+            self.navigationItem.title = "Edit Details"
+            self.rightBarButton.title = "Update"
             APIManager.shared.getAdvertisement(byId: id, completionHandler: { json in
                 
                 if json != nil {

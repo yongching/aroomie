@@ -84,13 +84,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         for i in 0..<deviceToken.count {
             token = token + String(format: "%02.2hhx", arguments: [deviceToken[i]])
         }
-        
+
         let defaults = UserDefaults.standard
         defaults.set(token, forKey: "device_token")
         APIManager.shared.updateDeviceToken(token: token, completionHandler: { json in
             
             if json != nil {
-                print("Stored or updated device_token")
+                print("Stored APNs token \(token)")
             } else {
                 print("Device_token not stored")
             }
@@ -110,6 +110,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
         // app is currently active, can update badges count here
         case .active:
+            print("Receive notification")
             break
             
         // app is transitioning from background to foreground (user taps the notification)
