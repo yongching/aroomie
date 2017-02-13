@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 open class AnnotationView: ARAnnotationView, UIGestureRecognizerDelegate
 {
@@ -42,11 +43,15 @@ open class AnnotationView: ARAnnotationView, UIGestureRecognizerDelegate
         imageView.isUserInteractionEnabled = true
         
         if let pictureUrl = self.annotation?.pictureUrl {
+            let url = URL(string: pictureUrl)
+            imageView.kf.setImage(with: url)
+            /*
             do {
                 imageView.image = try UIImage(data: Data(contentsOf: URL(string: pictureUrl)!))
             } catch _ {
                 print("Profile picture not found")
             }
+            */
         }
         self.addSubview(imageView)
         self.profileImage = imageView
