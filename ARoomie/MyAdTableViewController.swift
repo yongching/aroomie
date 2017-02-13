@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class MyAdTableViewController: UITableViewController {
 
@@ -15,7 +16,7 @@ class MyAdTableViewController: UITableViewController {
     var advertisementIds: [Int] = []
     var roomUrls: [String] = []
     var placeNames: [String] = []
-    var loaded: Bool = false
+    var total = 0
     
     // MARK: - View lifecycle
     
@@ -38,7 +39,10 @@ class MyAdTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return placeNames.count
+        if placeNames.count == total {
+            return total
+        }
+        return 0
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -50,15 +54,14 @@ class MyAdTableViewController: UITableViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "AdvertisementCell", for: indexPath) as! AdvertisementTableViewCell
         
-        if !loaded {
-            do {
-                cell.roomImage.image = try UIImage(data: Data(contentsOf: URL(string: roomUrls[indexPath.row])!))
-            } catch _ {}
-            if indexPath.row == self.roomUrls.count-1 {
-                self.loaded = true
+        if placeNames.count == total {
+            let url = URL(string: roomUrls[indexPath.row])
+            cell.roomImage.kf.setImage(with: url)
+            cell.labelPlace.text = self.placeNames[indexPath.row]
+            if indexPath.row == tableView.numberOfRows(inSection: 0) - 1 {
+                tableView.endUpdates()
             }
         }
-        cell.labelPlace.text = self.placeNames[indexPath.row]
         
         return cell
     }
@@ -106,12 +109,15 @@ class MyAdTableViewController: UITableViewController {
         APIManager.shared.getUserAdvertisements(completionHandler: { json in
 
             if json != nil {
+                self.total = json.arrayValue.count
+                
                 for result in json.arrayValue {
                     self.advertisementIds.append(result["id"].intValue)
                     self.roomUrls.append(result["photo"].stringValue)
                     self.placeNames.append(result["place_name"].stringValue)
                 }
                 self.tableView.reloadData()
+                
             }
         })
     }

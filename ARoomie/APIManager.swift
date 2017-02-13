@@ -129,9 +129,9 @@ class APIManager {
                         
                         let jsonData = JSON(value)
                         print(value)
-                        self.accessToken = jsonData["access_token"].string!
-                        self.refreshToken = jsonData["refresh_token"].string!
-                        self.expired = Date().addingTimeInterval(TimeInterval(jsonData["expires_in"].int!))
+                        self.accessToken = jsonData["access_token"].stringValue
+                        self.refreshToken = jsonData["refresh_token"].stringValue
+                        self.expired = Date().addingTimeInterval(TimeInterval(jsonData["expires_in"].intValue))
                         
                         let defaults = UserDefaults.standard
                         defaults.set(self.accessToken, forKey: "access_token")

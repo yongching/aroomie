@@ -20,4 +20,5 @@ target 'ARoomie' do
   pod 'HCSStarRatingView', '~> 1.4.5'
   pod 'JSQMessagesViewController'
   pod 'SCLAlertView'
+  pod 'Kingfisher'
 end
