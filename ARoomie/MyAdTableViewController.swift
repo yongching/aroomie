@@ -59,7 +59,7 @@ class MyAdTableViewController: UITableViewController {
             cell.roomImage.kf.setImage(with: url)
             cell.labelPlace.text = self.placeNames[indexPath.row]
             if indexPath.row == tableView.numberOfRows(inSection: 0) - 1 {
-                tableView.endUpdates()
+                //tableView.endUpdates()
             }
         }
         
@@ -83,11 +83,12 @@ class MyAdTableViewController: UITableViewController {
                 action in
                 
                 APIManager.shared.deleteAdvertisement(byId: self.advertisementIds[indexPath.row], completionHandler: { json in
-                    
+
                     if json != nil {
                         self.advertisementIds.remove(at: indexPath.row)
                         self.roomUrls.remove(at: indexPath.row)
                         self.placeNames.remove(at: indexPath.row)
+                        self.total -= 1
                         tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
                     }
                 })
