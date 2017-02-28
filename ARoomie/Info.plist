@@ -42,8 +42,6 @@
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>Use your camera to look for advertisement using augmented reality</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string></string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Use your current location when you want to add a new advertisement</string>
 	<key>NSPhotoLibraryUsageDescription</key>

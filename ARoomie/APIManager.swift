@@ -114,11 +114,8 @@ class APIManager {
             "refresh_token": Default.shared.getRefreshToken()
         ]
         
-        //if let expired = defaults.object(forKey: "expired") as? Date {
         if let expired = Default.shared.getExpired() as? Date {
-
             if Date() > expired {
-                print("token refreshing")
                 SVProgressHUD.show()
                 Alamofire.request(url!, method: .post, parameters: params, encoding: URLEncoding(), headers: nil)
                     .responseJSON { response in
@@ -133,10 +130,12 @@ class APIManager {
                         self.refreshToken = jsonData["refresh_token"].stringValue
                         self.expired = Date().addingTimeInterval(TimeInterval(jsonData["expires_in"].intValue))
                         
-                        let defaults = UserDefaults.standard
-                        defaults.set(self.accessToken, forKey: "access_token")
-                        defaults.set(self.refreshToken, forKey: "refresh_token")
-                        defaults.set(self.expired, forKey: "expired")
+                        if !self.accessToken.isEmpty {
+                            let defaults = UserDefaults.standard
+                            defaults.set(self.accessToken, forKey: "access_token")
+                            defaults.set(self.refreshToken, forKey: "refresh_token")
+                            defaults.set(self.expired, forKey: "expired")
+                        }
                         
                         print("token refresh success")
                         completionHandler()
@@ -150,7 +149,7 @@ class APIManager {
                 }
                 
             } else {
-                //print("token haven't expired")
+                print("token haven't expired")
                 completionHandler()
             }
         }
