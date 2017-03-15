@@ -237,7 +237,7 @@ class UserProfileTableViewController: UITableViewController {
         let submitAction = UIAlertAction(title: "Confirm", style: .default, handler: { (alert: UIAlertAction!) in
             if starRatingView.value != 0 {
                 if let id = self.userId {
-                    APIManager.shared.addRating(toUserId: id, score: Int(starRatingView.value), completionHandler: { json in
+                    APIManager.shared.addRating(userId: id, score: Int(starRatingView.value), completionHandler: { json in
                         if json != nil {
                             let alert = UIAlertController(title: "Successfully Rated!", message: nil, preferredStyle: .alert)
                             alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: { completionHandler in

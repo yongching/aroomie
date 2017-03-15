@@ -18,9 +18,9 @@ class APIManager {
     
     let baseURL = NSURL(string: BASE_URL)
     
-    var accessToken = ""
-    var refreshToken = ""
-    var expired = Date()
+    //var accessToken = ""
+    //var refreshToken = ""
+    //var expired = Date()
     
     // API - Login
     func login(completionHandler: @escaping (NSError?) -> Void) {
@@ -52,6 +52,7 @@ class APIManager {
                         
                         let jsonData = JSON(value)
                         
+                        /*
                         self.accessToken = jsonData["access_token"].string!
                         self.refreshToken = jsonData["refresh_token"].string!
                         self.expired = Date().addingTimeInterval(TimeInterval(jsonData["expires_in"].int!))
@@ -60,6 +61,13 @@ class APIManager {
                         defaults.set(self.accessToken, forKey: "access_token")
                         defaults.set(self.refreshToken, forKey: "refresh_token")
                         defaults.set(self.expired, forKey: "expired")
+                        */
+ 
+                        let defaults = UserDefaults.standard
+                        let newExpiry = Date().addingTimeInterval(TimeInterval(jsonData["expires_in"].intValue))
+                        defaults.set(jsonData["access_token"].stringValue, forKey: "access_token")
+                        defaults.set(jsonData["refresh_token"].stringValue, forKey: "refresh_token")
+                        defaults.set(newExpiry, forKey: "expired")
                         
                         completionHandler(nil)
                         break
@@ -125,16 +133,19 @@ class APIManager {
                     case .success(let value):
                         
                         let jsonData = JSON(value)
-                        print(value)
+                        
+                        /*
                         self.accessToken = jsonData["access_token"].stringValue
                         self.refreshToken = jsonData["refresh_token"].stringValue
                         self.expired = Date().addingTimeInterval(TimeInterval(jsonData["expires_in"].intValue))
-                        
-                        if !self.accessToken.isEmpty {
+                        */
+ 
+                        if !jsonData["access_token"].stringValue.isEmpty {
                             let defaults = UserDefaults.standard
-                            defaults.set(self.accessToken, forKey: "access_token")
-                            defaults.set(self.refreshToken, forKey: "refresh_token")
-                            defaults.set(self.expired, forKey: "expired")
+                            let newExpiry = Date().addingTimeInterval(TimeInterval(jsonData["expires_in"].intValue))
+                            defaults.set(jsonData["access_token"].stringValue, forKey: "access_token")
+                            defaults.set(jsonData["refresh_token"].stringValue, forKey: "refresh_token")
+                            defaults.set(newExpiry, forKey: "expired")
                         }
                         
                         print("token refresh success")
@@ -197,7 +208,7 @@ class APIManager {
     
     // API - User
     func getUserProfile(completionHandler: @escaping (JSON) -> Void ) {
-        
+
         let path = "api/user/profile/"
         let params: [String: Any] = [
             "access_token": Default.shared.getAccessToken()
@@ -206,7 +217,7 @@ class APIManager {
     }
     
     func getUserProfile(_ animation: Bool, byId: Int, completionHandler: @escaping (JSON) -> Void ) {
-        
+
         let path = "api/user/profile/other/\(byId)/"
         let params: [String: Any] = [
             "access_token": Default.shared.getAccessToken()
@@ -215,7 +226,7 @@ class APIManager {
     }
     
     func updateUserProfile(params: [String: Any], completionHandler: @escaping (JSON) -> Void ) {
-        
+
         let path = "api/user/profile/edit/"
         let defaultParam: [String: Any] = [
             "access_token": Default.shared.getAccessToken()
@@ -225,7 +236,7 @@ class APIManager {
     }
     
     func updateDeviceToken(token: String, completionHandler: @escaping (JSON) -> Void ) {
-        
+
         let path = "api/device/apns/create/"
         let params: [String: Any] = [
             "access_token": Default.shared.getAccessToken(),
@@ -236,19 +247,19 @@ class APIManager {
     
     // API - Advertisement
     func getAdvertisements(params: [String: Any], completionHandler: @escaping (JSON) -> Void ) {
-        
+
         let path = "api/advertisements/"
         requestServer(true, .get, path, params, URLEncoding(), completionHandler)
     }
     
     func getAdvertisement(byId: Int, completionHandler: @escaping (JSON) -> Void ) {
-        
+
         let path = "api/advertisement/\(byId)/"
         requestServer(true, .get, path, nil, URLEncoding(), completionHandler)
     }
     
     func getUserAdvertisements(completionHandler: @escaping (JSON) -> Void ) {
-        
+
         let path = "api/advertisements/self/"
         let param: [String: Any] = [
             "access_token": Default.shared.getAccessToken()
@@ -257,13 +268,13 @@ class APIManager {
     }
     
     func updateAdvertisement(params: [String: Any], byId: Int, completionHandler: @escaping (JSON) -> Void ) {
-        
+
         let path = "api/advertisement/edit/\(byId)"
         requestServer(true, .put, path, params, URLEncoding(), completionHandler)
     }
     
     func deleteAdvertisement(byId: Int, completionHandler: @escaping (JSON) -> Void ) {
-        
+
         let path = "api/advertisement/delete/\(byId)/"
         requestServer(true, .delete, path, nil, URLEncoding(), completionHandler)
     }
@@ -304,9 +315,9 @@ class APIManager {
         requestServer(true, .get, path, nil, URLEncoding(), completionHandler)
     }
     
-    func addRating(toUserId: Int, score: Int, completionHandler: @escaping (JSON) -> Void ) {
+    func addRating(userId: Int, score: Int, completionHandler: @escaping (JSON) -> Void ) {
         
-        let path = "api/rating/add/\(toUserId)/"
+        let path = "api/rating/add/\(userId)/"
         let params: [String: Any] = [
             "access_token": Default.shared.getAccessToken(),
             "score": score

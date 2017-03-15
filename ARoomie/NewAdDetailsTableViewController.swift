@@ -272,7 +272,7 @@ class NewAdDetailsTableViewController: UITableViewController, UITextFieldDelegat
         Alamofire.upload(multipartFormData: { MultipartFormData in
             
             if let image = self.imageView.image {
-                MultipartFormData.append(UIImageJPEGRepresentation(image, 0.5)!, withName: "photo", fileName: "picture.jpg", mimeType: "image/jpg")
+                MultipartFormData.append(UIImageJPEGRepresentation(image, 0.8)!, withName: "photo", fileName: "picture", mimeType: "image/jpeg")
             }
             
             for (key, value) in parameters {
@@ -288,7 +288,7 @@ class NewAdDetailsTableViewController: UITableViewController, UITextFieldDelegat
                     
                     SVProgressHUD.dismiss()
                     
-                    //debugPrint(response)
+                    debugPrint(response)
                     //print(JSON(response.result.value!))
                     
                     if response.response?.statusCode == 200 {
@@ -320,7 +320,7 @@ class NewAdDetailsTableViewController: UITableViewController, UITextFieldDelegat
                             title = "Error Posting!"
                         }
                         
-                        let alert = UIAlertController(title: title, message: "Please select an image and fill up all the required columns.", preferredStyle: .alert)
+                        let alert = UIAlertController(title: title, message: "This may be due to slow internet connection", preferredStyle: .alert)
                         alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
                         self.present(alert, animated: true, completion: nil)
                     }
