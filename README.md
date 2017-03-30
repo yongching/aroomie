@@ -5,12 +5,12 @@
 An iOS Roommate Finder Mobile Application using Augmented Reality written in Swift3.
 ***
 
-[![](Screenshots/1.png)](Screenshots/1.png)
-[![](Screenshots/2.png)](Screenshots/2.png)
-[![](Screenshots/3.png)](Screenshots/3.png)
-[![](Screenshots/4.png)](Screenshots/4.png)
-[![](Screenshots/5.png)](Screenshots/5.png)
-[![](Screenshots/6.png)](Screenshots/6.png)
+[![](Screenshots/1.PNG)](Screenshots/1.PNG)
+[![](Screenshots/2.PNG)](Screenshots/2.PNG)
+[![](Screenshots/3.PNG)](Screenshots/3.PNG)
+[![](Screenshots/4.PNG)](Screenshots/4.PNG)
+[![](Screenshots/5.PNG)](Screenshots/5.PNG)
+[![](Screenshots/6.PNG)](Screenshots/6.PNG)
 
 ## Installation 📱
 
