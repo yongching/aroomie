@@ -5,13 +5,13 @@
 An iOS Roommate Finder Mobile Application using Augmented Reality written in Swift3.
 ***
 
-<img src="https://github.com/yongching/ARoomie/blob/master/Screenshots/1.PNG" alt="alt text" width="300" height="500">
-[![](Screenshots/1.PNG)](Screenshots/1.PNG)
-[![](Screenshots/2.PNG)](Screenshots/2.PNG)
-[![](Screenshots/3.PNG)](Screenshots/3.PNG)
-[![](Screenshots/4.PNG)](Screenshots/4.PNG)
-[![](Screenshots/5.PNG)](Screenshots/5.PNG)
-[![](Screenshots/6.PNG)](Screenshots/6.PNG)
+<img src="https://github.com/yongching/ARoomie/blob/master/Screenshots/1.PNG" alt="alt text" width="281" height="500">
+<img src="https://github.com/yongching/ARoomie/blob/master/Screenshots/2.PNG" alt="alt text" width="281" height="500">
+<img src="https://github.com/yongching/ARoomie/blob/master/Screenshots/3.PNG" alt="alt text" width="281" height="500">
+<img src="https://github.com/yongching/ARoomie/blob/master/Screenshots/4.PNG" alt="alt text" width="281" height="500">
+<img src="https://github.com/yongching/ARoomie/blob/master/Screenshots/5.PNG" alt="alt text" width="281" height="500">
+<img src="https://github.com/yongching/ARoomie/blob/master/Screenshots/6.PNG" alt="alt text" width="281" height="500">
+
 ***
 
 ## Installation 📱
