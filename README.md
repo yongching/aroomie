@@ -11,6 +11,7 @@ An iOS Roommate Finder Mobile Application using Augmented Reality written in Swi
 [![](Screenshots/4.PNG)](Screenshots/4.PNG)
 [![](Screenshots/5.PNG)](Screenshots/5.PNG)
 [![](Screenshots/6.PNG)](Screenshots/6.PNG)
+***
 
 ## Installation 📱
 
