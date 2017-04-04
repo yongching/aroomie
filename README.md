@@ -36,25 +36,25 @@ This branch supports Swift 3.
 
 ### Libraries I Use
 
-1. ![Alamofire](https://github.com/Alamofire/Alamofire)
+1. [Alamofire](https://github.com/Alamofire/Alamofire)
 
-2. ![SwiftyJSON](https://github.com/BaiduHiDeviOS/SwiftyJSON)
+2. [SwiftyJSON](https://github.com/BaiduHiDeviOS/SwiftyJSON)
 
-3. ![DropDown](https://github.com/AssistoLab/DropDown)
+3. [DropDown](https://github.com/AssistoLab/DropDown)
 
-4. ![GoogleMaps](https://developers.google.com/maps/)
+4. [GoogleMaps](https://developers.google.com/maps/)
 
-5. ![GooglePlaces](https://developers.google.com/places/)
+5. [GooglePlaces](https://developers.google.com/places/)
 
-6. ![SVProgressHUD](https://github.com/SVProgressHUD/SVProgressHUD.git)
+6. [SVProgressHUD](https://github.com/SVProgressHUD/SVProgressHUD.git)
 
-7. ![HCSStarRatingView](https://github.com/hsousa/HCSStarRatingView)
+7. [HCSStarRatingView](https://github.com/hsousa/HCSStarRatingView)
 
-8. ![JSQMessagesViewController](https://github.com/jessesquires/JSQMessagesViewController)
+8. [JSQMessagesViewController](https://github.com/jessesquires/JSQMessagesViewController)
 
-9. ![SCLAlertView](https://github.com/vikmeup/SCLAlertView-Swift)
+9. [SCLAlertView](https://github.com/vikmeup/SCLAlertView-Swift)
 
-10. ![Kingfisher](https://github.com/onevcat/Kingfisher)
+10. [Kingfisher](https://github.com/onevcat/Kingfisher)
 
 ARoomie is created for my final year project. It will be updated when necessary and fixes will be done as soon as I discover new bugs. 
 
