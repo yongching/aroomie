@@ -34,7 +34,9 @@ This branch supports Swift 3.
 
 ## Credits
 
-### Libraries I Use
+ARoomie is created for my final year project. It will be updated when necessary and fixes will be done as soon as I discover new bugs. 
+
+Libraries I use:
 
 1. [Alamofire](https://github.com/Alamofire/Alamofire)
 
@@ -55,7 +57,5 @@ This branch supports Swift 3.
 9. [SCLAlertView](https://github.com/vikmeup/SCLAlertView-Swift)
 
 10. [Kingfisher](https://github.com/onevcat/Kingfisher)
-
-ARoomie is created for my final year project. It will be updated when necessary and fixes will be done as soon as I discover new bugs. 
 
 Enjoy!
