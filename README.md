@@ -1,6 +1,6 @@
 ![ARoomie](Screenshots/logo.png)
 
-[![Twitter: @yongching](https://img.shields.io/badge/twitter-yongching__t-blue.svg)](https://twitter.com/yongching)
+[![Twitter: @yongching](https://img.shields.io/badge/twitter-yongching-blue.svg)](https://twitter.com/yongching)
 
 An iOS Roommate Finder Mobile Application using Augmented Reality written in Swift3.
 ***
